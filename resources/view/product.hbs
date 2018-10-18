@@ -1,0 +1,349 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="product__session">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+<!-- {{req.session.contact_seller_errors}} -->
+            <div class="medium-auto cell">
+                <div class="callout warning profile-msg {{#compare contact_seller_form_errors '==' false}}hidden{{/compare}}">
+                    {{#if contact_seller_form_errors}}
+                        <h2 style="font-size: 1.2rem;">Email occerred we couldn't send your message</h2>
+                        <ul>
+                            {{# each contact_seller_messages}}
+                                <li>{{this.msg}}</li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+
+                <div class="product__wrapper">
+                    <div class="grid-x grid-margin-x">
+
+                        <div class="medium-12 cell">
+                            <h1>Space – Multipurpose Responsive Template</h1>
+                        </div>
+
+                        <div class="medium-12 cell social-btn flex-container">
+                            <button class="button primary twitter" type="button" name="button">Tweet this</button>
+                            <button class="button primary facebook" type="button" name="button">Share this</button>
+                        </div>
+
+                        <div class="medium-12 cell">
+
+                            <div class="clearfix" style="max-width:474px;">
+                                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                    <li data-thumb="/img/temp/thumb-1/dashboard.png">
+                                        <img src="/img/temp/thumb-1/dashboard.png" />
+                                         </li>
+                                    <li data-thumb="/img/temp/thumb-1/dashboard.png">
+                                        <img src="/img/temp/thumb-1/dashboard.png" />
+                                         </li>
+                                    <li data-thumb="/img/temp/thumb-1/dashboard.png">
+                                        <img src="/img/temp/thumb-1/dashboard.png" />
+                                         </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="product__cont">
+                                <h2>The History of Parisian Style</h2>
+                                <p>
+                                    Turn your project from mediocre to remarkable — a design that is simple, seamless and alive! With Sparrow, your outstanding website is just one step away. Create with it what you will.
+                                </p>
+
+                                <h2>Code Quality</h2>
+
+                                <p>
+                                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.code_quality_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.code_quality_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.code_quality_field}}}{{/if}}
+                                </p>
+
+                                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.features_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.features_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.features_field}}}{{/if}}</h2>
+                                <ul>
+                                    <li>3 Stuning Home Pages</li>
+                                    <li>Clean Code and unique design</li>
+                                    <li>HTML5 & CSS3 Validated</li>
+                                    <li>Responsive Design</li>
+                                    <li>SEO Friendly</li>
+                                    <li>Working Contact Form</li>
+                                    <li>Google fonts</li>
+                                    <li>Very easy to customize</li>
+                                    <li>Full Documented</li>
+                                </ul>
+                            </div>
+
+                            <div class="review__wrapper">
+
+                                <div class="callout warning profile-msg {{#compare save_review_form_errors '==' false}}hidden{{/compare}}">
+                                    {{#if save_review_form_errors}}
+                                        <ul>
+                                            {{# each save_review_messages}}
+                                                <li>{{this.msg}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/if}}
+                                </div>
+
+                                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_review_field}}}{{/if}}</h2>
+
+                                <div class="review_r_wrapper">
+                                    <form action="/save-review" method="post">
+                                        <div class="grid-x grid-margin-x">
+
+                                            <div class="medium-12 cell">
+                                                <div class="rate1 rate_control" data-rate-value="5"></div>
+                                                <input id="rate_input1" type="hidden" name="rate_input" value="">
+                                            </div>
+
+                                            <div class="medium-12 cell">
+                                                <textarea name="name" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_review_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_review_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_review_here_field}}}{{/if}}" rows="3" cols="5"></textarea>
+                                            </div>
+                                            <div class="medium-12 cell">
+                                                <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
+                                                <input class="button primary" type="submit" name="" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <h3>24 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviews_field}}}{{/if}}</h3>
+
+                                <div class="callout warning profile-msg {{#compare remove_review_form_errors '==' false}}hidden{{/compare}}">
+                                    {{#if remove_review_form_errors}}
+                                        <ul>
+                                            {{# each remove_review_messages}}
+                                                <li>{{this.msg}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/if}}
+                                </div>
+
+                                <div class="media-object">
+                                     <div class="media-object-section">
+                                        <div class="thumbnail">
+                                          <img src= "/img/profile/thumb/anthony-mackie.jpg" width="100">
+                                        </div>
+                                     </div>
+                                      <div class="media-object-section">
+                                        <h4>Patrick K</h4>
+                                        <div class="star__ratings flex-container align-middle">
+                                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
+                                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
+                                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
+                                            <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
+                                            <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
+                                            <span class="small">(4)</span>
+                                        </div>
+                                        <div class="date">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.posted_on_field}}}{{/if}} February 19, 2016</div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro at, tenetur cum beatae excepturi id ipsa? Esse dolor laboriosam itaque ea nesciunt, earum, ipsum commodi beatae velit id enim repellat.</p>
+                                        <div class="remove-review">
+                                            <input type="button" onclick="controller.removeProductReview('review','main','xxx')" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remove_review_field}}}{{/if}}">
+                                            <form action="/remove-review" id="main-xxx" onsubmit="event.preventDefault();" method="post">
+                                                <div class="grid-x grid-margin-x">
+                                                    <div class="medium-12 cell">
+                                                        <input type="hidden" name="review_id" value="xxx">
+                                                        <input type="hidden" name="action" value="main">
+                                                        <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
+                                                        <input class="button primary hidden" type="submit" name="" value="Submit">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- Nested media object starts here -->
+                                        <div class="media-object">
+                                          <div class="media-object-section">
+                                            <div class="thumbnail">
+                                              <img src= "/img/profile/thumb/anthony-mackie.jpg" width="100">
+                                            </div>
+                                          </div>
+                                          <div class="media-object-section">
+                                            <h4>Patrick K</h4>
+                                            <div class="date">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.posted_on_field}}}{{/if}} February 19, 2016</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas magni, quam mollitia voluptatum in, animi suscipit tempora ea consequuntur non nulla vitae doloremque. Eius rerum, cum earum quae eveniet odio.</p>
+                                            <div class="remove-review">
+                                                <input type="button" onclick="controller.removeProductReview('review reply','reply','xxxx')" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remove_review_field}}}{{/if}}" >
+                                                <form action="/remove-review" id="reply-xxxx" onsubmit="event.preventDefault();" method="post" >
+                                                    <div class="grid-x grid-margin-x">
+                                                        <div class="medium-12 cell">
+                                                            <input type="hidden" name="review_id" value="xxxx">
+                                                            <input type="hidden" name="action" value="reply">
+                                                            <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
+                                                            <input class="button primary hidden" type="submit" name="" value="Submit">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                          </div>
+
+                                        </div>
+
+                                        <div class="review_r_wrapper">
+                                            <form action="/save-review-reply" method="post">
+                                                <div class="grid-x grid-margin-x">
+
+                                                    <div class="medium-12 cell">
+                                                        <textarea name="name" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{/if}}" rows="1" cols="5"></textarea>
+                                                    </div>
+                                                    <div class="medium-12 cell">
+                                                        <input type="hidden" name="review_id" value="3f9sfWUBtJ_6JLhQCHJU">
+                                                        <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
+                                                        <input class="button secondary" type="submit" name="" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- And ends here -->
+                                      </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div><!-- ./grid-x grid-padding-x -->
+                </div>
+            </div>
+
+            <div class="medium-4 large-3 cell">
+                <div class="s__left__wrapper">
+                    <div>
+                        <label>
+                            <input type="radio" name="order" value="55">
+                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.standard_license_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.standard_license_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.standard_license_field}}}{{/if}} <b>$55</b>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="radio" name="order" value="55">
+                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_for_our_business_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_for_our_business_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.get_it_design_for_our_business_field}}}{{/if}}  <b>$599</b>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="radio" name="order" value="55">
+                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_and_hosteds_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_and_hosteds_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.get_it_design_and_hosteds_field}}}{{/if}} <b>$599</b>
+                        </label>
+                    </div>
+                    <!-- <hr> -->
+                    <button class="button primary expanded cart-btn" type="button" name="button">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.add_to_cart_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.add_to_cart_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.add_to_cart_field}}}{{/if}}</button>
+                </div>
+
+
+                <div class="s__left__wrapper">
+                    <div class="ratting__wrapper">
+                        <div class="star__ratings flex-container align-middle">
+                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
+                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
+                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
+                            <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
+                            <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
+                            <span class="small"> 4 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviews_field}}}{{/if}}</span>
+                        </div>
+
+                        <div class="u-sold">
+                            <img src="/img/icon/shopping-cart.svg" width="18" alt="shopping cart icon"> 65 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sold_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sold_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sold_field}}}{{/if}}
+                        </div>
+
+                        <ul class="flex-container align-center-middle contact-seller-wrapper">
+                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.questions_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.questions_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.questions_field}}}{{/if}}</li>
+                            <li><button data-open="contact-seller" class="button primary expanded" type="button" name="button">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_seller_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_seller_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_seller_field}}}{{/if}}</button></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="s__left__wrapper">
+                    <ul class="quality__wrapper flex-container">
+                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16"> {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.reviewed_by_our_Foundation_6_team_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviewed_by_our_Foundation_6_team_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviewed_by_our_Foundation_6_team_field}}}{{/if}}</li>
+                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.months_support_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.months_support_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.months_support_field}}}{{/if}}</li>
+                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.money_back_guarantee_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.money_back_guarantee_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.money_back_guarantee_field}}}{{/if}}</li>
+                    </ul>
+                </div>
+
+                <div class="s__left__wrapper">
+                    <div class="version__wrapper">
+                        <ul>
+                            <li>Foundation 6 Grid XY</li>
+                            <li>v6.1.1</li>
+                        </ul>
+                        <ul>
+                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.released_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.released_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.released_field}}}{{/if}}</li>
+                            <li>3 weeks ago</li>
+                        </ul>
+                        <ul>
+                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.version_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.version_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.version_field}}}{{/if}}</li>
+                            <li>1.0.0</li>
+                        </ul>
+                        <ul>
+                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.files_included_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.files_included_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.files_included_field}}}{{/if}}</li>
+                            <li>HTML, SCSS, CSS. JS</li>
+                        </ul>
+                        <ul>
+                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.layout_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.layout_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.layout_field}}}{{/if}}</li>
+                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.responsive_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.responsive_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.responsive_field}}}{{/if}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- ./grid-container -->
+</section>
+
+
+<div class="reveal r-contact-seller" id="contact-seller" data-reveal>
+    <h1>Contact Seller.</h1>
+
+    <form action="/contact-seller" method="post">
+        <div class="grid-x grid-margin-x">
+
+            <div class="medium-4 cell">
+                <label for="title">Title <span class="required">*</span></label>
+                <select id="title" name="title">
+                        <optgroup label="Select Title">
+                        <option value="">Select Title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="medium-8 cell">
+                <label for="name">Name <span class="required">*</span></label>
+                <input placeholder="Name" name="name" type="text" value="{{req.body.name}}" id="name">
+            </div>
+
+            <div class="medium-6 cell">
+                <label for="mobile">Mobile <span class="required">*</span></label>
+                <input placeholder="Mobile" name="mobile" type="text" value="{{req.body.mobile}}" id="mobile">
+            </div>
+
+            <div class="medium-6 cell">
+                <label for="email">Email <span class="required">*</span></label>
+                <input placeholder="Email" name="email" type="email" value="{{req.body.email}}" id="email">
+            </div>
+
+            <div class="medium-12 cell">
+                <label for="description">Message <span class="required">*</span></label>
+                <textarea rows="3" placeholder="Message" name="message" cols="50" id="message"></textarea>
+            </div>
+
+            <div class="medium-12 cell">
+                <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
+                <input class="button primary expanded" type="submit" name="" value="Submit">
+            </div>
+
+        </div>
+    </form>
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div id="dialog-confirm" style="display:none" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remove_review_field}}}{{/if}}" class="confirm-prompt">
+    <p  id="ui-body">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.please_press_confirm_to_remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.please_press_confirm_to_remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.please_press_confirm_to_remove_review_field}}}{{/if}}</p>
+</div>
+
+<input type="hidden" name="confirm" id="confirm" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.cancel_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.cancel_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.cancel_field}}}{{/if}}">

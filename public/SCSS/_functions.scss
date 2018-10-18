@@ -1,0 +1,11 @@
+
+@function sum($left,$right){
+  @return $left+$right;
+}
+@function rem($val,$cont:16px){
+  @return ($val/$cont)*1rem;
+}
+@function strip-unit($val){
+  @return $val/($val*0+1);
+}
+

@@ -1,0 +1,61 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__cont">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-8 cell">
+                <h1>Blog</h1>
+
+                <p class="d__paragraph">Insights, ideas, and stories.</p>
+            </div><!-- ./medium cell -->
+            <div class="medium-4 cell">
+                <img src="img/project/pr1.png" alt="project image">
+            </div>
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+<section class="cont_padding">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+
+            <div class="medium-4 medium-order-2 large-3 cell">
+                <div class="blog-search-bar-wrapper">
+                    <form method="get" action="blogs" id="blogs">
+                        <input type="search" placeholder="Search" autocomplete="off" name="qb" value="{{req.query.qb}}" class="form-control">
+                        <span class="text-center align-center-middle" onclick="$('#blogs').submit()">
+                            <!-- <img src="img/icon/search-icon.svg" width="20" alt="search-icon"> -->
+                            <i class="fas fa-search"></i>
+                            <input type="submit" value="submit" class="hidden">
+                        </span>
+                    </form>
+                </div>
+            </div><!-- ./medium cell -->
+
+            <div class="medium-auto medium-order-1 cell">
+                <span>Showing <b>1</b> to <b>12</b> of <b>2292</b> posts</span>
+            </div><!-- ./medium cell -->
+
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+<section>
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x r__wrapper">
+                {{#each blogs}}
+                <div class="small-6 medium-4 cell">
+                    <a href="#">
+                        <img src="img/blogs/thumb_1/{{thumb_img_1}}" alt="">
+                        <div class="cont">
+                            <h2>{{name}}</h2>
+                            <span>{{date}}</span>
+                            <span><a href="#">Read more...</a></span>
+                        </div>
+                    </a>
+                </div>
+                {{/each}}
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>

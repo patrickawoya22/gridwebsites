@@ -1,0 +1,101 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__seatch_header">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-12 cell">
+                <span>Purchases</span>
+            </div><!-- ./medium cell -->
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+<section class="cont_padding">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+
+            <div class="medium-4 medium-order-2 large-3 cell">
+
+                <div class="medium-auto cell sort__wrapper">
+
+                    <button class="button align-middle expanded" type="button" data-toggle="sort-d">
+                        <span>
+                            {{req.query.sort}}
+                        </span>
+                        <span><img class="down-arrow" src="/img/icon/down-arrow.svg" alt="down arrow icon"
+                             width="10"></span>
+
+                    </button>
+
+                    <ul class="dropdown-pane" id="sort-d" data-dropdown
+                         data-hover-delay="0" data-v-offset="14"
+                        data-hover="true" data-hover-pane="true">
+
+                            <li><a class="{{#compare req.query.sort  'Relevance'}}active{{/compare}}" href="{{page}}?q={{req.query.q}}&sort=Relevance&categories={{req.query.categories}}&price={{req.query.price}}">Relevance</a></li>
+                            <li><a class="{{#compare req.query.sort  'Price: Low to High'}}active{{/compare}}" href="{{page}}?q={{req.query.q}}&sort=Price: Low to High&categories={{req.query.categories}}&price={{req.query.price}}">Price: Low to High</a></li>
+                            <li><a class="{{#compare req.query.sort  'Price: High to Low'}}active{{/compare}}" href="{{page}}?q={{req.query.q}}&sort=Price: High to Low&categories={{req.query.categories}}&price={{req.query.price}}">Price: High to Low</a></li>
+                            <li><a class="{{#compare req.query.sort  'Avg. Customer Review'}}active{{/compare}}" href="{{page}}?q={{req.query.q}}&sort=Avg. Customer Review&categories={{req.query.categories}}&price={{req.query.price}}">Avg. Customer Review</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div><!-- ./medium cell -->
+
+            <div class="medium-auto medium-order-1 cell">
+                <span>Showing <b>1</b> to <b>12</b> of <b>{{searchResults.length}}</b> posts</span>
+            </div><!-- ./medium cell -->
+
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+<section>
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="medium-auto cell">
+                <div class="grid-x grid-margin-x profile__wrapper">
+                    {{#each searchResults}}
+                        <div class="small-6 large-4 cell">
+
+                                <div class="cont">
+                                    <div class="text-right text-primary follow__wrapper"><span>Follow</span></div>
+                                    <div class="text-center">
+                                        <div class="profile-icon">
+                                            <a href="#"><img src="/img/profile/thumb/anthony-mackie.jpg" width="110" alt="anthony-mackie"></a>
+                                        </div>
+                                        <h2><a href="#">Patrick Kakande</a></h2>
+                                        <h3>United Kingdom, Crawley</h3>
+                                        <h4>6 Projects</h4>
+                                        <h5>HTML, PHP, JAVASCRIPTY</h5>
+                                        <ul>
+                                            <li>
+                                                <div>30</div>
+                                                <div>Followers</div>
+                                            </li>
+                                            <li>
+                                                <div>10</div>
+                                                <div>Followimg</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                    {{/each}}
+                </div><!-- ./grid-x grid-padding-x -->
+            </div>
+
+            <div class="medium-4 large-3 cell">
+                <div class="s__left__wrapper">
+                    <h2>Categories</h2>
+                    <ul>
+                        {{#each categories}}
+                            <li><label onclick="controller.loadUrl('{{name}}')"><input type="checkbox" name="{{tmp_name}}" value="{{name}}" {{#if checked}}checked="true"{{/if}} >{{name}}</label></li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- ./grid-container -->
+</section>

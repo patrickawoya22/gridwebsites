@@ -1,0 +1,293 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__cont">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-8 cell">
+                <h1>
+                    <span class="type-wrap">
+                        <span id="typed-strings">
+                            <span>
+                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}
+                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}}
+                                {{else}}
+                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.website_design_field}}}
+                                {{/if}}
+                            </span>
+                            <span>
+                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}
+                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}
+                                {{else}}
+                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}
+                                {{/if}}
+                            </span>
+                            <span>
+                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.landing_pages_field}}
+                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.landing_pages_field}}}
+                                {{else}}
+                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.landing_pages_field}}}
+                                {{/if}}
+                            </span>
+                        </span>
+                        <span id="typed"></span>
+                    </span>
+                </h1>
+                <p class="d__paragraph">
+                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_1}}
+                    {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_1}}}
+                    {{else}}
+                    {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_1}}}
+                    {{/if}}
+                </p>
+            </div><!-- ./medium cell -->
+            <div class="medium-4 cell">
+
+                <ul id="work-content-slider" class="slide__wrapper">
+                    <li class="lslide cell-item">
+                        <img src="/img/project/pr1.png" alt="project image">
+                    </li><!-- ./medium cell -->
+                    <li class="lslide cell-item">
+                        <img src="/img/project/pr1.png" alt="project image">
+                    </li><!-- ./medium cell -->
+                </ul>
+
+            </div>
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+<section class="temp__wrapper cont_padding">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-12 cell">
+                <h2>
+                    {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "===" 'En'}}Foundation Grid XY Templates{{/compare}}
+                    {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "!==" 'En'}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}}{{/compare}}</h2>
+
+                    <p>
+                        {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_2}}
+                        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_2}}}
+                        {{else}}
+                        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_2}}}
+                        {{/if}}
+                    </p>
+
+            </div>
+
+            <div class="medium-12 cell">
+
+                <ul id="foundation-content-slider" class="slide__wrapper">
+
+                    {{#each foundation_templates}}
+                        <li class="lslide cell-item">
+                            <a href="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
+                                <img src="/img/temp/thumb-1/{{thumb_img_1}}" alt="{{category_1}}">
+                            </a>
+                                <div>{{created_by_field}} <a href="">{{creator}}</a></div>
+                                <span>{{category_1}}</span>
+                        </li><!-- ./medium cell -->
+                    {{/each}}
+                </ul>
+
+            </div>
+
+        </div><!-- ./grid-x grid-padding-x -->
+
+        <br>
+
+        <div class="grid-x grid-padding-x">
+            <div class="medium-12 cell">
+                {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "===" 'En'}}
+                <h2>Bootstrap 4 Templates</h2>
+                <p>Component-based frameworks designed, built, and supported by foundation.zurb Team.</p>
+                {{/compare}}
+            </div>
+
+            <div class="medium-12 cell">
+
+                <ul id="bootstrap-content-slider" class="slide__wrapper">
+                    {{#each bootstrap_templates}}
+                        <li class="lslide cell-item">
+                            <a href="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml"><img src="/img/temp/thumb-1/{{thumb_img_1}}" alt="{{category_1}}"></a>
+                            <span>By <a href="">{{creator}}</a></span>
+                            <span>{{category_1}}</span>
+                        </li><!-- ./medium cell -->
+                    {{/each}}
+                </ul>
+
+            </div>
+
+
+        </div><!-- ./grid-x grid-padding-x -->
+
+
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="s__cta cont_padding">
+    <div class="grid-container">
+        <ul class="align-middle">
+            <li><img src="/img/icon/web-design.svg" width="130" alt="web design"></li>
+            <li>
+                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}
+            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}}
+            {{else}}
+            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_header_1}}}{{/if}}</h2>
+                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}
+            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}}
+            {{else}}
+            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_paragraph_1}}}{{/if}}</p>
+            </li>
+            <li class="text-right">
+                <button type="button" name="button" class="button primary">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.learn_more_field}}}
+                {{/if}}</button>
+            </li>
+        </ul>
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="web__wrapper cont_padding">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-12 cell">
+                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.website_design_field}}}
+                {{/if}}</h2>
+                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.our_most_recently_work_field}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.our_most_recently_work_field}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.our_most_recently_work_field}}}
+                {{/if}}</p>
+            </div>
+
+            <div class="medium-12 cell">
+
+                <ul id="websites-design-content-slider" class="slide__wrapper">
+                    {{#each website_design}}
+                        <li class="lslide cell-item">
+                            <img src="/img/temp/thumb-1/{{thumb_img_1}}" alt="{{category_1}}">
+                        </li><!-- ./medium cell -->
+                    {{/each}}
+                </ul>
+
+            </div>
+
+        </div><!-- ./grid-x grid-padding-x -->
+
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="s__cta__2 cont_padding">
+    <div class="grid-container">
+        <ul class="align-center-middle">
+            <!-- <li>Over 389,734 Over Members</li> -->
+            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}
+        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}}
+        {{else}}
+        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.support_field}}}{{/if}}</li>
+            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}
+        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}}
+        {{else}}
+        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}}{{/if}}</li>
+            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}
+        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}}
+        {{else}}
+        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.multi_language}}}{{/if}}</li>
+        </ul>
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="api__wrapper cont_padding">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle text-center">
+            <div class="medium-8 cell">
+                <h2>
+                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}</h2>
+                <p>
+                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_4}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_4}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_4}}}{{/if}}
+                </p>
+                <p>
+                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_5}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_5}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_5}}}{{/if}}
+                </p>
+            </div>  <!--./medium-8 cell-->
+
+        </div><!-- ./grid-x grid-padding-x -->
+
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="email__temp__wrapper cont_padding">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-12 cell">
+                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_field}}
+            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_field}}}
+            {{else}}
+            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.email_emplates_field}}}{{/if}}</h2>
+                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_paragraph_field}}
+            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_paragraph_field}}}
+            {{else}}
+            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.email_emplates_paragraph_field}}}{{/if}}</p>
+            </div>  <!--./medium-8 cell-->
+
+            <div class="medium-12 cell">
+
+                <ul id="email-templates-content-slider" class="slide__wrapper">
+                    {{#each email_templates}}
+                        <li class="lslide cell-item">
+                            <img src="/img/temp/thumb-1/{{main_img}}" alt="{{category_1}}">
+                        </li><!-- ./medium cell -->
+                    {{/each}}
+                </ul>
+
+            </div>
+<!--
+            {{#each email_templates}}
+                <div class="medium-auto cell">
+                    <img src="/img/temp/thumb-1/{{main_img}}" alt="{{category_1}}">
+                </div>
+            {{/each}} -->
+
+        </div><!-- ./grid-x grid-padding-x -->
+
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="s__cta cont_padding">
+    <div class="grid-container">
+        <ul class="align-middle">
+            <li><img src="/img/icon/web-design.svg" width="130" alt="web design"></li>
+            <li>
+                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}
+            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}}
+            {{else}}
+            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_header_1}}}{{/if}}</h2>
+                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}
+            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}}
+            {{else}}
+            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_paragraph_1}}}{{/if}}</p>
+            </li>
+            <li class="text-right">
+                <button type="button" name="button" class="button primary">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}
+                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}}
+                {{else}}
+                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.learn_more_field}}}{{/if}}</button>
+            </li>
+        </ul>
+    </div><!-- ./grid-container -->
+</section>

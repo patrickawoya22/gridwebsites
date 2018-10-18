@@ -1,0 +1,96 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__seatch_header">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-12 cell">
+                <span>Patick Kakade</span>
+                <p>PHP, JavaScript, CSS</p>
+            </div><!-- ./medium cell -->
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="profile__session">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+
+            <div class="medium-auto cell">
+                <div class="profile__wrapper">
+                    <div class="grid-x align-center-middle grid-margin-x">
+                        <div class="large-12 cell">
+                            <h2>Edit profile image</h2>
+                            <p class="nowrap">
+                                Link: <a href="/profile">https://en.gridwedsite.com/page/patrickawoya22</a>
+                            </p>
+
+                        </div>
+
+                        <div class="medium-5 cell edit-profile-image-wrapper">
+                            <form class="flex-container align-center-middle" action="#">
+                                <div class="image-editor">
+
+                                        <div class="cropit-preview"></div>
+
+                                    <label for="image-upload"  style="margin-top:1rem" >
+                                            <input type="file" id="image-upload" class="cropit-image-input hidden">
+                                        <span class="text-primary cursor">Click here to select image</span>
+                                    </label>
+
+                                    <div class="image-size-label">
+                                      Resize image
+                                    </div>
+
+                                    <input type="range" class="cropit-image-zoom-input">
+
+                                    <div class="rotation-section">
+    								   <div>Rotation</div>
+    								   <i class="rotate-ccw fa fa-undo rotation-right" aria-hidden="true"></i>
+
+    								   <i class="rotate-cw fa fa-redo" aria-hidden="true"></i>
+    								</div>
+
+                                    <input type="hidden" name="image-data" class="hidden-image-data" />
+                                    <button class="button primary expanded" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div><!-- ./grid-x grid-padding-x -->
+                </div>
+            </div>
+
+            <div class="medium-4 large-3 cell">
+                <div class="profile__left__wrapper text-center">
+                    <div class="inline__cont flex-container">
+                        <h2 class="flex-child-grow">Credits</h2>
+                        <span class="flex-child-grow">$27</span>
+                    </div>
+                    <div class="inline__cont flex-container">
+                        <ul>
+                            <li>30</li>
+                            <li>Followers</li>
+                        </ul>
+                        <ul>
+                            <li>27</li>
+                            <li>Following</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile__left__wrapper">
+                    <div class="inline__cont">
+                        <h2>Account detail</h2>
+                        <span>Name: <a href="#">Patrick Kakande</a></span>
+                        <span>Mobile: <a href="tel:07446820124">07446820124</a></span>
+                        <span>Email: <a href="mailto:patrickawoya22@hotmail.co.uk">patrickawoya22@hotmail.co.uk</a></span>
+                        <span>Country: <b>United Kingdom</b></span>
+                        <span>Language: <b>EN</span></b>
+                        <span class="magin-y"><a href="/edit-profile">Edit Profile</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- ./grid-container -->
+</section>

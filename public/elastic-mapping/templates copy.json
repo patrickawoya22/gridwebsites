@@ -1,0 +1,174 @@
+#https://www.youtube.com/watch?v=p_cviIn1f_k
+
+GET /products/_search?q=*
+
+GET /products
+GET /products/_mapping
+
+
+
+
+PUT /products
+{
+    "settings": {
+        "max_result_window": 1999999999,
+        "index" : {
+                "number_of_shards" : 3
+            },
+    "analysis": {
+      "filter": {
+        "autocomplete_filter":{
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 100
+        }
+      }
+      , "analyzer": {
+        "autocomplete":{
+          "type":"custom",
+          "tokenizer" : "standard",
+          "filter":[
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "name":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "brand":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "name_no_analyzer":{"type":"keyword"},
+
+        "keyword":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "categories":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "sub_categories":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "language_id":{"type":"text"},
+
+        "location": {"type": "geo_point"},
+
+        "publish":{"type":"keyword"},
+        "description":{"type":"text"},
+        "vat":{"type":"integer"},
+
+        "isoCode":{"type":"keyword"},
+        "supplier_product_id":{"type":"keyword"},
+        "video":{"type":"text"},
+        "image1":{"type":"text"},
+        "image2":{"type":"text"},
+        "image3":{"type":"text"},
+        "image4":{"type":"text"},
+        "image5":{"type":"text"},
+        "image6":{"type":"text"},
+
+        "price":{"type":"double"},
+        "price_2":{"type":"double"},
+        "price_3":{"type":"double"},
+        "price_4":{"type":"double"},
+        "price_5":{"type":"double"},
+        "price_6":{"type":"double"},
+        "price_7":{"type":"double"},
+        "price_8":{"type":"double"},
+        "price_9":{"type":"double"},
+        "price_10":{"type":"double"},
+
+        "price_11":{"type":"double"},
+        "price_12":{"type":"double"},
+        "price_13":{"type":"double"},
+        "price_14":{"type":"double"},
+        "price_15":{"type":"double"},
+        "price_16":{"type":"double"},
+        "price_17":{"type":"double"},
+        "price_18":{"type":"double"},
+        "price_19":{"type":"double"},
+        "price_20":{"type":"double"},
+
+        "price_21":{"type":"double"},
+        "price_22":{"type":"double"},
+        "price_23":{"type":"double"},
+        "price_24":{"type":"double"},
+        "price_25":{"type":"double"},
+        "price_26":{"type":"double"},
+        "price_27":{"type":"double"},
+        "price_28":{"type":"double"},
+        "price_29":{"type":"double"},
+        "price_30":{"type":"double"},
+
+        "offer_price":{"type":"double"},
+        "offer_price_2":{"type":"double"},
+        "offer_price_3":{"type":"double"},
+        "offer_price_4":{"type":"double"},
+        "offer_price_5":{"type":"double"},
+        "offer_price_6":{"type":"double"},
+        "offer_price_7":{"type":"double"},
+        "offer_price_8":{"type":"double"},
+        "offer_price_9":{"type":"double"},
+        "offer_price_10":{"type":"double"},
+
+        "offer_price_11":{"type":"double"},
+        "offer_price_12":{"type":"double"},
+        "offer_price_13":{"type":"double"},
+        "offer_price_14":{"type":"double"},
+        "offer_price_15":{"type":"double"},
+        "offer_price_16":{"type":"double"},
+        "offer_price_17":{"type":"double"},
+        "offer_price_18":{"type":"double"},
+        "offer_price_19":{"type":"double"},
+        "offer_price_20":{"type":"double"},
+
+        "offer_price_21":{"type":"double"},
+        "offer_price_22":{"type":"double"},
+        "offer_price_23":{"type":"double"},
+        "offer_price_24":{"type":"double"},
+        "offer_price_25":{"type":"double"},
+        "offer_price_26":{"type":"double"},
+        "offer_price_27":{"type":"double"},
+        "offer_price_28":{"type":"double"},
+        "offer_price_29":{"type":"double"},
+        "offer_price_30":{"type":"double"},
+
+        "bonus_point":{"type":"double"},
+        "quantity":{"type":"integer"},
+        "stock_status":{"type":"keyword"},
+        "offer":{"type":"keyword"},
+
+        "date_created":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "offer_start_date":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "offer_end_date":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+
+        "date_last_updated":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+
+        "order_counts":{"type":"integer"},
+        "user_reviews":{"type":"integer"},
+        "rating_average":{"type":"double"},
+        "overviews":{"type":"double"},
+        "supplier":{"type":"keyword"},
+        "finder":{"type":"keyword"}
+      }
+    }
+  }
+}

@@ -1,0 +1,1616 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__seatch_header">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-12 cell">
+                <span>Patick Kakade</span>
+                <p>PHP, JavaScript, CSS</p>
+            </div><!-- ./medium cell -->
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="profile__session">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+
+            <div class="medium-auto cell">
+                <div class="profile__wrapper">
+                    <div class="grid-x grid-margin-x">
+                        <div class="large-10 cell">
+                            <h2>Edit language pack</h2>
+
+                            <div class="callout warning profile-msg {{#compare form_errors '==' false}}hidden{{/compare}}">
+                                {{#if form_errors}}
+                                    <ul>
+                                        {{# each messages}}
+                                            <li>{{this.msg}}</li>
+                                        {{/each}}
+                                    </ul>
+                                {{/if}}
+                            </div>
+
+                            <div class="tabs-content language__wrapper" data-tabs-content="profile__taps">
+
+                                <div class="tabs-panel is-active" id="account">
+                                    <form action="/save-language-pack{{#if issset_get_pram}}{{get_pram}}{{/if}}" method="post" id="edit-profile-details-form">
+
+                                        <h2 class="text-primary">Account details</h2>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.created_by_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="created_by_field" value="{{language_pack._source.created_by_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.please_press_confirm_to_remove_review_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="please_press_confirm_to_remove_review_field" value="{{language_pack._source.please_press_confirm_to_remove_review_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.cancel_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="cancel_field" value="{{language_pack._source.cancel_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.confirm_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="confirm_field" value="{{language_pack._source.confirm_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.add_to_cart_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="add_to_cart_field" value="{{language_pack._source.add_to_cart_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.standard_license_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="standard_license_field" value="{{language_pack._source.standard_license_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.get_it_design_for_our_business_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="get_it_design_for_our_business_field" value="{{language_pack._source.get_it_design_for_our_business_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.get_it_design_and_hosteds_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="get_it_design_and_hosteds_field" value="{{language_pack._source.get_it_design_and_hosteds_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.please_select_your_title_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="please_select_your_title_field" value="{{language_pack._source.please_select_your_title_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.mr_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="mr_field" value="{{language_pack._source.mr_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.mrs_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="mrs_field" value="{{language_pack._source.mrs_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.ms_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="ms_field" value="{{language_pack._source.ms_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.miss_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="miss_field" value="{{language_pack._source.miss_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.login_with_google_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="login_with_google_field" value="{{language_pack._source.login_with_google_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.login_with_facebook_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="login_with_facebook_field" value="{{language_pack._source.login_with_facebook_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.or_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="or_field" value="{{language_pack._source.or_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.email_or_username_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="email_or_username_field" value="{{language_pack._source.email_or_username_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.password_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="password_field" value="{{language_pack._source.password_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.log_in_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="log_in_field" value="{{language_pack._source.log_in_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.remember_me_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="remember_me_field" value="{{language_pack._source.remember_me_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.forgot_your_password_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="forgot_your_password_field" value="{{language_pack._source.forgot_your_password_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.dont_have_account_password_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="dont_have_account_password_field" value="{{language_pack._source.dont_have_account_password_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.sign_up_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="sign_up_field" value="{{language_pack._source.sign_up_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.join_with_google_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="join_with_google_field" value="{{language_pack._source.join_with_google_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.join_with_facebook_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="join_with_facebook_field" value="{{language_pack._source.join_with_facebook_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.title_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="title_field" value="{{language_pack._source.title_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.first_name_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="first_name_field" value="{{language_pack._source.first_name_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.last_name_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="last_name_field" value="{{language_pack._source.last_name_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.username_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="username_field" value="{{language_pack._source.username_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.already_have_an_account_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="already_have_an_account_field" value="{{language_pack._source.already_have_an_account_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.by_signing_up_you_agree_to_our_terms_privacy_policy_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="by_signing_up_you_agree_to_our_terms_privacy_policy_field" value="{{language_pack._source.by_signing_up_you_agree_to_our_terms_privacy_policy_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_cta_header_1}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="home_cta_header_1" value="{{language_pack._source.home_cta_header_1}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_cta_paragraph_1}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="home_cta_paragraph_1" value="{{language_pack._source.home_cta_paragraph_1}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.our_most_recently_work_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="our_most_recently_work_field" value="{{language_pack._source.our_most_recently_work_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.support_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="support_field" value="{{language_pack._source.support_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.days_money_back_guarantee_on_all_products_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="days_money_back_guarantee_on_all_products_field" value="{{language_pack._source.days_money_back_guarantee_on_all_products_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.multi_language}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="multi_language" value="{{language_pack._source.multi_language}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.landing_pages_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="landing_pages_field" value="{{language_pack._source.landing_pages_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.grid_websites_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="grid_websites_field" value="{{language_pack._source.grid_websites_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.search_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="search_field" value="{{language_pack._source.search_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.company_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="company_field" value="{{language_pack._source.company_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.language_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="language_field" value="{{language_pack._source.language_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.language_code_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="language_code_field" value="{{language_pack._source.language_code_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.templates_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="templates_field" value="{{language_pack._source.templates_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.themes_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="themes_field" value="{{language_pack._source.themes_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.members_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="members_field" value="{{language_pack._source.members_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.country_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="country_field" value="{{language_pack._source.country_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.name_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="name_field" value="{{language_pack._source.name_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.mobile_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="mobile_field" value="{{language_pack._source.mobile_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.email_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="email_field" value="{{language_pack._source.email_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.account_detail_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="account_detail_field" value="{{language_pack._source.account_detail_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.followers_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="followers_field" value="{{language_pack._source.followers_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.following_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="following_field" value="{{language_pack._source.following_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.credits_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="credits_field" value="{{language_pack._source.credits_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.categories_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="categories_field" value="{{language_pack._source.categories_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.login_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="login_field" value="{{language_pack._source.login_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.join_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="join_field" value="{{language_pack._source.join_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.developers_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="developers_field" value="{{language_pack._source.developers_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.php_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="php_field" value="{{language_pack._source.php_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.foundation_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="foundation_field" value="{{language_pack._source.foundation_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.bootstrap_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="bootstrap_field" value="{{language_pack._source.bootstrap_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.birth_day_cards_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="birth_day_cards_field" value="{{language_pack._source.birth_day_cards_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.business_cards_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="business_cards_field" value="{{language_pack._source.business_cards_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.sports_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="sports_field" value="{{language_pack._source.sports_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.photos_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="photos_field" value="{{language_pack._source.photos_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.api_intergration_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="api_intergration_field" value="{{language_pack._source.api_intergration_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.about_us_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="about_us_field" value="{{language_pack._source.about_us_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.blogs_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="blogs_field" value="{{language_pack._source.blogs_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.chat_room_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="chat_room_field" value="{{language_pack._source.chat_room_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.contact_us_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="contact_us_field" value="{{language_pack._source.contact_us_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.website_design_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="website_design_field" value="{{language_pack._source.website_design_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.products_and_services_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="products_and_services_field" value="{{language_pack._source.products_and_services_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.all_rights_reserved_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="all_rights_reserved_field" value="{{language_pack._source.all_rights_reserved_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.learn_more_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="learn_more_field" value="{{language_pack._source.learn_more_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.reviews_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="reviews_field" value="{{language_pack._source.reviews_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.sold_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="sold_field" value="{{language_pack._source.sold_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.questions_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="questions_field" value="{{language_pack._source.questions_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.contact_seller_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="contact_seller_field" value="{{language_pack._source.contact_seller_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.reviewed_by_our_Foundation_6_team_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="reviewed_by_our_Foundation_6_team_field" value="{{language_pack._source.reviewed_by_our_Foundation_6_team_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.months_support_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="months_support_field" value="{{language_pack._source.months_support_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.money_back_guarantee_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="money_back_guarantee_field" value="{{language_pack._source.money_back_guarantee_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.released_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="released_field" value="{{language_pack._source.released_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.version_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="version_field" value="{{language_pack._source.version_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.files_included_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="files_included_field" value="{{language_pack._source.files_included_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.layout_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="layout_field" value="{{language_pack._source.layout_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.responsive_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="responsive_field" value="{{language_pack._source.responsive_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.features_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="features_field" value="{{language_pack._source.features_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.code_quality_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="code_quality_field" value="{{language_pack._source.code_quality_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.leave_review_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="leave_review_field" value="{{language_pack._source.leave_review_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.remove_review_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="remove_review_field" value="{{language_pack._source.remove_review_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.submit_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="submit_field" value="{{language_pack._source.submit_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.leave_your_reply_here_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="leave_your_reply_here_field" value="{{language_pack._source.leave_your_reply_here_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.leave_your_review_here_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="leave_your_review_here_field" value="{{language_pack._source.leave_your_review_here_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.posted_on_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="posted_on_field" value="{{language_pack._source.posted_on_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.price_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="price_field" value="{{language_pack._source.price_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.relevance_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="relevance_field" value="{{language_pack._source.relevance_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.price_low_to_high_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="price_low_to_high_field" value="{{language_pack._source.price_low_to_high_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.price_high_to_low_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="price_high_to_low_field" value="{{language_pack._source.price_high_to_low_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.avg_customer_review_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="avg_customer_review_field" value="{{language_pack._source.avg_customer_review_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.results_for_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="results_for_field" value="{{language_pack._source.results_for_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.projects_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="projects_field" value="{{language_pack._source.projects_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_paragraph_1}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <textarea name="home_paragraph_1" rows="3" cols="5">{{language_pack._source.home_paragraph_1}}</textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_paragraph_2}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <textarea name="home_paragraph_2" rows="3" cols="5">{{language_pack._source.home_paragraph_2}}</textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.email_emplates_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="email_emplates_field" value="{{language_pack._source.email_emplates_field}}">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.email_emplates_paragraph_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="email_emplates_paragraph_field" value="{{language_pack._source.email_emplates_paragraph_field}}">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_paragraph_3}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <textarea name="home_paragraph_3" rows="3" cols="5">{{language_pack._source.home_paragraph_3}}</textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_paragraph_4}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <textarea name="home_paragraph_4" rows="3" cols="5">{{language_pack._source.home_paragraph_4}}</textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.home_paragraph_5}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <textarea name="home_paragraph_5" rows="3" cols="5">{{language_pack._source.home_paragraph_5}}</textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="grid-x lan__form__wrapper grid-margin-x">
+
+                                            <div class="medium-6 cell align-middle medium-order-2 flex-container">
+                                                <div class="column">
+                                                    {{defualt_language_pack._source.creative_field}}
+                                                </div>
+                                            </div>
+
+                                            <div class="medium-6 medium-order-1 cell">
+                                                <input type="text" name="creative_field" value="{{language_pack._source.creative_field}}">
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="grid-x grid-margin-x">
+
+                                            <div class="medium-6 cell">
+                                                <input class="button primary expanded" type="submit" value="Submit">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!--./Account-->
+                            </div>
+                        </div>
+                    </div><!-- ./grid-x grid-padding-x -->
+                </div>
+            </div>
+
+            <div class="medium-4 large-3 cell">
+                <div class="profile__left__wrapper text-center">
+                    <div class="inline__cont flex-container">
+                        <h2 class="flex-child-grow">Credits</h2>
+                        <span class="flex-child-grow">$27</span>
+                    </div>
+                    <div class="inline__cont flex-container">
+                        <ul>
+                            <li>30</li>
+                            <li>Followers</li>
+                        </ul>
+                        <ul>
+                            <li>27</li>
+                            <li>Following</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile__left__wrapper">
+                    <div class="inline__cont">
+                        <h2>Account detail</h2>
+                        <span>Name: <a href="#">Patrick Kakande</a></span>
+                        <span>Mobile: <a href="tel:07446820124">07446820124</a></span>
+                        <span>Email: <a href="mailto:patrickawoya22@hotmail.co.uk">patrickawoya22@hotmail.co.uk</a></span>
+                        <span>Country: <b>United Kingdom</b></span>
+                        <span>Language: <b>EN</span></b>
+                        <span class="magin-y"><a href="/edit-profile">Edit Profile</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- ./grid-container -->
+</section>

@@ -1,0 +1,265 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__seatch_header">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-12 cell">
+                <span>Patick Kakade</span>
+                <p>PHP, JavaScript, CSS</p>
+            </div><!-- ./medium cell -->
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="profile__session">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+
+            <div class="medium-auto cell">
+                <div class="profile__wrapper">
+                    <div class="grid-x grid-margin-x">
+                        <div class="large-2 large-order-2 profile-img profile-img-ex text-center cell">
+                            <a onclick="$('#open-image-tab').trigger('click')"><img src="/img/temp/main/placeholder.png" alt=""></a>
+                            <div class="text-center">
+                                <a onclick="$('#open-image-tab').trigger('click')">Add Images</a>
+                            </div>
+                        </div>
+                        <div class="large-10 large-order-1 cell">
+                            <h2>Add Template</h2>
+
+                            <div class="grid-x grid-magin-x edit-form-wrapper">
+                                <div class="large-4 cell">
+                                    <ul class="vertical tabs" id="profile__taps">
+
+                                        <li class="tabs-title"><a {{#if req.query.s}} {{#compare req.query.s '==' 'details'}}aria-selected="true"{{/compare}} {{else}}aria-selected="true"{{/if}} href="/edit-templates?s=details">Template details</a></li>
+
+                                        <li class="tabs-title"><a {{#compare req.query.s '==' 'add-image'}}aria-selected="true"{{/compare}} href="/edit-templates?s=add-image" id="open-image-tab">Add images</a></li>
+
+                                        <li class="tabs-title"><a {{#compare req.query.s '==' 'thumbnail'}}aria-selected="true"{{/compare}} href="/edit-templates?s=thumbnail">Thumbnail</a></li>
+
+                                        <li class="tabs-title"><a {{#compare req.query.s '==' 'files'}}aria-selected="true"{{/compare}} href="/edit-templates?s=files">Files</a></li>
+
+                                    </ul>
+                                </div>
+                                <div class="large-8 cell">
+
+                                    <div class="callout profile-msg {{#if form_errors}}warning{{else}}success{{/if}} {{#compare form_errors '==' false}}hidden{{/compare}}">
+                                        {{#if form_errors}}
+                                            <ul>
+                                                {{# each messages}}
+                                                    <li>{{this.msg}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        {{/if}}
+                                    </div>
+
+
+                                    <div class="tabs-content" data-tabs-content="profile__taps">
+
+                                        <div class="tabs-panel {{#if req.query.s}} {{#compare req.query.s '==' 'details'}}is-active{{/compare}} {{else}}is-active{{/if}}" id="account">
+                                            <form action="/save-template" method="post" id="save-template-form">
+
+                                                <h2 class="text-primary">Template details</h2>
+
+                                                <div class="grid-x grid-margin-x">
+
+                                                    <div class="small-6 cell">
+                                                        <label for="name">Name *</label>
+                                                        <input type="text" id="name" name="name" value="{{#if req.body.name}}{{req.body.name}}{{else}}{{{req.product._source.name}}}{{/if}}">
+                                                    </div>
+
+                                                    <div class="small-6 cell">
+                                                        <label for="language">Language *</label>
+
+                                                        <select name="language">
+                                                            <option value=""></option>
+                                                            {{#each req.session.language_list}}
+                                                            <option value="{{this.language_code}}" {{#compare req.body.language '==' this.language_code}} selected {{/compare}} {{#compare req.product._source.language_code '==' this.language_code}} selected {{/compare}}>{{this.language}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="small-6 cell">
+                                                        <label for="price">Price ($)</label>
+                                                        <input type="text" id="price" name="price" value="{{#if req.body.price}}{{req.body.price}}{{else}}{{{req.product._source.price}}}{{/if}}">
+                                                    </div>
+
+                                                    <div class="small-6 cell">
+                                                        <label for="discount_price">Discount Price ($)</label>
+                                                        <input type="text" id="discount_price" name="discount_price" value="{{#if req.body.discount_price}}{{req.body.discount_price}}{{else}}{{{req.product._source.discount_price}}}{{/if}}">
+                                                    </div>
+
+                                                    <div class="small-6 cell">
+                                                        <label for="built_price">Built Price ($)</label>
+                                                        <input type="text" id="built_price" name="built_price" value="{{#if req.body.built_price}}{{req.body.built_price}}{{else}}{{{req.product._source.built_price}}}{{/if}}">
+                                                    </div>
+
+                                                    <div class="small-6 cell">
+                                                        <label for="hosting_price">Hosting Price ($)</label>
+                                                        <input type="text" id="hosting_price" name="hosting_price" value="{{#if req.body.hosting_price}}{{req.body.hosting_price}}{{else}}{{{req.product._source.hosting_price}}}{{/if}}">
+                                                    </div>
+
+                                                    <div class="small-12 cell">
+                                                        <label for="extra">Extra</label>
+                                                        <select name="extra" multiple="multiple">
+                                                            <option value=""></option>
+                                                            <option value="Reviewed by our support team">Reviewed by our support team</option>
+                                                            <option value="100 months support">months support</option>
+                                                            <option value="30 days money back guarantee">30 days money back guarantee</option>
+                                                        </select>
+                                                    </div>
+
+
+                                                    <div class="small-12 cell">
+                                                        <label for="username">Category *</label>
+                                                        <select name="category">
+                                                            <option value=""></option>
+                                                            <option value="Foundation 6 Grid XY">Foundation 6 Grid XY</option>
+                                                            <option value="Bootstrap 4">Bootstrap 4</option>
+                                                            <option value="Bootstrap 3">Bootstrap 3</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="small-12 cell">
+                                                        <label for="features">Features *</label>
+                                                        <select name="features" multiple="multiple">
+                                                            <option value="3 Stuning Home Pages">3 Stuning Home Pages</option>
+                                                            <option value="Clean Code and unique design">Clean Code and unique design</option>
+                                                            <option value="HTML5 & CSS3 Validated">HTML5 & CSS3 Validated</option>
+                                                            <option value="Responsive Design">Responsive Design</option>
+                                                            <option value="SEO Friendly">SEO Friendly</option>
+                                                            <option value="Working Contact Form">Working Contact Form</option>
+                                                            <option value="Google fonts">Google fonts</option>
+                                                            <option value="Very easy to customize">Very easy to customize</option>
+                                                            <option value="Full Documented">Full Documented</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="small-12 cell">
+                                                        <label for="code_quality">Code Quality</label>
+                                                        <textarea name="code_quality" rows="3" cols="5">{{#if req.body.code_quality}}{{req.body.code_quality}}{{else}}{{{req.product._source.code_quality}}}{{/if}}</textarea>
+                                                    </div>
+
+                                                    <div class="small-12 cell">
+                                                        <label for="description">Description</label>
+                                                        <textarea name="description" rows="3" cols="5">{{#if req.body.description}}{{req.body.description}}{{else}}{{{req.product._source.description}}}{{/if}}</textarea>
+                                                    </div>
+
+                                                    <div class="medium-12 cell">
+                                                        <input type="hidden" id="p_ref" name="p_ref" value="{{#if req.body.p_ref}}{{req.body.p_ref}}{{else}}{{{req.product._id}}}{{/if}}">
+                                                        <input class="button primary expanded" type="submit" value="Submit">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div><!--./Account-->
+
+                                        <div class="tabs-panel a-cont-wrapper {{#compare req.query.s '==' 'add-image'}}is-active{{/compare}}" id="add-image">
+
+                                            <div class="grid-x grid-margin-x">
+
+                                                <div class="medium-12 cell edit-profile-image-wrapper">
+                                                    <form id="cropit-form" class="flex-container align-center-middle" action="#">
+                                                        <div class="image-editor">
+
+                                                                <div class="cropit-preview"></div>
+
+                                                            <label for="image-upload"  style="margin-top:1rem" >
+                                                                    <input type="file" id="image-upload" class="cropit-image-input hidden">
+                                                                <span class="text-primary cursor">Click here to select image</span>
+                                                            </label>
+
+                                                            <div class="image-size-label">
+                                                              Resize image
+                                                            </div>
+
+                                                            <input type="range" class="cropit-image-zoom-input">
+
+                                                            <div class="rotation-section">
+                            								   <div>Rotation</div>
+                            								   <i class="rotate-ccw fa fa-undo rotation-right" aria-hidden="true"></i>
+
+                            								   <i class="rotate-cw fa fa-redo" aria-hidden="true"></i>
+                            								</div>
+
+                                                            <input type="hidden" name="image-data" class="hidden-image-data" />
+                                                            <button class="button primary expanded" type="submit">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+
+                                         </div><!--./add-image-->
+
+                                         <div class="tabs-panel {{#compare req.query.s '==' 'thumbnail'}}is-active{{/compare}}" id="thumbnail">
+
+                                             <div class="grid-x grid-margin-x">
+
+                                                 <div class="small-12 cell">
+                                                     Thumbnail
+                                                 </div>
+
+                                             </div>
+
+                                          </div><!--./thumbnail-->
+
+                                          <div class="tabs-panel {{#compare req.query.s '==' 'files'}}is-active{{/compare}}" id="files">
+
+                                              <div class="grid-x grid-margin-x">
+
+                                                  <div class="small-12 cell">
+                                                      Files
+                                                  </div>
+
+                                              </div>
+
+                                           </div><!--./files-->
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div><!-- ./grid-x grid-padding-x -->
+                </div>
+            </div>
+
+            <div class="medium-4 large-3 cell">
+                <div class="profile__left__wrapper text-center">
+                    <div class="inline__cont flex-container">
+                        <h2 class="flex-child-grow">Credits</h2>
+                        <span class="flex-child-grow">$27</span>
+                    </div>
+                    <div class="inline__cont flex-container">
+                        <ul>
+                            <li>30</li>
+                            <li>Followers</li>
+                        </ul>
+                        <ul>
+                            <li>27</li>
+                            <li>Following</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile__left__wrapper">
+                    <div class="inline__cont">
+                        <h2>Account detail</h2>
+                        <span>Name: <a href="#">Patrick Kakande</a></span>
+                        <span>Mobile: <a href="tel:07446820124">07446820124</a></span>
+                        <span>Email: <a href="mailto:patrickawoya22@hotmail.co.uk">patrickawoya22@hotmail.co.uk</a></span>
+                        <span>Country: <b>United Kingdom</b></span>
+                        <span>Language: <b>EN</span></b>
+                        <span class="magin-y"><a href="/edit-profile">Edit Profile</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- ./grid-container -->
+</section>
