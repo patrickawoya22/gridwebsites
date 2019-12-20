@@ -11,21 +11,22 @@
         <link href="/css/foundation.css" media="screen" rel="stylesheet" type="text/css">
         <link href="//use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css">
         <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css">
+        <link href="/css/select2.min.css" media="screen" rel="stylesheet" type="text/css">
         <link href="/css/app.css" media="screen" rel="stylesheet" type="text/css">
         {{{exportStyles}}}
         <link href="/img/logo/icon.png" rel="shortcut icon" type="img/logo/icon.png">
     </head>
     <body>
 
-    <header>
+    <header id="header-cont">
 
-        <div class="grid-container__ h-grid-container-padded">
+        <div class="grid-container h-grid-container-padded">
             <div class="grid-x g-padding-x">
                 <div class="medium-12 cell">
                     <ul class="inline-list align-middle flex-container">
                         <li class="logo-wrapper"><a href="/" title="logo">
                             <!-- <img src="/img/logo/logo.png" alt="<?=$title?> logo"> -->
-                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.grid_websites_field}}}{{/if}}
+                            Grid websites
                         </a></li><!-- ./logo -->
 
                         <li class="menu-wrapper align-center-middle hide-for-medium-down">
@@ -37,21 +38,18 @@
                                     <a class="main-i-wrapper align-center-middle flex-container" href="#">
 
                                         <img class="menu__icon" src="/img/icon/menu.svg" alt="menu">
-                                        <span>
-                                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.categories_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.categories_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.categories_field}}}{{/if}}
-                                        </span>
+                                        <span>Categories</span>
                                         <!--  -->
                                     </a>
                                     <ul class="menu">
 
                                         <li>
-                                            <a href="/themes" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.templates_field}}}{{/if}}">
-                                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.templates_field}}}{{/if}}
-                                            </a>
+                                            <a href="/search?q=templates" title="Templates">Templates</a>
 
                                             <ul class="t-wrapper dropdown menu submenu is-dropdown-submenu vertical" data-dropdown-menu>
-                                                <li><a href="/themes/foundation" title="Foundation 6 Grid XY">Foundation 6 Grid XY</a></li>
-                                                <li><a href="/themes/bootstrap" title="Bootstrap 4">Bootstrap 4</a></li>
+                                                <li><a href="/search?q=foundation 6" title="Foundation 6">Foundation
+                                                    6</a></li>
+                                                <!--<li><a href="/themes/bootstrap" title="Bootstrap 4">Bootstrap 4</a></li>-->
                                                 <!-- <li><a href="#">Shopify</a></li>
                                                 <li><a href="#">Magento</a></li> -->
                                             </ul>
@@ -59,89 +57,90 @@
                                         </li>
 
 
-                                        <li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="Item 1" data-is-click="false">
-                                            <a href="/members" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.members_field}}}{{/if}}">
-                                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}
-                                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}}
-                                                {{else}}
-                                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.members_field}}}
-                                                {{/if}}
-                                            </a>
-                                            <ul class="d-wrapper menu submenu is-dropdown-submenu first-sub vertical"
-                                                data-submenu="" role="menubar" style="">
+                                        <!--<li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="Item 1" data-is-click="false">-->
+                                            <!--<a href="/members" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.members_field}}}{{/if}}">-->
+                                                <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}-->
+                                                <!--{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}}-->
+                                                <!--{{else}}-->
+                                                <!--{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.members_field}}}-->
+                                                <!--{{/if}}-->
+                                            <!--</a>-->
+                                            <!--<ul class="d-wrapper menu submenu is-dropdown-submenu first-sub vertical"-->
+                                                <!--data-submenu="" role="menubar" style="">-->
 
-                                                <li role="menuitem" class="is-dropdown-submenu-parent is-submenu-item is-dropdown-submenu-item opens-right" aria-haspopup="true" aria-label="Item 1B" data-is-click="false">
-                                                    <a href="/members/php" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.php_field}}}{{/if}}">
-                                                        {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.php_field}}}{{/if}}
-                                                    </a>
-                                                    <ul class="menu submenu is-dropdown-submenu vertical" data-submenu="" role="menubar" style="">
-                                                        <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/zend-framework" title="Zend Framework 3">Zend Framework 3</a></li>
-                                                        <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/laravel" title="Laravel 5.6*">Laravel 5.6*</a></li>
-                                                        <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/symfony" title="Symfony 4*">Symfony 4*</a></li>
-                                                        <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/wordpress" title="WordPress">WordPress</a></li>
-                                                    </ul>
-                                                </li>
+                                                <!--<li role="menuitem" class="is-dropdown-submenu-parent is-submenu-item is-dropdown-submenu-item opens-right" aria-haspopup="true" aria-label="Item 1B" data-is-click="false">-->
+                                                    <!--<a href="/members/php" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.php_field}}}{{/if}}">-->
+                                                        <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.php_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.php_field}}}{{/if}}-->
+                                                    <!--</a>-->
+                                                    <!--<ul class="menu submenu is-dropdown-submenu vertical" data-submenu="" role="menubar" style="">-->
+                                                        <!--<li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/zend-framework" title="Zend Framework 3">Zend Framework 3</a></li>-->
+                                                        <!--<li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/laravel" title="Laravel 5.6*">Laravel 5.6*</a></li>-->
+                                                        <!--<li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/symfony" title="Symfony 4*">Symfony 4*</a></li>-->
+                                                        <!--<li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/php/wordpress" title="WordPress">WordPress</a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</li>-->
 
-                                                <li role="menuitem" class="is-dropdown-submenu-parent is-submenu-item is-dropdown-submenu-item opens-right" aria-haspopup="true" aria-label="Item 1B" data-is-click="false">
-                                                    <!-- <a href="#Item-1B">Java</a> -->
-                                                    <ul class="j-wrapper menu submenu is-dropdown-submenu vertical"
-                                                        data-submenu="" role="menubar" style="">
-                                                        <li role="menuitem" class="is-submenu-item
-                                                        is-dropdown-submenu-item"><a href="#Item-1Bi" title="Java 10">Java 10</a></li>
-                                                        <li role="menuitem" class="is-submenu-item
-                                                        is-dropdown-submenu-item"><a href="#Item-1Bi" title="Java 9">Java 9</a></li>
-                                                        <li role="menuitem" class="is-submenu-item
-                                                        is-dropdown-submenu-item"><a href="#Item-1Bi" title="Java 8">Java 8</a></li>
-                                                        <li role="menuitem" class="is-submenu-item
-                                                        is-dropdown-submenu-item"><a href="#Item-1Bi" title="Spring Framework">Spring Framework</a></li>
-                                                    </ul>
-                                                </li>
+                                                <!--<li role="menuitem" class="is-dropdown-submenu-parent is-submenu-item is-dropdown-submenu-item opens-right" aria-haspopup="true" aria-label="Item 1B" data-is-click="false">-->
+                                                    <!--&lt;!&ndash; <a href="#Item-1B">Java</a> &ndash;&gt;-->
+                                                    <!--<ul class="j-wrapper menu submenu is-dropdown-submenu vertical"-->
+                                                        <!--data-submenu="" role="menubar" style="">-->
+                                                        <!--<li role="menuitem" class="is-submenu-item-->
+                                                        <!--is-dropdown-submenu-item"><a href="#Item-1Bi" title="Java 10">Java 10</a></li>-->
+                                                        <!--<li role="menuitem" class="is-submenu-item-->
+                                                        <!--is-dropdown-submenu-item"><a href="#Item-1Bi" title="Java 9">Java 9</a></li>-->
+                                                        <!--<li role="menuitem" class="is-submenu-item-->
+                                                        <!--is-dropdown-submenu-item"><a href="#Item-1Bi" title="Java 8">Java 8</a></li>-->
+                                                        <!--<li role="menuitem" class="is-submenu-item-->
+                                                        <!--is-dropdown-submenu-item"><a href="#Item-1Bi" title="Spring Framework">Spring Framework</a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</li>-->
 
-                                                <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/javascript" title="javascript">JavaScript</a></li>
-                                                <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/css" title="css">CSS</a></li>
+                                                <!--<li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/javascript" title="javascript">JavaScript</a></li>-->
+                                                <!--<li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="/members/css" title="css">CSS</a></li>-->
 
-                                            </ul>
-                                        </li>
+                                            <!--</ul>-->
+                                        <!--</li>-->
 
-                                        <li>
-                                            <a href="/creatives" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.creative_field}}}
-                                            {{/if}}">
-                                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.creative_field}}}
-                                                {{/if}}
-                                            </a>
+                                        <!--<li>-->
+                                            <!--<a href="/creatives" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.creative_field}}}-->
+                                            <!--{{/if}}">-->
+                                                <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.creative_field}}}-->
+                                                <!--{{/if}}-->
+                                            <!--</a>-->
 
-                                            <ul class="p-wrapper dropdown menu submenu is-dropdown-submenu vertical"
-                                                data-dropdown-menu>
-                                                <li><a href="/creatives/birth-day-cards" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.birth_day_cards_field}}}{{/if}}">
-                                                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.birth_day_cards_field}}}{{/if}}
-                                                </a></li>
-                                                <li><a href="/creatives/business-cards" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.business_cards_field}}}{{/if}}">
-                                                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.business_cards_field}}}{{/if}}
-                                                </a></li>
-                                                <li><a href="/creatives/sports" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sports_field}}}{{/if}}">
-                                                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sports_field}}}{{/if}}
-                                                </a></li>
-                                                <li><a href="/creatives/photos" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.photos_field}}}{{/if}}">
-                                                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.photos_field}}}{{/if}}
-                                                </a></li>
-                                            </ul>
+                                            <!--<ul class="p-wrapper dropdown menu submenu is-dropdown-submenu vertical"-->
+                                                <!--data-dropdown-menu>-->
+                                                <!--<li><a href="/creatives/birth-day-cards" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.birth_day_cards_field}}}{{/if}}">-->
+                                                    <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.birth_day_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.birth_day_cards_field}}}{{/if}}-->
+                                                <!--</a></li>-->
+                                                <!--<li><a href="/creatives/business-cards" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.business_cards_field}}}{{/if}}">-->
+                                                    <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.business_cards_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.business_cards_field}}}{{/if}}-->
+                                                <!--</a></li>-->
+                                                <!--<li><a href="/creatives/sports" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sports_field}}}{{/if}}">-->
+                                                    <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sports_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sports_field}}}{{/if}}-->
+                                                <!--</a></li>-->
+                                                <!--<li><a href="/creatives/photos" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.photos_field}}}{{/if}}">-->
+                                                    <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.photos_field}}}{{/if}}-->
+                                                <!--</a></li>-->
+                                            <!--</ul>-->
 
-                                        </li>
-                                        <li><a href="/about-us" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.about_us_field}}}{{/if}}">
-                                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.about_us_field}}}{{/if}}
-                                        </a></li>
-                                        <li><a href="#" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}">
-                                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}
-                                    </a></li>
-                                        <li><a href="/blogs" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.blogs_field}}}{{/if}}">
-                                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.blogs_field}}}{{/if}}
-                                        </a></li>
-                                        <li><a href="/chat-room" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.chat_room_field}}}{{/if}}">
-                                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.chat_room_field}}}{{/if}}
-                                        </a></li>
-                                        <li><a href="/contact-us" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_us_field}}}{{/if}}">
-                                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_us_field}}}{{/if}}
-                                        </a></li>
+                                        <!--</li>-->
+
+                                        <!--<li><a href="/about-us" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.about_us_field}}}{{/if}}">-->
+                                            <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.about_us_field}}}{{/if}}-->
+                                        <!--</a></li>-->
+                                        <!--<li><a href="#" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}">-->
+                                            <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}-->
+                                    <!--</a></li>-->
+                                        <!--<li><a href="/blogs" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.blogs_field}}}{{/if}}">-->
+                                            <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.blogs_field}}}{{/if}}-->
+                                        <!--</a></li>-->
+                                        <!--<li><a href="/chat-room" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.chat_room_field}}}{{/if}}">-->
+                                            <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.chat_room_field}}}{{/if}}-->
+                                        <!--</a></li>-->
+                                        <!--<li><a href="/contact-us" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_us_field}}}{{/if}}">-->
+                                            <!--{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_us_field}}}{{/if}}-->
+                                        <!--</a></li>-->
                                     </ul>
                                 </li>
                             </ul>
@@ -155,7 +154,9 @@
 
                         <li class="search-bar-wrapper hide-for-small-only">
                             <form method="get" action="{{searchAction}}" id="search">
-                                <input type="search" name="q" autocomplete="off" value="{{req.query.q}}" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.search_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.search_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.search_field}}}{{/if}}" /><span class="text-center align-center-middle" onclick="$('#search').submit()">
+                                <input type="search" name="q" autocomplete="off" value="{{req.query.q}}"
+                                       placeholder="Search" /><span class="text-center align-center-middle" onclick="$
+                                       ('#search').submit()">
                                     <!-- <img src="/img/icon/search-icon.svg"  width="20" alt="search-icon"> -->
                                     <i class="fas fa-search"></i>
                                     <input type="submit" value="submit" class="hidden">
@@ -165,16 +166,18 @@
 
                         <li class="lang-wrapper align-center-middle">
 
-                            <button class="button align-middle flex-container" type="button" data-toggle="language-header">
+                            <!--<button class="button align-middle flex-container" type="button"
+                                     data-toggle="language-header">
                                 <span><img src="/img/icon/earth.svg" alt="earth icon" width="15"></span>
-                                <span class="flex-child-grow">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.language_field}}
+                                <span class="flex-child-grow">{{#if req.session.LanguagePack.selected_pack.hits.hits
+                                                                     .0._source.language_field}}
                                 {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.language_field}}}
                                 {{else}}
                                 {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.language_field}}}
                                 {{/if}}</span>
                                 <span><img class="down-arrow align-right" src="/img/icon/down-arrow.svg" alt="down arrow icon"
                                      width="10"></span>
-                            </button>
+                            </button>-->
 
                             <ul class="dropdown-pane" id="language-header" data-dropdown
                                  data-hover-delay="0" data-v-offset="14"
@@ -188,40 +191,49 @@
 
                         <li class="text-left f__grow">
                             <ul class="left__nav align-center-middle">
-                                <li class="small-auto hide-for-medium-down"></li>
+                                {{#if req.session.isLoggedin}}
 
-                                <li class="cart__wrapper show-for-small-only" onclick="$('.search-bar-wrapper').removeClass('hide-for-small-only')"><img
+                                    <li>Hello, {{req.session.body.first_name}}</li>
+                                    <li><a href="/profile">My Account</a></li>
+                                    <li><a href="/logout" >Sign Out</a></li>
+
+                                    <li class="small-auto hide-for-medium-down"></li>
+
+                                    <li class="cart__wrapper show-for-small-only" onclick="$('.search-bar-wrapper').removeClass('hide-for-small-only')"><img
                                             src="/img/icon/search.svg" width="22" alt="search"></li>
-                                <li class="cart__wrapper">
-                                    <a href="/cart">
-                                        <img src="/img/icon/shopping-cart.svg"  width="18"
+                                    <li class="cart__wrapper">
+                                        <a href="/cart">
+                                            <img src="/img/icon/shopping-cart.svg"  width="18"
+                                                 alt="shopping cart
+                                        icon">(<span v-html="cart_total">{{req.session.cart_obj.hits.total}}</span>)
+                                        </a>
+                                    </li>
+
+                                    {{else}}
+
+                                    <li class="small-auto hide-for-medium-down"></li>
+
+                                    <li class="cart__wrapper show-for-small-only" onclick="$('.search-bar-wrapper').removeClass('hide-for-small-only')"><img
+                                            src="/img/icon/search.svg" width="22" alt="search"></li>
+                                    <li class="cart__wrapper">
+                                        <a href="/cart">
+                                            <img src="/img/icon/shopping-cart.svg"  width="18"
                                                  alt="shopping
                                          cart
-                                        icon">(0)
-                                    </a>
-                                </li>
+                                        icon">(<span v-html="cart_total">{{req.session.cart_obj.hits.total}}</span>)
+                                        </a>
+                                    </li>
 
                                 <li class="hide-for-medium-down">
                                     <button class="button secondary expanded" data-open="login_reveal" type="button" name="button">
-
-                                        {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.login_field}}
-                                        <span>{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.login_field}}}</span>
-                                        {{else}}
-                                        <span>{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.login_field}}}</span>
-                                        {{/if}}
-
+                                        Login
                                     </button>
                                 </li>
                                 <li class="hide-for-medium-down"><button type="button"  data-open="join_reveal" name="button" class="button primary
                                 expanded">
-
-                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.join_field}}
-                                <span>{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.join_field}}}</span>
-                                {{else}}
-                                <span>{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.join_field}}}</span>
-                                {{/if}}
-
+                                    Join
                             </button></li>
+                                    {{/if}}
 
 
 
@@ -243,7 +255,7 @@
 
 
 
-                <ul class="vertical menu accordion-menu" data-accordion-menu>
+        <ul class="vertical menu accordion-menu" data-accordion-menu>
                     <li><a href="/" title="home"><i class="fas fa-home"></i> Home</a></li>
                     <li>
                         <a href="/theme" title=""><i class="fas fa-laptop-code"></i> Templates</a>
@@ -335,35 +347,26 @@
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="medium-auto cell">
-                    <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.grid_websites_field}}}{{/if}}</h2>
+                    <h2>Grid websites</h2>
                     <p>
-                        {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_3}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_3}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_3}}}{{/if}}
+                        Creative Market is the world’s marketplace for design. Bring your creative projects to life with ready-to-use design assets from independent creators around the world.
                     </p>
                 </div>
 
-                <div class="medium-auto cell link">
-                    <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.products_and_services_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.products_and_services_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.products_and_services_field}}}{{/if}}</h2>
-                    <span><a href="/themes" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.templates_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.templates_field}}}{{/if}}</a></span>
-                    <span><a href="/members" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.members_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.members_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.members_field}}}{{/if}}</a></span>
-                    <span><a href="/creatives/photos" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.photos_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.photos_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.photos_field}}}{{/if}}</a></span>
-                    <span><a href="/creatives" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.creative_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.creative_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.creative_field}}}{{/if}}</a></span>
-                    <span><a href="#" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.website_design_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.website_design_field}}}{{/if}}</a></span>
-                    <span><a href="#" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}">
-                        {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}
-                    </a></span>
-                </div>
+                <!--<div class="medium-auto cell link">-->
+                    <!--<h2>Products & Services</h2>-->
+                    <!--<span><a href="/themes" title="Templates">Templates</a></span>-->
+                <!--</div>-->
 
                 <div class="medium-auto cell link">
-                    <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.company_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.company_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.company_field}}}{{/if}}</h2>
-                    <span><a href="/about-us" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.about_us_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.about_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.about_us_field}}}{{/if}}</a></span>
-                    <span><a href="/blogs" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.blogs_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.blogs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.blogs_field}}}{{/if}}</a></span>
-                    <span><a href="/chat-room" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.chat_room_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.chat_room_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.chat_room_field}}}{{/if}}</a></span>
-                    <span><a href="/contact-us" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_us_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_us_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_us_field}}}{{/if}}</a></span>
+                    <h2>Company</h2>
+                    <span><a href="/about-us" title="About Us">About Us</a></span>
+                    <span><a href="/contact-us" title="Contact Us">Contact Us</a></span>
                 </div>
 
                 <div class="medium-auto cell lang-wrapper">
 
-                    <button class="button align-middle flex-container" type="button" data-toggle="language-footer">
+                    <!--<button class="button align-middle flex-container" type="button" data-toggle="language-footer">
                         <span><img src="/img/icon/earth.svg" alt="earth icon" width="15"></span>
                         <span class="flex-child-grow">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.language_field}}
                         {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.language_field}}}
@@ -372,7 +375,7 @@
                         {{/if}}</span>
                         <span><img class="down-arrow align-right" src="/img/icon/down-arrow.svg" alt="down arrow icon"
                              width="10"></span>
-                    </button>
+                    </button>-->
 
                     <ul class="dropdown-pane" id="language-footer" data-dropdown
                          data-hover-delay="0" data-v-offset="14"
@@ -392,18 +395,20 @@
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="medium-12 cell text-center">
-                    © 2018 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.grid_websites_field}}}{{/if}} {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.all_rights_reserved_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.all_rights_reserved_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.all_rights_reserved_field}}}{{/if}}
+                    © {{formatDate date 'YYYY'}} Grid websites All Rights Reserved
                 </div>
             </div>
         </div>
     </section>
 
 
+    {{#if req.session.isLoggedin}}
+    {{else}}
     <div class="reveal auth__reveal" id="login_reveal" data-reveal>
         <div class="auth__body">
             <div class="logo_wraper">
                 <!-- <img src="/img/logo/logo.png" alt="logo" width="160" class="img-rounded center-block"> -->
-                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.grid_websites_field}}}{{/if}}
+                Grid websites
             </div>
 
             {{# if login_form_errors}}
@@ -416,32 +421,51 @@
             </div>
             {{/if}}
 
-            <div class="social_login__wrapper">
-                <ul class="google">
-                    <li><img src="/img/icon/google.svg" alt="google icon" width="20" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_google_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_google_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.login_with_google_field}}}{{/if}}</li>
-                </ul>
-                <ul class="facebook">
-                    <li><img src="/img/icon/facebook.svg" width="20" alt="facebook icon" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_facebook_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_facebook_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.login_with_facebook_field}}}{{/if}}</li>
-                </ul>
-            </div>
-            <div class="divider"><span class="divider-text">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.or_field}}}{{/if}}</span></div>
+            <!--<div class="social_login__wrapper">-->
+                <!--<ul class="google">-->
+                    <!--<li><img src="/img/icon/google.svg" alt="google icon" width="20" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_google_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_google_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.login_with_google_field}}}{{/if}}</li>-->
+                <!--</ul>-->
+                <!--<ul class="facebook">-->
+                    <!--<li><img src="/img/icon/facebook.svg" width="20" alt="facebook icon" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_facebook_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.login_with_facebook_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.login_with_facebook_field}}}{{/if}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="divider"><span class="divider-text">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.or_field}}}{{/if}}</span></div>-->
             <form action="/login" method="post" id="auth-login-form">
 
                 <div class="grid-x grid-margin-x">
                     <div class="medium-12 cell">
                         <div class="input__group">
-                            <input class="input-text" type="text" name="email" required value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.email_or_username_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.email_or_username_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.email_or_username_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="lEmail"
+                                   @keyup.enter="login"
+                                   v-on:keyup="reSetError"
+                                   type="text" name="email" required value="">
+
+                            <span class="error auto-error" v-html="lEmailError" ></span>
+
+                            <span class="floating-label">Email or Username</span>
                         </div>
                     </div>
                     <div class="medium-12 cell">
                         <div class="input__group">
-                            <input class="input-text" type="password" name="password" required value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.password_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.password_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.password_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="lPassword"
+                                   v-on:keyup="reSetError"
+                                   @keyup.enter="login"
+                                   type="password" name="password" required value="">
+
+                            <span class="error auto-error" v-html="lPasswordError" ></span>
+
+                            <span class="floating-label">Password</span>
                         </div>
                     </div>
-                    <div class="medium-12 cell">
-                        <input type="submit" class="button primary expanded" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.login_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.login_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.login_field}}}{{/if}}">
+                    <div
+                            :class="lAction"
+                            class="medium-12 cell">
+                        <input type="button"
+                               @click="login"
+                               class="button primary expanded" value="Login">
+                        <img src="/img/icon/spinner-circle.svg" style="display: none" alt="loading..." width="15">
                     </div>
                 </div>
 
@@ -450,101 +474,141 @@
             <button class="close-button" data-close aria-label="Close modal" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <label class="remember-me"><input type="checkbox" name="remember_me" value="1"> <span>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remember_me_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remember_me_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remember_me_field}}}{{/if}}</span></label>
+            <label class="remember-me"><input type="checkbox"
+                                              v-model="remember_me"
+                                              name="remember_me" value="1"> <span>Remember me</span></label>
         </div>
         <div class="auth__footer">
             <p>
-                <a href="#">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.forgot_your_password_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.forgot_your_password_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.forgot_your_password_field}}}{{/if}}</a>
+                <a href="#">Forgot your password?</a>
             </p>
-            <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.dont_have_account_password_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.dont_have_account_password_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.dont_have_account_password_field}}}{{/if}}</p>
+            <p>Don't have account?</p>
             <p>
-                <div class="text-primary auth_ac" data-open="join_reveal" >{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sign_up_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sign_up_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sign_up_field}}}{{/if}}</div>
+                <div class="text-primary auth_ac" data-open="join_reveal" >Sign Up »</div>
             </p>
         </div>
     </div>
+    {{/if}}
 
-
+{{#if req.session.isLoggedin}}
+{{else}}
     <div class="reveal auth__reveal" id="join_reveal" data-reveal>
         <div class="auth__body">
             <div class="logo_wraper">
                 <!-- <img src="/img/logo/logo.png" alt="logo" width="160" class="img-rounded center-block"> -->
-                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.grid_websites_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.grid_websites_field}}}{{/if}}
+                Grid websites
             </div>
-            {{# if join_form_errors}}
-            <div class="callout warning">
-                <ul>
-                    {{# each join_messages}}
-                        <li>{{this.msg}}</li>
-                    {{/each}}
-                </ul>
-            </div>
-            {{/if}}
+            <!--{{# if join_form_errors}}-->
+            <!--<div class="callout warning">-->
+                <!--<ul>-->
+                    <!--{{# each join_messages}}-->
+                        <!--<li>{{this.msg}}</li>-->
+                    <!--{{/each}}-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--{{/if}}-->
 
-            <div class="social_login__wrapper">
-                <ul class="google">
-                    <li><img src="/img/icon/google.svg" alt="google icon" width="20" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_google_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_google_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.join_with_google_field}}}{{/if}}</li>
-                </ul>
-                <ul class="facebook">
-                    <li><img src="/img/icon/facebook.svg" width="20" alt="facebook icon" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_facebook_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_facebook_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.join_with_facebook_field}}}{{/if}}</li>
+            <!--<div class="social_login__wrapper">-->
+                <!--<ul class="google">-->
+                    <!--<li><img src="/img/icon/google.svg" alt="google icon" width="20" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_google_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_google_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.join_with_google_field}}}{{/if}}</li>-->
+                <!--</ul>-->
+                <!--<ul class="facebook">-->
+                    <!--<li><img src="/img/icon/facebook.svg" width="20" alt="facebook icon" class="img-rounded center-block"></li><li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_facebook_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.join_with_facebook_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.join_with_facebook_field}}}{{/if}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="divider"><span class="divider-text">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.or_field}}}{{/if}}</span></div>-->
+
+            <div class="callout warning" v-if="showError">
+                <ul v-html="rFormError">
+
                 </ul>
             </div>
-            <div class="divider"><span class="divider-text">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.or_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.or_field}}}{{/if}}</span></div>
-            <form action="/join" method="post" id="auth-join-form">
+
+            <div class="callout success" v-if="showSuccessMsg">
+                <p v-html="formSuccess">
+
+                </p>
+            </div>
+
+            <form action="/join" method="post" id="auth-join-form" v-if="!showSuccessMsg">
 
                 <div class="grid-x grid-margin-x">
                     <div class="medium-12 cell">
                         <div class="input__group">
-                            <select name="title" required class="input-text">
-                                <optgroup label="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.please_select_your_title_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.please_select_your_title_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.please_select_your_title_field}}}{{/if}}">
+                            <select
+                                    v-model="rTitle"
+                                    @keyup.enter="join"
+                                    name="title" required class="input-text">
+                                <optgroup label="Please Select Your Title">
                                     <option></option>
 
-                                    <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mr_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mr_field}}}{{/if}}</option>
+                                    <option value="Mr">Mr</option>
 
-                                    <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mrs_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mrs_field}}}{{/if}}</option>
+                                    <option value="Mrs">Mrs</option>
 
-                                    <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.ms_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.ms_field}}}{{/if}}</option>
+                                    <option value="Ms">Ms</option>
 
-                                    <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.miss_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.miss_field}}}{{/if}}</option>
+                                    <option value="Miss">Miss</option>
                                 </optgroup>
                             </select>
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.title_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.title_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.title_field}}}{{/if}}</span>
+                            <span class="floating-label">Title</span>
                         </div>
                     </div>
                     <div class="small-6 cell">
                         <div class="input__group">
-                            <input class="input-text" type="text" required name="first_name" value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.first_name_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.first_name_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.first_name_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="rFirstName"
+                                   @keyup.enter="join"
+                                   type="text" required name="first_name" value="">
+                            <span class="floating-label">First Name</span>
                         </div>
                     </div>
                     <div class="small-6 cell">
                         <div class="input__group">
-                            <input class="input-text" type="text" required name="last_name" value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.last_name_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.last_name_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.last_name_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="rLastName"
+                                   @keyup.enter="join"
+                                   type="text" required name="last_name" value="">
+                            <span class="floating-label">Last Name</span>
                         </div>
                     </div>
 
                     <div class="small-6 cell">
                         <div class="input__group">
-                            <input class="input-text" type="text" required name="username" value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.username_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.username_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.username_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="rUsername"
+                                   @keyup.enter="join"
+                                   type="text" required name="username" value="">
+                            <span class="floating-label">Username</span>
                         </div>
                     </div>
 
                     <div class="small-6 cell">
                         <div class="input__group">
-                            <input class="input-text" type="text" required name="email" value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.email_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.email_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.email_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="rEmail"
+                                   @keyup.enter="join"
+                                   type="text" required name="email" value="">
+                            <span class="floating-label">Email</span>
                         </div>
                     </div>
 
                     <div class="small-12 cell">
                         <div class="input__group">
-                            <input class="input-text" type="password" required name="password" value="">
-                            <span class="floating-label">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.password_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.password_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.password_field}}}{{/if}}</span>
+                            <input class="input-text"
+                                   v-model="rPassword"
+                                   @keyup.enter="join"
+                                   type="password" required name="password" value="">
+                            <span class="floating-label">Password</span>
                         </div>
                     </div>
-                    <div class="medium-12 cell">
-                        <input type="submit" class="button primary expanded" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.join_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.join_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.join_field}}}{{/if}}">
+                    <div
+                            :class="rAction"
+                            class="medium-12 cell">
+                        <input type="button"
+                               @click="join"
+                               class="button primary expanded" value="Join">
+                        <img src="/img/icon/spinner-circle.svg" style="display: none;" alt="loading..." width="15">
                     </div>
                 </div>
 
@@ -554,17 +618,17 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="auth__footer">
-            <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.already_have_an_account_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.already_have_an_account_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.already_have_an_account_field}}}{{/if}}</p>
+        <div class="auth__footer" v-if="!showSuccessMsg">
+            <p>Already have an account?</p>
             <p>
-                <div class="text-primary auth_ac" data-open="login_reveal">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.log_in_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.log_in_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.log_in_field}}}{{/if}}</div>
+                <div class="text-primary auth_ac" data-open="login_reveal">Log In »</div>
             </p>
             <p>
-                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.by_signing_up_you_agree_to_our_terms_privacy_policy_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.by_signing_up_you_agree_to_our_terms_privacy_policy_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.by_signing_up_you_agree_to_our_terms_privacy_policy_field}}}{{/if}}
+                By signing up, you agree to our Terms & Privacy Policy.
             </p>
         </div>
     </div>
-
+{{/if}}
 
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -592,91 +656,73 @@
         <script type="text/javascript" src="/js/foundation.unit/foundation.tabs.js"></script>
         <script type="text/javascript" src="/js/foundation.unit/foundation.sticky.js"></script>
         <script type="text/javascript" src="/js/jquery.cookiebar.js"></script>
+        <script type="text/javascript" src="/js/select2.min.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
-        <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
-        {{{exportScripts}}}
-        <script type="text/javascript" src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+    <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    {{{exportScripts}}}
+    <script type="text/javascript" src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- <script type="text/javascript" src="js/jquery.autocomplete.js"></script> -->
         <!-- <script type="text/javascript" src="js/autocomplete-demo.js"></script> -->
-        <script type="text/javascript">
-            $(document).ready(function(){
-                {{{inlineScripts}}}
-                $(function(){
-                    $('#auth-login-form').validate({ // validate login form
-                    rules: {
-                            email: {
-                                required: true,
-                                email:true
-                            },password: {
-                                required: true,
-                                minlength: 6
-                            }
-                        },
-                    messages: {
-                            email: {
-                                required: 'Please enter your address',
-                                email: 'Please enter a valid email address'
-                            },password: {
-                                required: 'Please enter your password',
-                                minlength: 'Your password must be at least 6 characters long'
-                            }
-                        }
-                    });
 
-                });
-            });
+    <script>
+        var headerCont = new Vue({
+            el: '#header-cont',
+            data: {
 
-            $(function(){
-                $('#auth-join-form').validate({ // validate login form
-                rules: {
-                        first_name: {
-                            required: true,
-                            maxlength: 60,
-                        },last_name: {
-                            required: true,
-                            maxlength: 60,
-                        },title: {
-                            required: true,
-                        },email: {
-                            required: true,
-                            email:true
-                        },password: {
-                            required: true,
-                            minlength: 6,
-                            maxlength: 60,
-                        },terms_agreement: {
-                            required: true,
-                        }
-                    },
-                messages: {
-                        first_name: {
-                            required: 'Please enter your first name',
-                            maxlength: 'Your First name must be 60 characters long',
-                        },last_name: {
-                            required: 'Please enter your last name',
-                            maxlength: 'Your Last name must be 60 characters long',
-                        },title: {
-                            required: 'Please enter your title',
-                        },email: {
-                            required: 'Please enter your address',
-                            email: 'Please enter a valid email address'
-                        },password: {
-                            required: 'Please enter your password',
-                            minlength: 'Your password must be at least 6 characters long',
-                            maxlength: 'Your password must be 60 characters long',
-                        },terms_agreement: {
-                            required: 'Please confirm you have ready and accept our terms and conditions',
-                        }
-                    }
-                });
+                cart_total: {{req.session.cart_obj.hits.total}},
 
-            });
+            },methods: {
 
-            $(window).load(function() {
-                // $('[data-open=login_reveal]').trigger('click');
-                // $('[data-open=join_reveal]').trigger('click');
-            });
+            }
+        });
+    </script>
 
-        </script>
+    {{#if indexJs}}
+        {{> indexJs}}
+    {{/if}}
+
+    {{#if productJs}}
+        {{> productJs}}
+        {{> reviewsJs}}
+    {{/if}}
+
+    {{#if editTemplatesJs}}
+        {{> editTemplatesJs}}
+    {{/if}}
+
+    {{#if contactUsJs}}
+        {{> contactUsJs}}
+    {{/if}}
+
+    {{#if cartJs}}
+        {{> cartJs}}
+    {{/if}}
+
+    {{#if searchJs}}
+        {{> searchJs}}
+    {{/if}}
+
+
+    {{#if req.session.isLoggedin}}
+        {{#if editProfile}}
+            {{> editProfileJs}}
+            {{> editProfileNotificationsJs}}
+            {{> editProfileChangePasswordJs}}
+        {{/if}}
+        {{#if profileJs}}
+            {{> profileJs}}
+        {{/if}}
+    {{else}}
+        {{> authJs}}
+    {{/if}}
+
+
+        {{#if req.session.isLoggedin}}
+        {{else}}
+            {{> layoutJs}}
+    {{/if}}
+
     </body>
 </html>

@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "node routes/web.js",
+    "dev": "nodemon routes/web.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
+    "ba64": "^3.0.9",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "cropit": "^0.5.1",
-    "dotenv": "^6.0.0",
+    "currency-formatter": "^1.5.5",
+    "dotenv": "^6.2.0",
+    "each": "^1.2.1",
     "elasticsearch": "^15.1.1",
     "exphbs": "^1.2.0",
     "express": "^4.16.3",
@@ -23,6 +28,16 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
     "handlebars": "^4.0.11",
-    "hbs": "^4.0.1"
+    "hbs": "^4.0.1",
+    "helper-date": "^1.0.1",
+    "ip": "^1.1.5",
+    "moment": "^2.23.0",
+    "nodemailer": "^4.7.0",
+    "nodemon": "^1.19.4",
+    "paypal-rest-sdk": "^1.8.1",
+    "resize-img": "^1.1.2",
+    "select2": "^4.0.11",
+    "sync-each": "^1.0.1",
+    "urlencode": "^1.1.0"
   }
 }

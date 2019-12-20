@@ -6,104 +6,154 @@
     <div class="grid-container">
         <div class="grid-x grid-padding-x align-center-middle">
             <div class="medium-12 cell">
-                <span>Patick Kakade</span>
-                <p>PHP, JavaScript, CSS</p>
+                <span>{{req.session.body.first_name}} {{req.session.body.last_name}}</span>
+                <!--<p>PHP, JavaScript, CSS</p>-->
             </div><!-- ./medium cell -->
         </div><!-- ./grid-x grid-padding-x -->
     </div><!-- ./grid-container -->
 </section>
 
-<section class="profile__session">
+<section class="profile__session" id="profile">
     <div class="grid-container">
         <div class="grid-x grid-margin-x">
 
             <div class="medium-auto cell">
                 <div class="profile__wrapper">
                     <div class="grid-x grid-margin-x">
-                        <div class="medium-2 profile-img text-center cell">
-                            <a href="/edit-profile-image"><img src="/img/profile/man-avatar.svg" alt=""></a>
-                            <div class="text-center">
-                                <a href="/edit-profile-image">Change Image</a>
-                            </div>
-                        </div>
-                        <div class="medium-9 cell">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta ipsum vel mi gravida mattis. Ut sit amet laoreet diam. Fusce iaculis sollicitudin purus, in tristique urna. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta ipsum vel mi gravida mattis. Ut sit amet laoreet diam  mattis. Ut sit amet laoreet diam <span class="text-primary cursor">Read more...</span>
-                            </p>
-                            <p class="nowrap">
-                                Link: <a href="/profile">https://en.gridwedsite.com/page/patrickawoya22</a>
-                            </p>
-                        </div>
+                        <!--<div class="medium-2 profile-img text-center cell">-->
+                            <!--<a href="/edit-profile-image"><img src="/img/profile/man-avatar.svg" alt=""></a>-->
+                            <!--<div class="text-center">-->
+                                <!--<a href="/edit-profile-image">Change Image</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="medium-9 cell">-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta ipsum vel mi gravida mattis. Ut sit amet laoreet diam. Fusce iaculis sollicitudin purus, in tristique urna. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta ipsum vel mi gravida mattis. Ut sit amet laoreet diam  mattis. Ut sit amet laoreet diam <span class="text-primary cursor">Read more...</span>-->
+                            <!--</p>-->
+                            <!--<p class="nowrap">-->
+                                <!--Link: <a href="/profile">https://en.gridwedsite.com/page/patrickawoya22</a>-->
+                            <!--</p>-->
+                        <!--</div>-->
                         <div class="medium-12 cell">
-                            <ul class="tabs" data-tabs id="profile__taps" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500">
-                                <li class="tabs-title is-active"><a style="min-width:9rem" href="#projects" aria-selected="true">(28) Projects</a></li>
-                                <li class="tabs-title"><a style="min-width:10rem" href="#templates">(32) Templates</a></li>
-                                <li class="tabs-title"><a style="min-width:10rem" href="#creatives">(22) Creatives</a></li>
-                                <li class="tabs-title"><a style="min-width:11rem" href="#notifications">(21) Notifications</a></li>
-                                <li class="tabs-title"><a style="min-width:9rem" href="#review">(32) Review</a></li>
-                                <li class="tabs-title"><a style="min-width:6rem" href="#skills">Skills</a></li>
-                            </ul>
+                            <div class="scroll-header">
+                                <ul class="tabs" data-tabs id="profile__taps" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500">
+                                    <li class="tabs-title is-active"><a style="min-width:10rem" href="#projects"
+                                                                        aria-selected="true">{{total_order}} Purchases</a></li>
+                                    {{#compare req.session.body.email '===' 'patrickawoya22@hotmail.co.uk'}}
+                                    <li class="tabs-title"><a style="min-width:10rem" href="#templates">
+                                        {{products_obj.hits.total}}
+                                        Templates</a></li>
+
+                                    <!--<li class="tabs-title"><a style="min-width:9rem" href="#projects"-->
+                                    <!--aria-selected="true">(0) Projects</a></li>-->
+                                    <!--<li class="tabs-title"><a style="min-width:10rem" href="#creatives">(22) Creatives</a></li>-->
+                                    <!--<li class="tabs-title"><a style="min-width:11rem" href="#notifications">(21) Notifications</a></li>-->
+                                    <!--<li class="tabs-title"><a style="min-width:9rem" href="#review">(32) Review</a></li>-->
+                                    <!--<li class="tabs-title"><a style="min-width:6rem" href="#skills">Skills</a></li>-->
+                                    {{/compare}}
+                                </ul>
+                            </div>
 
                             <div class="tabs-content" data-tabs-content="profile__taps">
 
                                 <div class="tabs-panel is-active" id="projects">
-                                    <p><a href="#">Add new project</a></p>
-                                    {{#compare 1 '==' 2}}
-                                    <p>No projects added yet</p>
+
+                                    {{#if flush_message}}
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="medium-12 cell">
+                                            <div class="callout {{flush_message.class}}">
+                                                {{flush_message.message}}
+                                            </div>
+                                        </div><!-- ./medium cell -->
+                                    </div><!-- ./grid-x g-padding-x -->
+                                    {{/if}}
+
+                                    {{#compare 1 '==' 0}}
+                                    <p class="text-center" style="padding: 5rem">No Purchases Yet</p>
                                     {{/compare}}
 
-                                    {{#compare 1 '==' 1}}
-                                    <div class="grid-x grid-margin-x item__list">
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
+                                    {{#compare 1 '>' 0}}
+                                    <div class="grid-x grid-margin-x item__list" v-if="showAll">
+                                        <div class="medium-4 cell" v-for="(item, index) in purchasesItems">
+                                            <a :href="'#'+item.product_id+'/'+item.product_name" @click="loadProduct(index)">
+                                                <img :src="item.image1" :alt="item.product_name">
+                                                <h2 v-html="item.product_name"></h2>
+                                            </a>
                                         </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
+                                    </div>
+                                    <div class="grid-x grid-margin-x item__list" v-else>
+                                        <div class="medium-12 cell">
+                                            <a href="#" @click="backToProfile"><< Back</a>
                                         </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
+                                        <div class="medium-6 cell">
+                                            <div class="purchase__image__wrapper">
+                                                <a href="#download">
+                                                    <img :src="selectProductObj.image1" :alt="selectProductObj.product_name"
+                                                         class="width-100">
+                                                    <div class="purchase___image_icon">
+                                                        <img src="img/icon/download-to-storage-drive.svg"
+                                                             width="70"
+                                                             alt="download">
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
+                                        <div class="medium-auto cell">
+                                            <h2 style="font-size: 1.4rem" v-html="selectProductObj.product_name"></h2>
+                                            <div>Order Code: <b v-html="selectProductObj.order_id"></b></div>
+                                            <div>Product ID: <b v-html="selectProductObj.product_id"></b></div>
+                                            <div>Transaction ID: <b v-html="selectProductObj.payment_id"></b></div>
+                                            <div>Category: <b v-html="selectProductObj.main_category"></b></div>
+                                            <div>
+                                                Quantity:
+                                                <b v-html="selectProductObj.quantity"></b>
+                                            </div>
+                                            <div>
+                                                License price:
+                                                <b v-html="selectProductObj.offer_price"></b>
+                                            </div>
+                                            <div v-if="selectProductObj.designed>0">
+                                                Built price:
+                                                <b  v-html="selectProductObj.built_price"></b>
+                                            </div>
+                                            <div v-if="selectProductObj.hosted>0">
+                                                Hosting price:
+                                                <b v-html="selectProductObj.hosting_price"></b>
+                                            </div>
+                                            <div>
+                                                Order status:
+                                                <b
+                                                        :class="{'text-success': selectProductObj.order_status === 'Completed',
+                                                        'text-warning': selectProductObj.order_status !== 'Completed'}"
+                                                        v-html="selectProductObj.order_status"></b>
+                                            </div>
+                                            <a href="">Dowload.ZIP</a>
+                                            <div>
+                                                <a href="#" @click="backToProfile">Back</a>
+                                            </div>
                                         </div>
                                     </div>
                                     {{/compare}}
                                 </div><!--./projects-->
 
+                                {{#compare req.session.body.email '===' 'patrickawoya22@hotmail.co.uk'}}
                                 <div class="tabs-panel" id="templates">
-                                    <p><a href="/edit-templates">Add templates</a></p>
-                                    {{#compare 1 '==' 2}}
-                                    <p>No templates added yet</p>
-                                    {{/compare}}
-
-                                    {{#compare 1 '==' 1}}
-                                    <div class="grid-x grid-margin-x item__list">
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
+                                    <p><a href="/edit-templates/add#template">Add templates</a></p>
+                                    {{#if products_obj.hits.total}}
+                                        <div class="grid-x grid-margin-x item__list">
+                                        {{#each products_obj.hits.hits}}
+                                            <div class="medium-4 cell">
+                                                <a href="/edit-templates/{{_id}}#template">
+                                                    <img src="/img/project/img-thumb/{{_source.image_obj.hits.hits.0._source.name}}"
+                                                         alt="{{_source.name}}" title="{{_source.name}}">
+                                                    <div>{{_source.name}} <b>${{_source.offer_price}}</b></div>
+                                                </a>
+                                            </div>
+                                        {{/each}}
                                         </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                        <div class="medium-4 cell">
-                                            <img src="/img/temp/thumb-1/dashboard.png" alt="">
-                                        </div>
-                                    </div>
-                                    {{/compare}}
+                                    {{else}}
+                                        <p class="text-center" style="padding: 5rem">No templates added yet</p>
+                                    {{/if}}
                                 </div><!--./templates-->
 
 
@@ -261,6 +311,7 @@
                                         </li>
                                     </ul>
                                 </div><!--./skills-->
+                                {{/compare}}
                           </div>
 
                         </div>
@@ -269,32 +320,41 @@
             </div>
 
             <div class="medium-4 large-3 cell">
-                <div class="profile__left__wrapper text-center">
-                    <div class="inline__cont flex-container">
-                        <h2 class="flex-child-grow">Credits</h2>
-                        <span class="flex-child-grow">$27</span>
+                {{#compare req.session.body.access_level '>' 6}}
+                    <div class="profile__left__wrapper text-center">
+                        <div class="inline__cont flex-container">
+                            <h2 class="flex-child-grow">Credits</h2>
+                            <span class="flex-child-grow">$27</span>
+                        </div>
+                        <div class="inline__cont flex-container">
+                            <ul>
+                                <li>30</li>
+                                <li>Followers</li>
+                            </ul>
+                            <ul>
+                                <li>27</li>
+                                <li>Following</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="inline__cont flex-container">
-                        <ul>
-                            <li>30</li>
-                            <li>Followers</li>
-                        </ul>
-                        <ul>
-                            <li>27</li>
-                            <li>Following</li>
-                        </ul>
-                    </div>
-                </div>
+                {{/compare}}
                 <div class="profile__left__wrapper">
                     <div class="inline__cont">
                         <h2>Account detail</h2>
-                        <span>Name: <a href="#">Patrick Kakande</a></span>
-                        <span>Mobile: <a href="tel:07446820124">07446820124</a></span>
-                        <span>Email: <a href="mailto:patrickawoya22@hotmail.co.uk">patrickawoya22@hotmail.co.uk</a></span>
-                        <span>Country: <b>United Kingdom</b></span>
-                        <span>Language: <b>EN</span></b>
+                        <span>Name: <a href="/profile">{{req.session.body.first_name}} {{req.session.body.last_name}}</a></span>
+                        {{#if req.session.body.mobile}}
+                            <span>Mobile: <a href="tel:{{req.session.body.mobile}}">{{req.session.body
+                            .mobile}}</a></span>
+                        {{/if}}
+                        <span>Email: <a href="mailto:{{req.session.body.email}}" title="{{req.session.body.email}}">{{req.session.body
+                        .email}}</a></span>
+                        {{#if req.session.body.b_county}}
+                            <span>Country: <b>{{req.session.body.b_county}}</b></span>
+                        {{/if}}
+                        {{#if req.session.body.country_code}}
+                            <span>Language: <b>{{req.session.body.country_code}}</span></b>
+                        {{/if}}
                         <span class="magin-y"><a href="/edit-profile">Edit Profile</a></span>
-                        <span class="magin-y"><a href="/edit-language-pack">Add Language Package</a></span>
                     </div>
                 </div>
             </div>

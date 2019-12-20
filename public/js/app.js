@@ -43,39 +43,57 @@ var controller = {
             });
         });
 
-    },
-    getCategories : function(new_category=null){
-        if (new_category==null) {
-            return getUrlParameter('categories');
-        }else {
-            if (typeof getUrlParameter('categories') == 'undefined') {
-                return new_category;
-            }
-            var action = 'add';
-            if (getUrlParameter('categories').match(new_category)!=null) {
-                action = 'remove';
-            }
-
-            var tmp_str = getUrlParameter('categories')+','+new_category;
-            tmp_str = tmp_str.split(',').clean('');
-            var unique_str = [];
-            $.each(tmp_str, function(i, el){
-                if($.inArray(el, unique_str) === -1&&action=='add'||new_category!=el) unique_str.push(el);
+    }, getCategories : function () {
+        return new Promise(function (resolve, reject) {
+            var url = '';
+            searchProducts.currentCategories.forEach(function(item){
+                setTimeout(function () {
+                    url += item.categories+':'+(searchProducts.selectedCategories.indexOf(item.categories) > -1 ? 1 : 0)+'|';
+                },1);
             });
-            var _str = '';
-            var first_run = true;
-
-            unique_str.forEach(function(str){
-                if (first_run) {
-                    _str += str;
-                    first_run = false;
-                }else {
-                    _str += ','+str;
-                }
-            })
-            return _str;
-        }
-    },getPriceRage : function(){
+            setTimeout(function () {
+                resolve(url);
+            },10)
+        });
+    }
+    // getCategories : function(new_category=null){
+    //     if (new_category==null) {
+    //         var tmpCategory = getUrlParameter('categories');
+    //         if (typeof tmpCategory == 'undefined') {
+    //             return '';
+    //         } else {
+    //             return tmpCategory;
+    //         }
+    //     }else {
+    //         if (typeof getUrlParameter('categories') == 'undefined') {
+    //             return new_category;
+    //         }
+    //         var action = 'add';
+    //         if (getUrlParameter('categories').match(new_category)!=null) {
+    //             action = 'remove';
+    //         }
+    //
+    //         var tmp_str = getUrlParameter('categories')+','+new_category;
+    //         tmp_str = tmp_str.split(',').clean('');
+    //         var unique_str = [];
+    //         $.each(tmp_str, function(i, el){
+    //             if($.inArray(el, unique_str) === -1&&action=='add'||new_category!=el) unique_str.push(el);
+    //         });
+    //         var _str = '';
+    //         var first_run = true;
+    //
+    //         unique_str.forEach(function(str){
+    //             if (first_run) {
+    //                 _str += str;
+    //                 first_run = false;
+    //             }else {
+    //                 _str += ','+str;
+    //             }
+    //         });
+    //         return _str;
+    //     }
+    // }
+    ,getPriceRage : function(){
         var minPrice = $('.pointer-label.low').html();
         var maxPrice = $('.pointer-label.high').html();
         return minPrice+'-'+maxPrice;
@@ -91,10 +109,14 @@ var controller = {
         }else {
             return getUrlParameter('q');
         }
-    },loadUrl : function(new_category=null){
-        window.location.replace(window.location.pathname+'?q='+this.getSearch()+'&sort='+this.getSort()+'&categories='+this.getCategories(new_category)+'&price='+this.getPriceRage());
+    },loadUrl : function(){
+        this.getCategories().then(function (categoriesResponse) {
+            window.location.replace(window.location.pathname+'?q='+controller.getSearch()+'&sort='+controller.getSort()+'&categories='+categoriesResponse+'&price='+controller.getPriceRage());
+        }).catch(function (error) {
+            alert(error);
+        });
     }
-}
+};
 
 Array.prototype.clean = function(deleteValue) {
    for (var i = 0; i < this.length; i++) {

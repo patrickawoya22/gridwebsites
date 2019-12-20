@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    var appProfile = new Vue({
+        el: '#profile',
+        data: {
+            showAll: true,
+            selectProductObj: {},
+            purchasesItems: [
+                {{#each order_obj}}
+                    {
+                        order_id: '{{order_id}}',
+                        cart_id: '{{cart_id}}',
+                        product_id: '{{product_id}}',
+                        payment_id: '{{payment_id}}',
+                        payment_method: '{{payment_method}}',
+                        order_status: '{{order_status}}',
+                        total_quantity: '{{total_quantity}}',
+                        total_price: '{{total_price}}',
+                        user_id: '{{user_id}}',
+                        date_created: '{{date_created}}',
+                        date_last_updated: '{{date_last_updated}}',
+                        image1: '{{image1}}',
+                        product_url: '{{product_url}}',
+                        product_name: '{{product_name}}',
+                        main_category: '{{main_category}}',
+                        quantity: '{{quantity}}',
+                        hosted: {{hosted}},
+                        designed: {{designed}},
+                        offer_price: '{{offer_price}}',
+                        built_price: '{{built_price}}',
+                        hosting_price: '{{hosting_price}}',
+                    },
+                {{/each}}
+            ],
+
+        },methods: {
+            loadProduct: function (index) {
+
+                this.selectProductObj = this.purchasesItems[index];
+                this.showAll = false;
+            }, backToProfile: function () {
+                this.showAll = true;
+                this.selectProductObj = {};
+            }
+        }
+    });
+
+</script>

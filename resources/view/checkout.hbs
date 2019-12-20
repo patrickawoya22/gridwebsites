@@ -1,0 +1,115 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__seatch_header">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-12 cell">
+                <h1 class="r-margin">{{title}}</h1>
+            </div><!-- ./medium cell -->
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+<div id="cart__wrapper">
+    {{#if req.session.cart_obj.hits.total}}
+        <section class="cart__session" v-if="showCart">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x align-center">
+                    <div class="medium-7 cell">
+                        <div class="cart__wrapper">
+                         {{#if loadPayment}}
+                             <br>
+                             <div class="active-btn">
+                                 <img src="/img/icon/spinner-circle.svg" style="position:relative;width:3rem;
+                            margin-left:auto;margin-bottom: 1rem;margin-right: auto;display: block;" alt="loading..." width="50">
+                             </div>
+                             <br>
+                             <p class="text-center">
+                                 Loading payment please wait...
+                             </p>
+                         {{else}}
+                             <h2>Payment Options</h2>
+                            <hr>
+                            <form>
+                                <label class="paypal-logo-label">
+                                <span>
+                                    <input type="radio" name="paymentMethods" checked>
+                                    <img src="/img/logo/paypal.svg" width="110" alt="paypal logo">
+                                </span>
+                                </label>
+                            </form>
+                            <div class="grid-x grid-padding-x">
+                                <div class="medium-12 cell active-btn" style="margin-top: 4rem; margin-bottom: 4rem;"
+                                     v-if="!cart_obj">
+                                    <div>
+                                        <img src="/img/icon/spinner-circle.svg" style="position:relative;width:3rem;
+                            margin-left:auto;margin-bottom: 1rem;margin-right: auto;display: block;" alt="loading..." width="50">
+                                    </div>
+                                    <div class="text-center" style="padding-top: 1rem">
+                                        loading, Please wait...
+                                    </div>
+                                </div><!-- ./medium cell -->
+                            </div><!-- ./grid-x grid-padding-x -->
+                         {{/if}}
+                        </div>
+                    </div>
+
+                    {{#if loadPayment}}
+
+                    {{else}}
+                        <div class="medium-4 large-3 cell">
+                            <div class="s__left__wrapper">
+                                <h2>Order Summary</h2>
+                                <ul>
+                                    <li>Subtotal</li>
+                                    <li><span v-html="total_cost">{{total_cost}}</span></li>
+                                </ul>
+                                <ul>
+                                    <li>Items</li>
+                                    <li>{{req.session.cart_obj.hits.total}}</li>
+                                </ul>
+                                <ul>
+                                    <li>Total</li>
+                                    <li><span v-html="total_cost">{{total_cost}}</span></li>
+                                </ul>
+                                <button
+                                        @click="confirmCheckOut"
+                                        class="button primary expanded" type="button" name="button">Continue</button>
+                                <div class="text-center"><img src="/img/icon/security.svg" alt="Secure checkout" width="16"> Secure checkout</div>
+                                <div class="text-center"><img src="/img/icon/like.svg" alt="100% Satisfaction" width="16"> 100% Satisfaction</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div><!-- ./grid-container -->
+        </section>
+    {{else}}
+        <section class="cart__session" style="background-color: #FFF;">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x align-center-middle">
+                    <div class="medium-12 cell text-center" style="padding-top: 6rem;font-size: 2rem;">
+                        No Item found in your cart.
+                    </div>
+                    <div class="medium-2 cell" style="padding-top:2rem;padding-bottom: 6rem;">
+                        <a href="/"><button type="button" name="button" class="button primary expanded">Continue Shopping >>
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </section>
+    {{/if}}
+
+    <!--js only-->
+    <section class="cart__session" style="background-color: #FFF;" v-if="showEmptyCartCont">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x align-center-middle" v-html="showEmptyCartCont">
+
+            </div>
+        </div>
+        <hr>
+    </section>
+
+</div>

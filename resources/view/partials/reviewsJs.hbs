@@ -1,0 +1,278 @@
+
+<script type="text/javascript">
+
+    var reviews = new Vue({
+        el: '#review__wrapper',
+        data: {
+            rate_input: 0,
+            comment: '',
+            comments_obj:[
+                {{#each reviews_obj.hits.hits}}
+                {
+                    main_comment_cont:{
+                        name:'{{_source.reviewer_name}}',
+                        review_id:'{{_id}}',
+                        review_comment:false,
+                        isActive:'',
+                        formError:'',
+                        formSuccess:'',
+                        showError:false,
+                        showSuccessMsg:false,
+                        show_review_reply_btn:'show-inline-block',
+                        profile_img: '<img src="/img/profile/thumb/{{_source.profile_img}}" width="100">',
+                        date: 'Posted on {{formatDate _source.date_created "short"}}',
+                        ratings: '{{{_source.rating_stars}}}<span class="small">({{_source.rating}})</span>',
+                        review: `{{_source.review}}`,
+                        is_User_cont: '{{#if _source.is_user}}<input onclick="reviews.removeReview(\'{{_id}}\')" type="button" ' +
+                                'value="Remove review">{{/if}}',
+                    },
+                    comment_replays_obj:[
+                    {{#each _source.replays_obj.hits.hits}}
+                        {
+                            name:'{{_source.reviewer_name}}',
+                            review_replies_id:'{{_id}}',
+                            date: 'Posted on {{formatDate _source.date_created "short"}}',
+                            review: `{{_source.review}}`,
+                            profile_img: '<img src="/img/profile/thumb/{{_source.profile_img}}" width="100">',
+                            is_User_cont: '{{#if _source.is_user}}<input onclick="reviews.removeReviewReply(\'{{_id}}\')" type="button" ' +
+                                    'value="Remove ' +
+                                    'Reply">{{/if}}',
+                        },
+                    {{/each}}
+                    ]
+                },
+                    {{/each}}
+            ],
+            ref: '{{product_obj.hits.hits.0._id}}',
+
+            total_reviews: '{{product_obj.hits.hits.0._source.user_reviews}}',
+            isActive:'',
+            formError:'',
+            formSuccess:'',
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+
+            removeReview:function(review_id){
+
+                var temp_arr = [];
+
+                this.comments_obj.forEach(function (arr_obj,index) {
+                    if (arr_obj.main_comment_cont.review_id!==review_id) {
+                        temp_arr.push(arr_obj);
+                    }
+                });
+
+                this.comments_obj = temp_arr;
+
+                this.total_reviews = temp_arr.length;
+
+                axios.post('{{req.customBaseURI}}remove-review',
+                        {
+                            review_id:review_id,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                            console.log(response.data);
+
+                },function(err){
+                    console.log(err);
+                    alert(err);
+                });
+
+            },
+            getReviewIndex: function(reply_id){
+                this.comments_obj.forEach(function (arr_obj,index) {
+                    arr_obj.comment_replays_obj.forEach(function (replay_obj) {
+                        if (replay_obj.review_replies_id===reply_id) {
+                            return index;
+                        }
+                    });
+                });
+                return 0;
+            },
+            removeReviewReply:function(review_reply_id){
+
+                var temp_arr = [];
+
+                var review_index = this.getReviewIndex(review_reply_id);
+
+                this.comments_obj[review_index].comment_replays_obj.forEach(function (arr_obj,index) {
+                    if (arr_obj.review_replies_id!==review_reply_id) {
+                        temp_arr.push(arr_obj);
+                    }
+                });
+
+                this.comments_obj[review_index].comment_replays_obj = temp_arr;
+
+                axios.post('{{req.customBaseURI}}remove-review-reply',
+                        {
+                            review_reply_id:review_reply_id,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+
+                },function(err){
+                    console.log(err);
+                    alert(err);
+                });
+
+            },
+            addReviewReply:function(index,e){
+
+                this.comments_obj[index].main_comment_cont.isActive = 'active-btn';
+                this.comments_obj[index].main_comment_cont.formError = '';
+
+                // console.log(index,e.target.elements.review_id.value);
+                // console.log(e.target.elements.name.value);
+
+                axios.post('{{req.customBaseURI}}save-review-reply',
+                        {
+                            review_id:e.target.elements.review_id.value,
+                            name: e.target.elements.name.value,
+                            ref: '{{product_obj.hits.hits.0._id}}',
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    this.comments_obj[index].main_comment_cont.isActive = '';
+
+                    if (response.data.error) {
+                        this.comments_obj[index].main_comment_cont.showSuccessMsg=false;
+                        this.comments_obj[index].main_comment_cont.formSuccess='';
+                        this.comments_obj[index].main_comment_cont.formError = '<div class="callout warning" ' +
+                                'style="border-radius: .3rem; margin-top: 1rem"><ul>'
+                        response.data.error[0] ? this.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        this.comments_obj[index].main_comment_cont.formError += '</ul></div>';
+                        this.comments_obj[index].main_comment_cont.showError = true;
+
+                    }else{
+                        this.comments_obj[index].main_comment_cont.formSuccess='<div class="callout success" style="border-radius: .3rem; margin-top: 1rem">Your reply has ' +
+                                'been added successfully' +
+                                '.</div>';
+                        this.comments_obj[index].comment_replays_obj.unshift({
+                            name: ''+response.data.reviewer_name+'',
+                            review_replies_id: ''+response.data.review_replies_id+'',
+                            date: 'Posted on '+response.data.date_created+'',
+                            profile_img: '<img src="/img/profile/thumb/'+response.data.profile_img+'" width="100">',
+                            review: `${response.data.review}`,
+                            is_User_cont: '<input onclick="reviews.removeReviewReply(\''+response.data.review_replies_id+'\')" ' +
+                                            'type="button"value="Remove Reply">',
+                        });
+                        this.comments_obj[index].main_comment_cont.review_comment = false;
+                        this.comments_obj[index].main_comment_cont.showSuccessMsg=true;
+                        this.comments_obj[index].main_comment_cont.showError = false;
+                    }
+
+                },function(err){
+                    console.log(err);
+                    alert(err);
+                });
+            },
+            addReview: function (e) {
+                let tmp_rate_val = parseInt($('[name=rate_input]').val());
+                this.isActive = 'active-btn';
+                this.formError = '';
+                this.rate_input = tmp_rate_val?tmp_rate_val:'';
+                if (!tmp_rate_val){
+                    $('[name=rate_input]').val('');
+                }
+
+                axios.post('{{req.customBaseURI}}save-review',
+                        {
+                            rate_input: this.rate_input,
+                            comment: this.comment.trim(),
+                            ref: this.ref,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                    this.isActive = '';
+
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li style="text-align: left !important;">'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li style="text-align: left !important;">'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li style="text-align: left !important;' +
+                                '">'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li style="text-align: left !important;' +
+                                '">'+response.data.error[3].msg+'</li>':'';
+
+
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+
+                        $('[name=rate_input]').val('');
+                        this.total_reviews = parseInt(this.total_reviews) + 1;
+                        this.comment='';
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your ' +
+                                'review has been sent successfully and will be reviewed by our team shortly.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+
+                        this.comments_obj.unshift({
+                            main_comment_cont:{
+                                name: ''+response.data.reviewer_name+'',
+                                review_id: ''+response.data.review_id+'',
+                                review_comment:false,
+                                isActive:'',
+                                formError:'',
+                                formSuccess:'',
+                                showError:false,
+                                showSuccessMsg:false,
+                                show_review_reply_btn:'show-inline-block',
+                                profile_img: '<img src="/img/profile/thumb/'+response.data.profile_img+'" width="100">',
+                                date: 'Posted on '+response.data.date_created+'',
+                                ratings: ''+response.data.rating_stars+'<span class="small">('+response.data.ratings+')</span>',
+                                review: `${response.data.review}`,
+                                is_User_cont: '<input onclick="reviews.removeReview(\''+response.data.review_id+'\')" type="button"value="Remove review">',
+                            },
+                            comment_replays_obj:[]
+                        });
+
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+
+    $(function(){
+        $('#add-review-form').validate({ // validate login form
+            rules: {
+                rate_input: {
+                    required: true,
+                },comment: {
+                    required: true,
+                }
+            },
+            messages: {
+                rate_input: {
+                    required: 'Please select ratings',
+                },comment: {
+                    required: 'Please enter your review',
+                }
+            }
+        });
+    });
+
+</script>

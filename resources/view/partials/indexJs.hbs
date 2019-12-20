@@ -1,0 +1,154 @@
+<link href='/css/lightslider.min.css' media='screen' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='/js/lightslider.min.js'></script>
+<script type='text/javascript' src='/js/typed.min.js'></script>
+<script type='text/javascript' src='/js/rater.min.js'></script>
+
+<script type="text/javascript">
+    //http://sachinchoolur.github.io/lightslider/
+    $(document).ready(function(){
+        $('#foundation-content-slider').lightSlider({
+            keyPress:false,
+            item:3,
+            slideMargin: 32,
+            controls: true,
+            prevHtml: '',
+            nextHtml: '',
+            loop:true,
+            responsive : [
+                {
+                    breakpoint:800,
+                    settings: {
+                        item:3,
+                        slideMove:1,
+                    }
+                },
+                {
+                    breakpoint:480,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                    }
+                }
+            ]
+        });
+        $('#bootstrap-content-slider').lightSlider({
+            keyPress:false,
+            item:3,
+            slideMargin: 32,
+            controls: true,
+            prevHtml: '',
+            nextHtml: '',
+            loop:true,
+            responsive : [
+                {
+                    breakpoint:800,
+                    settings: {
+                        item:3,
+                        slideMove:1,
+                    }
+                },
+                {
+                    breakpoint:480,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                    }
+                }
+            ]
+        });
+        $('#websites-design-content-slider').lightSlider({
+            keyPress:false,
+            item:2,
+            slideMargin: 32,
+            controls: true,
+            prevHtml: '',
+            nextHtml: '',
+            loop:true,
+            pager: false,
+            responsive : [
+                {
+                    breakpoint:800,
+                    settings: {
+                        item:2,
+                        slideMove:1,
+                    }
+                },
+                {
+                    breakpoint:480,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                    }
+                }
+            ]
+        });
+        $('#email-templates-content-slider').lightSlider({
+            keyPress:false,
+            item:4,
+            slideMargin: 32,
+            controls: true,
+            prevHtml: '',
+            nextHtml: '',
+            loop:true,
+            pager: false,
+            responsive : [
+                {
+                    breakpoint:800,
+                    settings: {
+                        item:4,
+                        slideMove:1,
+                    }
+                },
+                {
+                    breakpoint:480,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                    }
+                }
+            ]
+        });
+        $('#work-content-slider').lightSlider({
+            keyPress:false,
+            item:1,
+            slideMargin: 32,
+            controls: false,
+
+            auto: true,
+            speed: 1000,
+            loop:true,
+            slideEndAnimation: true,
+            pause: 6000,
+            pager: false,
+
+            responsive : [
+                {
+                    breakpoint:800,
+                    settings: {
+                        item:1,
+                        slideMove:1,
+                    }
+                },
+                {
+                    breakpoint:480,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                    }
+                }
+            ]
+        });
+        $(function() {
+            var typed = new Typed('#typed', {
+                stringsElement: '#typed-strings',
+                typeSpeed: 80,
+                backDelay: 2000,
+                contentType: 'html',
+                backSpeed: 30,
+                startDelay: 100,
+                loop: true,
+                loopCount: Infinity
+            });
+        });
+    });
+</script>

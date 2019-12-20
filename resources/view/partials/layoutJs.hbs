@@ -1,0 +1,76 @@
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        {{{inlineScripts}}}
+        $(function(){
+            $('#auth-login-form').validate({ // validate login form
+                rules: {
+                    email: {
+                        required: true,
+                        email:true
+                    },password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    email: {
+                        required: 'Please enter your address',
+                        email: 'Please enter a valid email address'
+                    },password: {
+                        required: 'Please enter your password',
+                        minlength: 'Your password must be at least 6 characters long'
+                    }
+                }
+            });
+
+        });
+    });
+
+    $(function(){
+        $('#auth-join-form').validate({ // validate login form
+            rules: {
+                first_name: {
+                    required: true,
+                    maxlength: 60,
+                },last_name: {
+                    required: true,
+                    maxlength: 60,
+                },title: {
+                    required: true,
+                },email: {
+                    required: true,
+                    email:true
+                },password: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 60,
+                },terms_agreement: {
+                    required: true,
+                }
+            },
+            messages: {
+                first_name: {
+                    required: 'Please enter your first name',
+                    maxlength: 'Your First name must be 60 characters long',
+                },last_name: {
+                    required: 'Please enter your last name',
+                    maxlength: 'Your Last name must be 60 characters long',
+                },title: {
+                    required: 'Please enter your title',
+                },email: {
+                    required: 'Please enter your address',
+                    email: 'Please enter a valid email address'
+                },password: {
+                    required: 'Please enter your password',
+                    minlength: 'Your password must be at least 6 characters long',
+                    maxlength: 'Your password must be 60 characters long',
+                },terms_agreement: {
+                    required: 'Please confirm you have ready and accept our terms and conditions',
+                }
+            }
+        });
+
+    });
+</script>

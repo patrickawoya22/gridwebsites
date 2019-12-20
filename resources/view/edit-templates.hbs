@@ -6,8 +6,7 @@
     <div class="grid-container">
         <div class="grid-x grid-padding-x align-center-middle">
             <div class="medium-12 cell">
-                <span>Patick Kakade</span>
-                <p>PHP, JavaScript, CSS</p>
+                <span>{{req.session.body.first_name}} {{req.session.body.last_name}}</span>
             </div><!-- ./medium cell -->
         </div><!-- ./grid-x grid-padding-x -->
     </div><!-- ./grid-container -->
@@ -21,45 +20,33 @@
                 <div class="profile__wrapper">
                     <div class="grid-x grid-margin-x">
                         <div class="large-2 large-order-2 profile-img profile-img-ex text-center cell">
-                            <a onclick="$('#open-image-tab').trigger('click')"><img src="/img/temp/main/placeholder.png" alt=""></a>
-                            <div class="text-center">
-                                <a onclick="$('#open-image-tab').trigger('click')">Add Images</a>
-                            </div>
+                            <a onclick="$('#open-image-tab').trigger('click')"><img src="{{req
+                            .customBaseURI}}img/project/img-thumb/{{products_obj.hits.hits.0._source.image_obj.hits.hits
+                            .0._source.name}}" alt="{{products_obj.hits.hits.0._source.image_obj.hits.hits
+                            .0._source.name}}"></a>
                         </div>
                         <div class="large-10 large-order-1 cell">
-                            <h2>Add Template</h2>
+                            <h2>{{#if addTemplate}}Add Template{{else}}Edit Template{{/if}}</h2>
 
-                            <div class="grid-x grid-magin-x edit-form-wrapper">
+                            <div class="grid-x grid-margin-x edit-form-wrapper">
                                 <div class="large-4 cell">
-                                    <ul class="vertical tabs" id="profile__taps">
+                                    <ul class="vertical tabs" data-tabs id="profile__taps" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500">
 
-                                        <li class="tabs-title"><a {{#if req.query.s}} {{#compare req.query.s '==' 'details'}}aria-selected="true"{{/compare}} {{else}}aria-selected="true"{{/if}} href="/edit-templates?s=details">Template details</a></li>
+                                        <li class="tabs-title"><a href="#template">Template details</a></li>
 
-                                        <li class="tabs-title"><a {{#compare req.query.s '==' 'add-image'}}aria-selected="true"{{/compare}} href="/edit-templates?s=add-image" id="open-image-tab">Add images</a></li>
+                                        <li class="tabs-title"><a href="#add-image" id="open-image-tabxxx">Add
+                                            images</a></li>
 
-                                        <li class="tabs-title"><a {{#compare req.query.s '==' 'thumbnail'}}aria-selected="true"{{/compare}} href="/edit-templates?s=thumbnail">Thumbnail</a></li>
-
-                                        <li class="tabs-title"><a {{#compare req.query.s '==' 'files'}}aria-selected="true"{{/compare}} href="/edit-templates?s=files">Files</a></li>
+                                        <li class="tabs-title"><a href="#files">Files</a></li>
 
                                     </ul>
                                 </div>
                                 <div class="large-8 cell">
 
-                                    <div class="callout profile-msg {{#if form_errors}}warning{{else}}success{{/if}} {{#compare form_errors '==' false}}hidden{{/compare}}">
-                                        {{#if form_errors}}
-                                            <ul>
-                                                {{# each messages}}
-                                                    <li>{{this.msg}}</li>
-                                                {{/each}}
-                                            </ul>
-                                        {{/if}}
-                                    </div>
-
-
                                     <div class="tabs-content" data-tabs-content="profile__taps">
-
-                                        <div class="tabs-panel {{#if req.query.s}} {{#compare req.query.s '==' 'details'}}is-active{{/compare}} {{else}}is-active{{/if}}" id="account">
-                                            <form action="/save-template" method="post" id="save-template-form">
+                                        <div class="tabs-panel" id="template">
+                                            <form action="/save-template" v-on:submit.prevent="editTemplate"
+                                                  method="post" id="save-template-form">
 
                                                 <h2 class="text-primary">Template details</h2>
 
@@ -67,43 +54,78 @@
 
                                                     <div class="small-6 cell">
                                                         <label for="name">Name *</label>
-                                                        <input type="text" id="name" name="name" value="{{#if req.body.name}}{{req.body.name}}{{else}}{{{req.product._source.name}}}{{/if}}">
+                                                        <input
+                                                                v-model="name"
+                                                                id="name"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.name}}"
+                                                                type="text" id="template_name" name="name">
                                                     </div>
 
                                                     <div class="small-6 cell">
                                                         <label for="language">Language *</label>
 
-                                                        <select name="language">
-                                                            <option value=""></option>
-                                                            {{#each req.session.language_list}}
-                                                            <option value="{{this.language_code}}" {{#compare req.body.language '==' this.language_code}} selected {{/compare}} {{#compare req.product._source.language_code '==' this.language_code}} selected {{/compare}}>{{this.language}}</option>
-                                                            {{/each}}
+                                                        <select
+                                                                v-model="language"
+                                                                @keyup.enter="editTemplate"
+                                                                id="language"
+                                                                value="english"
+                                                                name="language">
+                                                            <option value="english" selected>english</option>
+                                                            <!--{{#each req.session.language_list}}-->
+                                                            <!--<option value="{{this.language_code}}" {{#compare req.body.language '==' this.language_code}} selected {{/compare}} {{#compare req.product._source.language_code '==' this.language_code}} selected {{/compare}}>{{this.language}}</option>-->
+                                                            <!--{{/each}}-->
                                                         </select>
                                                     </div>
 
                                                     <div class="small-6 cell">
                                                         <label for="price">Price ($)</label>
-                                                        <input type="text" id="price" name="price" value="{{#if req.body.price}}{{req.body.price}}{{else}}{{{req.product._source.price}}}{{/if}}">
+                                                        <input
+                                                                v-model="price"
+                                                                id="price"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.price}}"
+                                                                type="text" id="price" name="price" value="{{#if req.body.price}}{{req.body.price}}{{else}}{{{req.product._source.price}}}{{/if}}">
                                                     </div>
 
                                                     <div class="small-6 cell">
                                                         <label for="discount_price">Discount Price ($)</label>
-                                                        <input type="text" id="discount_price" name="discount_price" value="{{#if req.body.discount_price}}{{req.body.discount_price}}{{else}}{{{req.product._source.discount_price}}}{{/if}}">
+                                                        <input
+                                                                v-model="discount_price"
+                                                                id="discount_price"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.offer_price}}"
+                                                                type="text" id="discount_price" name="discount_price" value="{{#if req.body.discount_price}}{{req.body.discount_price}}{{else}}{{{req.product._source.discount_price}}}{{/if}}">
                                                     </div>
 
                                                     <div class="small-6 cell">
                                                         <label for="built_price">Built Price ($)</label>
-                                                        <input type="text" id="built_price" name="built_price" value="{{#if req.body.built_price}}{{req.body.built_price}}{{else}}{{{req.product._source.built_price}}}{{/if}}">
+                                                        <input
+                                                                v-model="built_price"
+                                                                id="built_price"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.built_price}}"
+                                                                type="text" id="built_price" name="built_price" value="{{#if req.body.built_price}}{{req.body.built_price}}{{else}}{{{req.product._source.built_price}}}{{/if}}">
                                                     </div>
 
                                                     <div class="small-6 cell">
                                                         <label for="hosting_price">Hosting Price ($)</label>
-                                                        <input type="text" id="hosting_price" name="hosting_price" value="{{#if req.body.hosting_price}}{{req.body.hosting_price}}{{else}}{{{req.product._source.hosting_price}}}{{/if}}">
+                                                        <input
+                                                                v-model="hosting_price"
+                                                                id="hosting_price"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.hosting_price}}"
+                                                                type="text" id="hosting_price" name="hosting_price" value="{{#if req.body.hosting_price}}{{req.body.hosting_price}}{{else}}{{{req.product._source.hosting_price}}}{{/if}}">
                                                     </div>
 
                                                     <div class="small-12 cell">
                                                         <label for="extra">Extra</label>
-                                                        <select name="extra" multiple="multiple">
+                                                        <select
+                                                                v-model="extra"
+                                                                id="extra"
+                                                                @keyup.enter="editTemplate"
+                                                                value="[{{#each products_obj.hits.hits.0._source.extra  as |value|}}'{{value}}',{{/each}}]"
+                                                                name="extra" multiple="multiple">
                                                             <option value=""></option>
                                                             <option value="Reviewed by our support team">Reviewed by our support team</option>
                                                             <option value="100 months support">months support</option>
@@ -113,8 +135,13 @@
 
 
                                                     <div class="small-12 cell">
-                                                        <label for="username">Category *</label>
-                                                        <select name="category">
+                                                        <label for="category">Category *</label>
+                                                        <select
+                                                                v-model="category"
+                                                                id="category"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.main_category}}"
+                                                                name="category">
                                                             <option value=""></option>
                                                             <option value="Foundation 6 Grid XY">Foundation 6 Grid XY</option>
                                                             <option value="Bootstrap 4">Bootstrap 4</option>
@@ -123,11 +150,33 @@
                                                     </div>
 
                                                     <div class="small-12 cell">
+                                                        <label for="category">Type *</label>
+                                                        <select
+                                                                v-model="type"
+                                                                id="type"
+                                                                @keyup.enter="editTemplate"
+                                                                value="{{products_obj.hits.hits.0._source.type}}"
+                                                                name="type">
+                                                            <option value=""></option>
+                                                            <option value="Templates">Templates</option>
+                                                            <option value="Themes">Themes</option>
+                                                            <option value="Capture Forms">Capture Forms</option>
+                                                            <option value="Email Templates">Email Templates</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="small-12 cell">
                                                         <label for="features">Features *</label>
-                                                        <select name="features" multiple="multiple">
+                                                        <select
+                                                                v-model="features"
+                                                                id="features"
+                                                                @keyup.enter="editTemplate"
+                                                                value="[{{#each products_obj.hits.hits.0._source.features  as |value|}}'{{value}}',{{/each}}]"
+                                                                name="features" multiple="multiple">
                                                             <option value="3 Stuning Home Pages">3 Stuning Home Pages</option>
                                                             <option value="Clean Code and unique design">Clean Code and unique design</option>
-                                                            <option value="HTML5 & CSS3 Validated">HTML5 & CSS3 Validated</option>
+                                                            <option value="HTML5 and CSS3 Validated">HTML5 and CSS3
+                                                                Validated</option>
                                                             <option value="Responsive Design">Responsive Design</option>
                                                             <option value="SEO Friendly">SEO Friendly</option>
                                                             <option value="Working Contact Form">Working Contact Form</option>
@@ -138,79 +187,260 @@
                                                     </div>
 
                                                     <div class="small-12 cell">
+                                                        <label for="version">Version *</label>
+                                                        <select
+                                                                v-model="version"
+                                                                id="version"
+                                                                @keyup.enter="editTemplate"
+                                                                value="[{{#each products_obj.hits.hits.0._source.version  as |value|}}'{{value}}',{{/each}}]"
+                                                                name="features" multiple="multiple">
+                                                                <option value="Foundation 6 Grid XY | v6.1">Foundation 6 Grid XY - v6.1</option>
+                                                                <option value="Foundation 6 Grid XY | v6.5">Foundation 6 Grid XY - v6.5</option>
+                                                                <option value="bootstrap 4 | v4.3">bootstrap 4 - v4.3</option>
+                                                                <option value="Version | 1.0.0">Version - 1.0.0</option>
+                                                                <option value="Version | 1.1.0">Version - 1.1.0</option>
+                                                                <option value="Version | 2.0.0">Version - 2.0.0</option>
+                                                                <option value="Version | 2.1.0">Version - 2.1.0</option>
+                                                                <option value="Files Included|HTML,SCSS,CSS,JS">Files Included - HTML,SCSS,CSS,JS</option>
+                                                                <option value="Files Included|HTML,SCSS,CSS">Files Included - HTML,SCSS,CSS</option>
+                                                                <option value="Files Included|HTML,CSS,JS">Files Included - HTML,CSS,JS</option>
+                                                                <option value="Files Included|HTML,CSS">Files Included - HTML,CSS</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="small-12 cell">
                                                         <label for="code_quality">Code Quality</label>
-                                                        <textarea name="code_quality" rows="3" cols="5">{{#if req.body.code_quality}}{{req.body.code_quality}}{{else}}{{{req.product._source.code_quality}}}{{/if}}</textarea>
+                                                        <textarea
+                                                                v-model="code_quality"
+                                                                @keyup.enter="editTemplate"
+                                                                name="code_quality" rows="3" cols="5">{{products_obj.hits.hits.0._source.code_quality}}</textarea>
                                                     </div>
 
                                                     <div class="small-12 cell">
                                                         <label for="description">Description</label>
-                                                        <textarea name="description" rows="3" cols="5">{{#if req.body.description}}{{req.body.description}}{{else}}{{{req.product._source.description}}}{{/if}}</textarea>
+                                                        <textarea
+                                                                v-model="description"
+                                                                @keyup.enter="editTemplate"
+                                                                name="description" rows="3" cols="5">{{products_obj.hits.hits.0._source.description}}</textarea>
                                                     </div>
 
                                                     <div class="medium-12 cell">
-                                                        <input type="hidden" id="p_ref" name="p_ref" value="{{#if req.body.p_ref}}{{req.body.p_ref}}{{else}}{{{req.product._id}}}{{/if}}">
-                                                        <input class="button primary expanded" type="submit" value="Submit">
+                                                        <div v-if="showError">
+                                                            <div v-html="formError">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <p v-html="formSuccess">
+                                                        <div v-if="showSuccessMsg">
+
+                                                        </div>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="medium-12 cell" :class="isActive">
+
+                                                        <input
+                                                                v-model="ref"
+                                                                name="ref"
+                                                                value="{{products_obj.hits.hits.0._id}}"
+                                                                type="hidden">
+                                                        <input
+                                                                class="button primary large expanded" type="submit"
+                                                               value="Submit">
+                                                        <img src="/img/icon/spinner-circle.svg" style="display: none;" alt="loading..." width="15">
+
                                                     </div>
                                                 </div>
                                             </form>
                                         </div><!--./Account-->
 
-                                        <div class="tabs-panel a-cont-wrapper {{#compare req.query.s '==' 'add-image'}}is-active{{/compare}}" id="add-image">
+                                        <div class="tabs-panel a-cont-wrapper" id="add-image">
 
                                             <div class="grid-x grid-margin-x">
 
-                                                <div class="medium-12 cell edit-profile-image-wrapper">
-                                                    <form id="cropit-form" class="flex-container align-center-middle" action="#">
+                                                <div class="medium-12 cell edit-profile-image-wrapper" id="edit-template-image">
+                                                    <form   :class="showFormAction"
+                                                            v-on:submit.prevent="editTemplateImages"
+                                                            id="cropit-form" class="flex-container
+                                                            align-center-middle"
+                                                        {{#if products_obj.hits.hits.0._source.image_obj.hits.total}}
+                                                            style="display: none"
+                                                        {{/if}} >
                                                         <div class="image-editor">
 
-                                                                <div class="cropit-preview"></div>
+                                                            <div class="grid-x grid-padding-x">
+                                                                <div class="medium-12 cell">
+                                                                    <div class="cropit-preview-wrapper">
+                                                                        <div class="cropit-preview"></div>
+                                                                    </div>
 
-                                                            <label for="image-upload"  style="margin-top:1rem" >
-                                                                    <input type="file" id="image-upload" class="cropit-image-input hidden">
-                                                                <span class="text-primary cursor">Click here to select image</span>
-                                                            </label>
+                                                                    <label for="image-upload"  style="margin-top:1rem" >
+                                                                        <input type="file" id="image-upload" class="cropit-image-input hidden">
+                                                                        <span class="text-primary large cursor">Click here to
+                                                                    select image</span>
+                                                                    </label>
 
-                                                            <div class="image-size-label">
-                                                              Resize image
-                                                            </div>
+                                                                    <div class="image-size-label">
+                                                                        Resize image
+                                                                    </div>
 
-                                                            <input type="range" class="cropit-image-zoom-input">
+                                                                    <input type="range" class="cropit-image-zoom-input">
 
-                                                            <div class="rotation-section">
-                            								   <div>Rotation</div>
-                            								   <i class="rotate-ccw fa fa-undo rotation-right" aria-hidden="true"></i>
+                                                                    <div class="rotation-section">
+                                                                        <div>Rotation</div>
+                                                                        <i class="rotate-ccw fa fa-undo rotation-right" aria-hidden="true"></i>
 
-                            								   <i class="rotate-cw fa fa-redo" aria-hidden="true"></i>
-                            								</div>
+                                                                        <i class="rotate-cw fa fa-redo" aria-hidden="true"></i>
+                                                                    </div>
+                                                                </div><!-- ./medium cell -->
+                                                                <div class="medium-12 cell">
+                                                                    <div v-if="showError">
+                                                                        <div v-html="formError">
 
-                                                            <input type="hidden" name="image-data" class="hidden-image-data" />
-                                                            <button class="button primary expanded" type="submit">Submit</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p v-html="formSuccess">
+                                                                    <div v-if="showSuccessMsg">
+
+                                                                    </div>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="medium-6 cell">
+                                                                    <div class="" :class="isActive">
+                                                                        <input
+                                                                                v-model="image_data"
+                                                                                type="hidden" name="image_data"
+                                                                                class="hidden-image-data" />
+                                                                        <input
+                                                                                v-model="ref"
+                                                                                name="ref"
+                                                                                value="{{products_obj.hits.hits.0._id}}"
+                                                                                type="hidden">
+                                                                        <input
+                                                                                class="button primary large expanded" type="submit"
+                                                                                value="Submit">
+                                                                        <img src="/img/icon/spinner-circle.svg" style="display: none;" alt="loading..." width="15">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="medium-6 cell">
+                                                                    <input
+                                                                            @click="showImagesFn"
+                                                                            class="button warning large expanded"
+                                                                            type="button"
+                                                                            value="Show Images">
+                                                                </div>
+                                                            </div><!-- ./grid-x grid-padding-x -->
+
                                                         </div>
                                                     </form>
+
+                                                    <div class="grid-x grid-padding-x grid-padding-y" :class="showImages"
+                                                        {{#if products_obj.hits.hits.0._source.image_obj.hits.total}}
+                                                        {{else}}
+                                                         style="display: none"
+                                                    {{/if}}>
+                                                        <div class="medium-12 cell">
+                                                            <input
+                                                                    @click="addNewImage"
+                                                                    class="button primary large expanded" type="button"
+                                                                    value="Add Image">
+
+                                                            <p class="r-margin" v-html="imageCounterMsg">
+                                                                No Images found
+                                                            </p>
+                                                        </div>
+                                                        <div class="medium-6 cell" v-for="tmp_img in
+                                                        template_images">
+                                                            <div class="r-position">
+                                                                <img :src="tmp_img.img_url" width="100%" :alt="tmp_img.name">
+
+                                                                <form action="/delete-template-image" method="post">
+                                                                    <button type="button" name="button" class="button remove-template-image" @click="deleteTemplateImg(tmp_img.image_id)">x</button>
+                                                                </form>
+                                                            </div>
+                                                        </div><!-- ./medium cell -->
+
+                                                    </div><!-- ./grid-x grid-padding-x -->
                                                 </div>
 
                                             </div>
 
                                          </div><!--./add-image-->
 
-                                         <div class="tabs-panel {{#compare req.query.s '==' 'thumbnail'}}is-active{{/compare}}" id="thumbnail">
-
-                                             <div class="grid-x grid-margin-x">
-
-                                                 <div class="small-12 cell">
-                                                     Thumbnail
-                                                 </div>
-
-                                             </div>
-
-                                          </div><!--./thumbnail-->
-
-                                          <div class="tabs-panel {{#compare req.query.s '==' 'files'}}is-active{{/compare}}" id="files">
+                                          <div class="tabs-panel" id="files">
 
                                               <div class="grid-x grid-margin-x">
 
                                                   <div class="small-12 cell">
-                                                      Files
+                                                      <div class="grid-x grid-padding-x">
+                                                          <div class="small-3 medium-3 cell text-center">
+                                                              <a href="#files">
+                                                                  <div  style="padding-bottom: 1rem">
+                                                                      <img src="/img/icon/zip.svg">
+                                                                  </div>
+                                                                  <img src="/img/icon/download.svg" width="50">
+                                                              </a>
+                                                          </div><!-- ./medium cell -->
+                                                          <div class="small-9 medium-9 cell">
+                                                              <table>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                         <td  style="width: 3rem">
+                                                                             <img src="/img/icon/html-file.svg" width="25">
+                                                                         </td>
+                                                                         <td>
+                                                                             index.html
+                                                                         </td>
+                                                                     </tr>
+                                                                     <tr>
+                                                                         <td>
+                                                                             <img src="/img/icon/css.svg" width="25">
+                                                                         </td>
+                                                                         <td>
+                                                                             foundation-6.css
+                                                                         </td>
+                                                                     </tr>
+                                                                     <tr>
+                                                                         <td>
+                                                                             <img src="/img/icon/css.svg" width="25">
+                                                                         </td>
+                                                                         <td>
+                                                                             app.css
+                                                                         </td>
+                                                                     </tr>
+                                                                     <tr>
+                                                                         <td>
+                                                                             <img src="/img/icon/javascript.svg" width="25">
+                                                                         </td>
+                                                                         <td>
+                                                                             foundation-6.js
+                                                                         </td>
+                                                                     </tr>
+                                                                     <tr>
+                                                                         <td>
+                                                                             <img src="/img/icon/javascript.svg" width="25">
+                                                                         </td>
+                                                                         <td>
+                                                                             app.js
+                                                                         </td>
+                                                                     </tr>
+                                                                  </tbody>
+                                                              </table>
+
+                                                              <!--<ul>-->
+                                                                  <!--<li>-->
+                                                                  <!--</li>-->
+                                                                  <!--<li>-->
+                                                                      <!--<img src="/img/icon/css.svg">-->
+                                                                  <!--</li>-->
+                                                                  <!--<li>-->
+                                                                      <!--<img src="/img/icon/css.svg">-->
+                                                                  <!--</li>-->
+                                                              <!--</ul>-->
+                                                          </div><!-- ./medium cell -->
+                                                      </div><!-- ./grid-x grid-padding-x -->
                                                   </div>
 
                                               </div>
@@ -232,31 +462,42 @@
             </div>
 
             <div class="medium-4 large-3 cell">
-                <div class="profile__left__wrapper text-center">
-                    <div class="inline__cont flex-container">
-                        <h2 class="flex-child-grow">Credits</h2>
-                        <span class="flex-child-grow">$27</span>
+                {{#compare req.session.body.access_level '>' 6}}
+                    <div class="profile__left__wrapper text-center">
+                        <div class="inline__cont flex-container">
+                            <h2 class="flex-child-grow">Credits</h2>
+                            <span class="flex-child-grow">$27</span>
+                        </div>
+                        <div class="inline__cont flex-container">
+                            <ul>
+                                <li>30</li>
+                                <li>Followers</li>
+                            </ul>
+                            <ul>
+                                <li>27</li>
+                                <li>Following</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="inline__cont flex-container">
-                        <ul>
-                            <li>30</li>
-                            <li>Followers</li>
-                        </ul>
-                        <ul>
-                            <li>27</li>
-                            <li>Following</li>
-                        </ul>
-                    </div>
-                </div>
+                {{/compare}}
+
                 <div class="profile__left__wrapper">
                     <div class="inline__cont">
                         <h2>Account detail</h2>
-                        <span>Name: <a href="#">Patrick Kakande</a></span>
-                        <span>Mobile: <a href="tel:07446820124">07446820124</a></span>
-                        <span>Email: <a href="mailto:patrickawoya22@hotmail.co.uk">patrickawoya22@hotmail.co.uk</a></span>
-                        <span>Country: <b>United Kingdom</b></span>
-                        <span>Language: <b>EN</span></b>
-                        <span class="magin-y"><a href="/edit-profile">Edit Profile</a></span>
+                        <span>Name: <a href="/profile">{{req.session.body.first_name}} {{req.session.body.last_name}}</a></span>
+                        {{#if req.session.body.mobile}}
+                            <span>Mobile: <a href="tel:{{req.session.body.mobile}}">{{req.session.body
+                            .mobile}}</a></span>
+                        {{/if}}
+                        <span>Email: <a href="mailto:{{req.session.body.email}}" title="{{req.session.body.email}}">{{req.session.body
+                        .email}}</a></span>
+                        {{#if req.session.body.b_county}}
+                            <span>Country: <b>{{req.session.body.b_county}}</b></span>
+                        {{/if}}
+                        {{#if req.session.body.country_code}}
+                            <span>Language: <b>{{req.session.body.country_code}}</span></b>
+                        {{/if}}
+                        <span class="magin-y"><a href="/profile">My Profile</a></span>
                     </div>
                 </div>
             </div>

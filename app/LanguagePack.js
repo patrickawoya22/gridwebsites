@@ -4,33 +4,34 @@
 module.exports.getCleanLanguagePack = (client,req) =>{
 
     return new Promise((resolve,reject)=>{
-        client.search({
-            index: 'language_pack',
-            type: '_doc',
-            body:{
-                query:{
-                    match_all: {}
-                }
-            }
-        }).then((body)=>{
-
-            let lang_arr = [];
-
-            if (body.hits.total>0) {
-                body.hits.hits.forEach((language_obj)=>{
-
-                    lang_arr.push({ 'language_code': language_obj._source.language_code_field.toLowerCase(), 'language': language_obj._source.language_field });
-                })
-
-                resolve(lang_arr)
-
-            }else {
-                resolve({})
-            }
-
-        }, (error)=>{
-            console.trace(error.message)
-        }).catch(err => console.error(err))
+        resolve();
+        // client.search({
+        //     index: 'language_pack',
+        //     type: '_doc',
+        //     body:{
+        //         query:{
+        //             match_all: {}
+        //         }
+        //     }
+        // }).then((body)=>{
+        //
+        //     let lang_arr = [];
+        //
+        //     if (body.hits.total>0) {
+        //         body.hits.hits.forEach((language_obj)=>{
+        //
+        //             lang_arr.push({ 'language_code': language_obj._source.language_code_field.toLowerCase(), 'language': language_obj._source.language_field });
+        //         })
+        //
+        //         resolve(lang_arr)
+        //
+        //     }else {
+        //         resolve({})
+        //     }
+        //
+        // }, (error)=>{
+        //     console.trace(error.message)
+        // }).catch(err => console.error(err))
     })
 
 }
@@ -40,7 +41,7 @@ module.exports.addLanguagePack = async (req) =>{
     return await req.client.index({
         index: 'language_pack',
         type: '_doc',
-        body: getLanguageJson()
+        body: getLanguageJson(req)
     })
 }
 
@@ -51,7 +52,7 @@ module.exports.updateLanguagePack = async (req) =>{
         type: '_doc',
         id:req.language_id,
         body: {
-            doc: getLanguageJson()
+            doc: getLanguageJson(req)
         }
     })
 }
@@ -154,7 +155,7 @@ module.exports.getLanguagePackById = (client,id) => {
     })
 }
 
-const getLanguageJson = () => {
+const getLanguageJson = (req) => {
     return {
         templates_field: req.body.templates_field,
         themes_field: req.body.themes_field,
@@ -264,4 +265,4 @@ const getLanguageJson = () => {
         cancel_field: req.body.cancel_field,
         confirm_field: req.body.confirm_field,
     }
-}
+};

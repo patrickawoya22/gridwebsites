@@ -1,0 +1,110 @@
+<script type="text/javascript">
+
+    var contactUs = new Vue({
+        el: '#contact__us__wrapper',
+        data: {
+            formError:'',
+            formSuccess:'',
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+            sendContactUs: function (e) {
+                var title = e.target.title.value;
+                var first_name = e.target.first_name.value;
+                var last_name = e.target.last_name.value;
+                var email = e.target.email.value;
+                var mobile = e.target.mobile.value;
+                var message = e.target.message.value;
+
+                this.isActive = 'active-btn';
+                this.formError = '';
+                this.formSuccess = '';
+
+                axios.post('{{req.customBaseURI}}send-contact-us-message',
+                        {
+                            title:title,
+                            first_name: first_name,
+                            last_name:last_name,
+                            email:email,
+                            mobile:mobile,
+                            message:message,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                    this.isActive = '';
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>';
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account ' +
+                                'details are update successfully.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+
+
+            }
+        }
+    });
+
+
+    $(function(){
+        $('#send-contact-us-message').validate({ // validate login form
+            rules: {
+                title: {
+                    required: true,
+                },first_name: {
+                    required: true,
+                },last_name: {
+                    required: true,
+                },email: {
+                    required: true,
+                    email:true
+                },mobile: {
+                    required: true,
+                },message: {
+                    required: true,
+                }
+            },
+            messages: {
+                title: {
+                    required: 'Please select your title',
+                },first_name: {
+                    required: 'Please enter your full name',
+                },last_name: {
+                    required: 'Please enter your full name',
+                },email: {
+                    required: 'Please enter your mobile',
+                },mobile: {
+                    required: 'Please enter your password',
+                },message: {
+                    required: 'Please enter your message',
+                }
+            },
+            invalidHandler: function (event, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors > 0) {
+                    contactUs.isActive = '';
+                }
+            }
+        });
+    });
+    </script>

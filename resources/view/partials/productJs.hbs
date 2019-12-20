@@ -1,0 +1,244 @@
+<link href='/css/lightslider.min.css' media='screen' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='/js/lightslider.min.js'></script>
+<script type='text/javascript' src='/js/rater.min.js'></script>
+<script type='text/javascript' src='/js/currency.js'></script>
+
+<script type="text/javascript">
+
+    var contactUs = new Vue({
+        el: '#contact-seller',
+        data: {
+
+            title: '',
+            name: '',
+            email: '',
+            mobile: '',
+            message: '',
+            ref: '{{product_obj.hits.hits.0._id}}',
+
+            isActive:'',
+            show_btn:'',
+            formError:'',
+            formSuccess:'',
+            disabled:false,
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+            sendEmail: function (e) {
+
+                var title = e.target.title.value;
+                var first_name = e.target.first_name.value;
+                var last_name = e.target.last_name.value;
+                var email = e.target.email.value;
+                var mobile = e.target.mobile.value;
+                var message = e.target.message.value;
+
+                this.isActive = 'active-btn';
+                this.formError = '';
+                this.formSuccess = '';
+
+                axios.post('{{req.customBaseURI}}send-contact-us-message',
+                        {
+                            title:title,
+                            first_name: first_name,
+                            last_name:last_name,
+                            email:email,
+                            mobile:mobile,
+                            message:message,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                    this.isActive = '';
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>';
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        response.data.error[5] ? this.formError += '<li>'+response.data.error[5].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account ' +
+                                'details are update successfully.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+
+    var addToCart = new Vue({
+        el: '#add-to-cart',
+        data: {
+
+            order: '1',
+            currentTotalPrice: {{product_obj.hits.hits.0._source.offer_price}},
+            HostedPrice: {{product_obj.hits.hits.0._source.hosting_price}},
+            builtPrice: {{product_obj.hits.hits.0._source.built_price}},
+            hosted: false,
+            designed: false,
+            ref: '{{product_obj.hits.hits.0._id}}',
+
+            isActive:'',
+            show_btn:'',
+            formError:'',
+            formSuccess:'',
+            disabled:false,
+            showError:false,
+            showSuccessMsg:false,
+        },watch: {
+            hosted: function () {
+                this.disabled = false;
+                if (this.hosted) {
+                    this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)+parseFloat(this.HostedPrice));
+                } else {
+                    this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)-parseFloat(this.HostedPrice));
+                }
+            },
+            designed: function () {
+                this.disabled = false;
+                if (this.designed) {
+                    this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)+parseFloat(this.builtPrice));
+                } else {
+                    this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)-parseFloat(this.builtPrice));
+                }
+            }
+        },methods: {
+            addToCart: function (e) {
+                this.isActive = 'active-btn';
+                this.formError = '';
+                axios.post('{{req.customBaseURI}}save-cart',
+                        {
+                            order:this.order,
+                            hosted:this.hosted,
+                            designed:this.designed,
+                            ref:this.ref,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                    this.isActive = '';
+
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li style="text-align: left !important;">'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li style="text-align: left !important;">'+response.data
+                                .error[1]
+                                .msg+'</li>':'';
+                        if (response.data.error[0].msg.match('Item already added')!=null||response.data.error[1].msg
+                                .match('Item already added')!=null){
+                            // this.order='';
+                            this.disabled = true;
+                            this.show_btn = 'show';
+                        }
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Item has been ' +
+                                'add to your cart successfully. <a href="/cart">View Cart</a></div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                        headerCont.cart_total = headerCont.cart_total+1;
+                        // this.order='';
+                        this.disabled = true;
+                        this.show_btn = 'show';
+
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+
+
+    //http://sachinchoolur.github.io/lightslider/
+    $(document).ready(function(){
+
+        $('#image-gallery').lightSlider({
+            gallery:true,
+            item:1,
+            thumbItem:9,
+            slideMargin: 0,
+            speed:1000,
+            auto:false,
+            controls: false,
+            loop:true,
+            onSliderLoad: function() {
+                $('#image-gallery').removeClass('cS-hidden');
+            }
+        });
+
+        $(".rate1").rate({
+            max_value: 5,
+            step_size: 1,
+            cursor: 'pointer',
+            initial_value: 5,
+            update_input_field_name: $("#rate_input1"),
+        });
+    });
+
+    $(function(){
+        $('#send-contact-us-message').validate({ // validate login form
+            rules: {
+                title: {
+                    required: true,
+                },first_name: {
+                    required: true,
+                },last_name: {
+                    required: true,
+                },email: {
+                    required: true,
+                    email:true
+                },mobile: {
+                    required: true,
+                },message: {
+                    required: true,
+                }
+            },
+            messages: {
+                title: {
+                    required: 'Please select your title',
+                },first_name: {
+                    required: 'Please enter your full name',
+                },last_name: {
+                    required: 'Please enter your full name',
+                },email: {
+                    required: 'Please enter your mobile',
+                },mobile: {
+                    required: 'Please enter your password',
+                },message: {
+                    required: 'Please enter your message',
+                }
+            },
+            invalidHandler: function (event, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors > 0) {
+                    contactUs.isActive = '';
+                }
+            }
+        });
+    });
+</script>

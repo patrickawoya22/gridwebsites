@@ -17,6 +17,20 @@
 @include hidden;
 @include text-color;
 
+h1{
+    font-size: $h1-font-size;
+    margin-bottom: $md-padding;
+}
+.select2-container{
+  width: 100% !important;
+  .select2-selection{
+    min-height: 2.4375rem;
+    padding: rem(4px);
+    .select2-selection__arrow{
+      top: rem(7px);
+    }
+  }
+}
 
 input.form-control{
     border-radius: rem(2px);
@@ -325,9 +339,30 @@ header{
         }
     }
 }
+.remove-template-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba($text-alert, .2);
+    &:hover{
+        background-color: rgba($text-alert, .6);
+    }
+    &:active,&:focus{
+        background-color: rgba($text-alert, .2);
+    }
+}
 .error{
     margin-bottom: $primary-unit;
     color: $text-alert;
+}
+.r-margin{
+    margin: 0 !important;
+}
+.button.large{
+    height: $max-input-height !important;
+}
+.r-position{
+    position: relative;
 }
 .auth__reveal{
     margin-top: $padding-max;
@@ -457,6 +492,11 @@ header{
         h2{
             font-size: $header2-text-size;
         }
+        .wrapper-border{
+            border-bottom: rem(1px) solid lighten($text-gray-ext, 40%);
+            padding-bottom: rem(16px);
+            margin-bottom: rem(16px);
+        }
     }
     .s__left__wrapper{
         h2{
@@ -488,6 +528,15 @@ header{
         }
     }
 }
+.show{
+    display: block !important;
+}
+.show-flex{
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
 .r-contact-seller{
     border: none;
     border-radius: $border-radius;
@@ -508,9 +557,19 @@ header{
 }
 .a-cont-wrapper{
     .edit-profile-image-wrapper{
-        .cropit-preview{
-            width: $product-width !important;
-            height: $product-width !important;
+        .cropit-preview-wrapper{
+                width: rem(500px);
+                height: rem(303px);
+            .cropit-preview{
+                width: rem(1500px) !important;
+                height: rem(909px) !important;
+                -webkit-transform: scale(0.3);
+                -moz-transform: scale(0.3);
+                -o-transform: scale(0.3);
+                transform: scale(0.3);
+                -webkit-transform-origin:left top;
+                -moz-transform-origin:left top;
+            }
         }
     }
 }
@@ -647,6 +706,53 @@ header{
 .ui-dialog-buttonset{
     @extend .confirm-prompt;
 }
+@include small-screen-only{
+    .small-100{
+        width: 100%;
+    }
+}
+.active-btn{
+    position: relative;
+    img{
+        width: rem(20px);
+        position: absolute;
+        top: rem(16px);
+        right: rem(16px);
+        -webkit-animation:loading 1s linear infinite;
+        -moz-animation:loading 1s linear infinite;
+        animation:loading 1s linear infinite;
+        display: block !important;
+    }
+    .primary{
+        background-color: $text-muted !important;
+        border-color: $text-primary !important;
+        color: $text-primary !important;
+    }
+    .secondary{
+        background-color: $text-muted !important;
+        border-color: #767676 !important;
+        color: #767676 !important;
+    }
+}
+.active-btn.small{
+    img{
+        top: rem(10px);
+        right: rem(26px);
+    }
+}
+.small{
+    font-size: rem(14px) !important;
+}
+.text-danger{
+    color: $text-alert !important;
+}
+.required{
+    @extend .text-danger;
+
+}
+@-moz-keyframes loading { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes loading { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes loading { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 .language__wrapper{
     textarea,select,input{
          -webkit-box-shadow: none;
@@ -662,6 +768,65 @@ header{
     .lan__form__wrapper{
         margin-bottom: $sm-padding;
     }
+}
+.payment__methods_icons{
+    height: rem(25px);
+    background-image: url('../img/logo/payment-methods.svg');
+    background-position-y: rem(25px);
+    background-position-x: center;
+    margin-top: rem(20px);
+}
+.paypal-logo-label{
+    height: rem(48px);
+    overflow: hidden;
+    span{
+        display: block;
+        position: relative;
+        top: rem(-30px);
+        left: rem(4px);
+        img{
+            margin-left: rem(16px);
+        }
+    }
+}
+.price-preview{
+    font-size: rem(15px);
+    list-style: none;
+}
+.show-inline-block{
+    display: inline-block !important;
+}
+.contact__us__session{
+    padding: rem(40px) 0;
+    input,textarea,select{
+        border-radius: rem(4px);
+    }
+}
+.purchase__image__wrapper{
+  position: relative;
+  &:hover, &:focus, &:active{
+    .purchase___image_icon{
+      opacity: 1;
+    }
+  }
+  .purchase___image_icon{
+    position: absolute;
+    top: rem(8px);
+    left: rem(8px);
+    opacity: .4;
+  }
+}
+.text-warning{
+  color: $text-warning;
+}
+.text-success{
+  color: $text-success;
+}
+.margin-top-1{
+    margin-top: 1rem;
+}
+.width-100{
+    width: 100% !important;
 }
 .product__session{
     @extend .cart__session;
@@ -718,7 +883,7 @@ header{
                 margin-bottom: $border-radius;
             }
             .remove-review{
-                margin-bottom: $padding-max;
+                margin-bottom: rem(16px);
                 [type=button]{
                     background: none;
                     border: none;
@@ -900,6 +1065,22 @@ header{
         }
     }
 }
+#profile__taps{
+    overflow-x: scroll !important;
+}
+
+.scroll-header ::-webkit-scrollbar{
+    width: rem(2px);
+}
+.scroll-header ::-webkit-scrollbar-track {
+    background: lighten($primary-color, 30%);
+}
+.scroll-header ::-webkit-scrollbar-thumb{
+    background: darken($primary-color, 10%);
+}
+#profile__taps ::-webkit-scrollbar-thumb:hover{
+    background: darken($primary-color, 5%);
+}
 .profile__session{
     @extend .cart__session;
     .profile__wrapper{
@@ -1029,7 +1210,7 @@ header{
                 }
                 a[aria-selected=true]{
                     background: none;
-                    border-bottom: rem(1px) solid $primary-color;
+                    //border-bottom: rem(1px) solid $primary-color;
                     color: $primary-color;
                 }
             }
@@ -1374,6 +1555,11 @@ header .inline-list .menu-wrapper .is-dropdown-submenu .is-dropdown-submenu-pare
 .cursor{
     cursor: pointer !important;
 }
+.auto-error{
+    font-size: rem(14px);
+    margin-bottom: rem(16px);
+    display: block;
+}
 .profile__left__wrapper{
     background-color: $text-muted;
     border-radius: $border-radius;
@@ -1381,9 +1567,9 @@ header .inline-list .menu-wrapper .is-dropdown-submenu .is-dropdown-submenu-pare
     h2{
         font-size: $main-size;
     }
-    &:last-of-type{
-        margin-top: $padding-max;
-    }
+    //&:last-of-type{
+    //    margin-top: $padding-max;
+    //}
     .inline__cont{
         &:first-of-type{
             border-bottom: rem(1px) solid $widget-border-color;

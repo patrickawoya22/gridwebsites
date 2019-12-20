@@ -1,0 +1,129 @@
+<script type="text/javascript">
+    var appEditProfile = new Vue({
+        el: '#account',
+        data: {
+            title: '{{req.session.body.title}}',
+            first_name:'{{req.session.body.first_name}}',
+            last_name: '{{req.session.body.last_name}}',
+            username:'{{req.session.body.username}}',
+
+            postcode:'{{req.session.body.b_postcode}}',
+            address_1:'{{req.session.body.b_address1}}',
+            street:'{{req.session.body.b_street}}',
+            county:'{{req.session.body.b_county}}',
+            town:'{{req.session.body.b_city}}',
+            country:'{{req.session.body.b_country}}',
+
+            purchasesItems: [
+                {{#each order_obj.hits.hits}}
+                    {{#each _source.order_items}}
+                        {
+                            product_id:'{{_source.product_id}}',
+                            image1:'{{req.customBaseURI}}img/project/img-thumb/{{_source.image1}}',
+                            product_url:'/product/{{#replaceUrl '' ''}}{{_source.product_name}}{{/replaceUrl}}/{{_source.product_id}}',
+                            product_name:'{{_source.product_name}}',
+                            main_category:'{{_source.main_category}}',
+                            quantity:{{_source.quantity}},
+                            offer_price:'{{_source.offer_price}}',
+                            built_price:'{{_source.built_price}}',
+                            hosting_price:'{{_source.hosting_price}}',
+                        },
+                    {{/each}}
+                {{/each}}
+            ],
+
+            isActive:'',
+            formError:'',
+            formSuccess:'',
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+            editProfile: function (e) {
+                this.isActive = 'active-btn';
+                this.formError = '';
+                axios.post('{{req.customBaseURI}}save-account-details',
+                        {
+                            title:this.title,
+                            first_name: this.first_name,
+                            last_name:this.last_name,
+                            username:this.username,
+
+                            postcode:this.postcode,
+                            address_1:this.address_1,
+                            street:this.street,
+                            county:this.county,
+                            town:this.town,
+                            country:this.country,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    this.isActive = '';
+
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account details are update ' +
+                                'successfully.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+
+        $(function() {
+            $('#edit-profile-details-form').validate({
+                rules: {
+                    title: {
+                        required: true,
+                        maxlength: 8,
+                    },first_name: {
+                        required: true,
+                        maxlength: 60,
+                    },last_name: {
+                        required: true,
+                        maxlength: 60,
+                    },username: {
+                        required: true,
+                        maxlength: 60,
+                    },country: {
+                        required: true,
+                        maxlength: 60,
+                    }
+                },
+                messages: {
+                    title: {
+                        required: 'Please select your title',
+                    },first_name: {
+                        required: 'Please enter your first name',
+                    },last_name: {
+                        required: 'Please enter your last name',
+                    },username: {
+                        required: 'Please enter your username',
+                    },country: {
+                        required: 'Please select your country!',
+                    }
+                }
+            });
+
+        });
+
+</script>

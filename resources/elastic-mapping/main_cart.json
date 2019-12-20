@@ -1,0 +1,83 @@
+#https://www.youtube.com/watch?v=p_cviIn1f_k
+
+GET /cart/_search?q=*
+
+GET /cart
+GET /cart/_mapping
+
+
+PUT _settings
+{
+"index": {
+"blocks": {
+"read_only_allow_delete": "false"
+}
+}
+}
+
+
+build_option 1=>Standard License, 2=>Get It Implemented, 3=>Get It Hosted
+
+
+PUT /cart
+{
+    "settings": {
+        "max_result_window": 1999999999,
+        "index" : {
+                "number_of_shards" : 3
+            },
+    "analysis": {
+      "filter": {
+        "autocomplete_filter":{
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 100
+        }
+      }
+      , "analyzer": {
+        "autocomplete":{
+          "type":"custom",
+          "tokenizer" : "standard",
+          "filter":[
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "name":{
+            "type":"text",
+            "analyzer":"autocomplete"
+        },
+        "cart_cookie":{"type":"keyword"},
+        "cart_version":{"type":"keyword"},
+        "product_id":{"type":"keyword"},
+        "user_id":{"type":"keyword"},
+        "price":{"type":"text"},
+
+
+
+
+        "file_path":{"type":"text"},
+
+
+
+
+        "offer_price":{"type":"text"},
+        "product_name":{"type":"text"},
+        "quantity":{"type":"integer"},
+        "build_option":{"type":"integer"},
+        "offer":{"type":"keyword"},
+        "image1":{"type":"text"},
+        "date_created":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "date_last_updated":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"}
+      }
+    }
+  }
+}

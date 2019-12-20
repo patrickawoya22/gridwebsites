@@ -1,0 +1,106 @@
+
+<!-- set layout -->
+{{!< layout}}
+
+<section class="display__seatch_header">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-12 cell">
+                <h1 class="r-margin">Contact Grid websites</h1>
+            </div><!-- ./medium cell -->
+        </div><!-- ./grid-x grid-padding-x -->
+    </div><!-- ./grid-container -->
+</section>
+
+
+<section class="contact__us__session" id="contact__us__wrapper">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="medium-5 cell">
+                <form action="send-contact-us-message" id="send-contact-us-message" method="post" v-on:submit.prevent="sendContactUs">
+                    <div class="grid-x grid-padding-x">
+
+                        <div class="small-4 form-group cell">
+                            <label for="title">Title <span class="required">*</span></label>
+                            <select name="title" class="form-control margin-0">
+                                <optgroup label="Please select title">
+                                    <option value="" selected="selected">Please select title</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                </optgroup>
+                            </select>
+                        </div><!-- ./medium cell -->
+
+                        <div class="small-8 form-group cell">
+                            <div class="grid-x grid-padding-x">
+                                <div class="small-6 cell">
+                                    <label for="first_name">First Name <span class="required">*</span></label>
+                                    <input type="text" name="first_name" class="form-control margin-0" value="">
+                                </div><!-- ./medium cell -->
+
+                                <div class="small-6 cell">
+                                    <label for="last_name">Last Name <span class="required">*</span></label>
+                                    <input type="text" name="last_name" class="form-control margin-0" value="">
+                                </div><!-- ./medium cell -->
+                            </div><!-- ./grid-x grid-padding-x -->
+                        </div>
+
+                        <div class="small-7 form-group cell">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="text" name="email" class="form-control margin-0" value="">
+                        </div><!-- ./medium cell -->
+
+                        <div class="small-5 form-group cell">
+                            <label for="mobile">Mobile <span class="required">*</span></label>
+                            <input type="text" name="mobile" class="form-control margin-0" value="">
+                        </div><!-- ./medium cell -->
+
+                        <div class="small-12 form-group cell">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea name="message" rows="3" class="form-control margin-0 width-100"></textarea>
+                        </div><!-- ./medium cell -->
+
+                        <div class="small-12 form-group cell" v-if="showSuccessMsg" v-html="formSuccess"></div>
+                        <div class="small-12 form-group cell" v-if="showError" v-html="formError"></div>
+
+                        <div class="small-12 form-group cell"  :class="isActive">
+                            <input type="submit" name="submit" class="button primary large expanded" value="Send Message">
+                            <img src="/img/icon/spinner-circle.svg" style="display: none;right: 2rem;" alt="loading..." width="15">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- ./grid-x g-padding-x -->
+
+    </div><!-- ./grid-container -->
+</section>
+
+<section class="g__cta cont_padding">
+    <div class="grid-container">
+        <div class="grid-x align-center-middle">
+            <div class="medium-8 cell text-center">
+                <h2>Email</h2>
+                <p><a href="mailto:gridtechservice@gmail.com">gridtechservice@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="c__wrapper">
+    <div class="grid-container">
+        <div class="grid-x align-center-middle">
+            <div class="medium-5 cell text-center">
+                <img src="img/icon/customer-service.svg" width="250" alt="cont">
+            </div>
+            <div class="medium-7 align-center-middle a__grid cell">
+                <div class="cont">
+                    <p>
+                        We will be very happy to assist you. Our team is available during working hours to ensure that we answer all your queries.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

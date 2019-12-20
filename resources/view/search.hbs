@@ -11,6 +11,7 @@
         </div><!-- ./grid-x grid-padding-x -->
     </div><!-- ./grid-container -->
 </section>
+
 <section class="cont_padding">
     <div class="grid-container">
         <div class="grid-x grid-padding-x align-center-middle">
@@ -51,19 +52,22 @@
     </div><!-- ./grid-container -->
 </section>
 
-<section>
+<section id="search-container">
     <div class="grid-container">
         <div class="grid-x grid-margin-x">
             <div class="medium-auto cell">
                 <div class="grid-x grid-margin-x r__wrapper">
-                    {{#each searchResults}}
+                    {{#each searchResults.hits.hits}}
                         <div class="small-6 large-4 cell">
-                            <a href="#">
-                                <img src="img/blogs/thumb_1/{{thumb_img_1}}" alt="">
+                            <a href="/product/{{_source.url_name}}/{{_id}}" title="{{_source.name}}">
+                                <img src="{{req.customBaseURI}}img/project/img-origin/{{_source.image_obj.hits.hits.0._source.name}}" alt="{{_source.url_name}}">
                                 <div class="cont">
-                                    <h2>{{name}}</h2>
-                                    <span>{{date}}</span>
-                                    <span><a href="#">Read more...</a></span>
+                                    <h2>{{_source.name}}</h2>
+                                    <span>{{_source.main_category}}</span>
+                                    <span>Standard License <b>${{_source.offer_price}}</b></span>
+                                    <span>Get It Implemented <b>${{_source.built_price}}</b></span>
+                                    <span>Get It Hosted <b>${{_source.hosting_price}}</b></span>
+                                    <span><a href="/product/{{_source.url_name}}/{{_id}}" title="{{_source.name}}">Preview</a></span>
                                 </div>
                             </a>
                         </div>
@@ -75,9 +79,10 @@
                 <div class="s__left__wrapper">
                     <h2>Categories</h2>
                     <ul>
-                        {{#each categories}}
-                            <li><label onclick="controller.loadUrl('{{name}}')"><input type="checkbox" name="{{tmp_name}}" value="{{name}}" {{#if checked}}checked="true"{{/if}} >{{name}}</label></li>
-                        {{/each}}
+                        <li v-for="category in currentCategories" :class="{'show':currentCategories.length>0}" style="display: none;">
+                            <label onclick="controller.loadUrl()"><input type="checkbox" v-model="selectedCategories" :value="category.categories"
+                            ><span v-html="category.categories"></span></label>
+                        </li>
                     </ul>
                 </div>
 

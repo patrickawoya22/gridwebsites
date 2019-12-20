@@ -1,5 +1,7 @@
 const _ = require(`lodash`);
 const language_pack = require('../../../app/LanguagePack');
+const moment = require('moment');
+let date = moment();
 
 //Getting current selected language
 // module.exports.setCurrentLanguage = (req,modulePath,Handlebars) => {
@@ -25,34 +27,83 @@ module.exports.languageListHelper = async (client,req,Handlebars) => {
 
     let language_list = ``;
 
-    if (!_.isEmpty(req.session.language_list)) {
+    return 0
 
-        Handlebars.registerHelper('language_list', function(items, options){
-            language_list = ``
-            req.session.language_list.forEach((language)=>{
-                language_list += "<li><a href='?lan="+language.language_code+"'>" + language.language + "</a></li>";
-            })
-            return language_list;
-        })
+    // if (!_.isEmpty(req.session.language_list)) {
+    //
+    //     Handlebars.registerHelper('language_list', function(items, options){
+    //         language_list = ``
+    //         req.session.language_list.forEach((language)=>{
+    //             language_list += "<li><a href='?lan="+language.language_code+"'>" + language.language + "</a></li>";
+    //         })
+    //         return language_list;
+    //     })
+    //
+    // }else {
+    //     language_pack.getCleanLanguagePack(client,req).then((res)=>{
+    //
+    //         req.session.language_list = res;
+    //
+    //         Handlebars.registerHelper('language_list', function(items, options){
+    //             language_list = ``;
+    //             req.session.language_list.forEach((language)=>{
+    //                 language_list += "<li><a href='?lan="+language.language_code+"'>" + language.language + "</a></li>";
+    //             })
+    //             return language_list;
+    //         })
+    //     }).catch(err => console.error(err))
+    // }
 
-    }else {
-        language_pack.getCleanLanguagePack(client,req).then((res)=>{
+};
 
-            req.session.language_list = res;
+module.exports.setReplaceUrlHelper = (Handlebars) => {
+    Handlebars.registerHelper('replaceUrl', function( find=' ', replace='+', options) {
+        let string = options.fn(this);
+        return string.replace(/ /g, '+');
+    });
+};
 
-            Handlebars.registerHelper('language_list', function(items, options){
-                language_list = ``;
-                req.session.language_list.forEach((language)=>{
-                    language_list += "<li><a href='?lan="+language.language_code+"'>" + language.language + "</a></li>";
-                })
-                return language_list;
-            })
-        }).catch(err => console.error(err))
-    }
+module.exports.setReplaceUrlHelper = (Handlebars) => {
+    Handlebars.registerHelper('trimString', function(passedString) {
+        let theString = passedString.trim();
+        return new Handlebars.SafeString(theString)
+    });
+};
 
+
+module.exports.setDateFormatHelper = (Handlebars) => {
+
+    const DateFormats = {
+        short: "DD MMMM YYYY",
+        year: "YYYY",
+        long: "dddd DD.MM.YYYY HH:mm"
+    };
+
+    Handlebars.registerHelper("formatDate", function (datetime, format) {
+        format = DateFormats[format] || format;
+        return moment(datetime).format(format);
+    });
+
+};
+
+module.exports.setStrIncludesHelper = (Handlebars) => {
+    Handlebars.registerHelper("strIncludes", function(string, value, options) {
+        if (string.includes(value)) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+    });
 }
 
-module.exports.setCompareHelper = (modulePath,Handlebars) => {
+module.exports.setStrSplitVersionHelper = (Handlebars) => {
+    Handlebars.registerHelper("strSplitVersion", function(string, value, index, options) {
+        const tmpStr = string.split(value);
+        return `<li>${tmpStr[index]}</li>`;
+    });
+}
+
+module.exports.setCompareHelper = (Handlebars) => {
 
     Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
 
@@ -94,4 +145,4 @@ module.exports.setCompareHelper = (modulePath,Handlebars) => {
 
     });
 
-}
+};

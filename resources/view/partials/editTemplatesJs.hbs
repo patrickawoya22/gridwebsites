@@ -1,0 +1,455 @@
+<script type='text/javascript' src='/js/cropit/dist/jquery.cropit.js'></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#language').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfile.language = $('#language').val();
+            if (appEditProfile.ref) {
+                appEditProfile.editTemplate();
+            }
+        });
+
+        $('#extra').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfile.extra = $('#extra').val();
+            if (appEditProfile.ref) {
+                appEditProfile.editTemplate();
+            }
+        });
+
+        $('#category').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfile.category = $('#category').val();
+            if (appEditProfile.ref) {
+                appEditProfile.editTemplate();
+            }
+        });
+
+
+        $('#type').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfile.type = $('#type').val();
+            if (appEditProfile.ref) {
+                appEditProfile.editTemplate();
+            }
+        });
+
+        $('#features').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfile.features = $('#features').val();
+            if (appEditProfile.ref) {
+                appEditProfile.editTemplate();
+            }
+        });
+
+        $('#version').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfile.version = $('#version').val();
+            if (appEditProfile.ref) {
+                appEditProfile.editTemplate();
+            }
+        });
+    });
+    var appEditProfileImage = new Vue({
+        el: '#edit-template-image',
+        data: {
+            image_data: 'this',
+            ref:'{{products_obj.hits.hits.0._id}}',
+            isActive:'',
+            formError:'',
+            formSuccess:'',
+            showFormAction: '',
+            showImages:'',
+            imageCounter: {{products_obj.hits.hits.0._source.image_obj.hits.total}},
+            imageCounterMsg:
+              {{#if products_obj.hits.hits.0._source.image_obj.hits.total}}
+                '{{products_obj.hits.hits.0._source.image_obj.hits.total}} Image(s) Found',
+              {{else}}
+                  'No Image(s) Found',
+              {{/if}}
+            template_images:[{{#each products_obj.hits.hits.0._source.image_obj.hits.hits}}{name:'{{_source.name}}',
+                image_id:'{{_id}}',img_url:'/img/project/img-thumb/{{_source.name}}'},
+            {{/each}}],
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+            editTemplateImages: function (e) {
+                this.isActive = 'active-btn';
+                this.formError = '';
+                this.image_data = $('.image-editor').cropit('export');
+
+                axios.post('{{req.customBaseURI}}save-template-image',
+                        {
+                            image_data:this.image_data,
+                            ref:this.ref,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    this.isActive = '';
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account details are update ' +
+                                'successfully.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                        this.imageCounter = this.imageCounter +1;
+                        this.imageCounterMsg = this.imageCounter+' Image(s) Found';
+                        this.template_images.push({name:response.data.new_image.toString(),
+                            image_id:response.data._id.toString(),
+                            img_url:'/img/project/img-origin/'+response.data.new_image.toString()});
+                    }
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            },
+            deleteTemplateImg: function(image_id){
+
+                this.isActive = 'active-btn';
+                this.formError = '';
+
+                axios.post('{{req.customBaseURI}}delete-template-image',
+                        {
+                            image_id: image_id,
+                            ref:this.ref,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                    this.isActive = '';
+
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.removeImage(image_id);
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">You have account' +
+                                ' successfully remove image.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                        this.imageCounter = this.imageCounter - 1;
+                        this.imageCounterMsg = this.imageCounter+' Image(s) Found';
+                        this.template_images.push({name:response.data.new_image.toString(),
+                            image_id:response.data._id.toString(),
+                            img_url:'/img/project/img-origin/'+response.data.new_image.toString()});
+                    }
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+
+
+            },removeImage: function(image_id){
+                var tmpArr = [];
+                this.template_images.forEach(function (item) {
+                    if (item.image_id!==image_id) {
+                        tmpArr.push(item);
+                    }
+                });
+                this.template_images = tmpArr;
+            },
+            addNewImage: function () {
+                this.formSuccess='';
+                this.showSuccessMsg=false;
+                this.showError = false;
+                this.showFormAction = 'show';
+                this.showImages = 'hidden';
+            },
+            showImagesFn: function () {
+                this.formSuccess='';
+                this.showSuccessMsg=false;
+                this.showError = false;
+                this.showFormAction = 'hidden';
+                this.showImages = 'show-flex';
+            }
+        }
+    });
+    var appEditProfile = new Vue({
+        el: '#template',
+        data: {
+            name: '{{products_obj.hits.hits.0._source.name}}',
+            language:'english',
+            price: '{{products_obj.hits.hits.0._source.price}}',
+            discount_price:'{{products_obj.hits.hits.0._source.offer_price}}',
+
+            built_price:'{{products_obj.hits.hits.0._source.built_price}}',
+            hosting_price:'{{products_obj.hits.hits.0._source.hosting_price}}',
+            extra:[{{#each products_obj.hits.hits.0._source.extra  as |value|}}'{{value}}',{{/each}}],
+            version:[{{#each products_obj.hits.hits.0._source.version  as |value|}}'{{value}}',{{/each}}],
+            category:'{{products_obj.hits.hits.0._source.main_category}}',
+            type:'{{products_obj.hits.hits.0._source.type}}',
+            features: [{{#each products_obj.hits.hits.0._source.features  as |value|}}'{{value}}',{{/each}}],
+            code_quality:'{{trimString products_obj.hits.hits.0._source.code_quality}}',
+            description:'{{trimString products_obj.hits.hits.0._source.description}}',
+            ref:'{{products_obj.hits.hits.0._id}}',
+
+            isActive:'',
+            formError:'',
+            formSuccess:'',
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+            editTemplate: function (e) {
+                this.isActive = 'active-btn';
+                this.formError = '';
+                axios.post('{{req.customBaseURI}}save-template',
+                        {
+                            name:this.name,
+                            language: this.language,
+                            price:this.price,
+                            discount_price:this.discount_price,
+
+                            built_price:this.built_price,
+                            hosting_price:this.hosting_price,
+                            extra:this.extra,
+                            version:this.version,
+                            category:this.category,
+                            type:this.type,
+                            features:this.features,
+                            code_quality:this.code_quality,
+                            description:this.description,
+                            ref:this.ref,
+
+
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    this.isActive = '';
+
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account details are update ' +
+                                'successfully.</div>';
+                        this.ref = response.data.ref;
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+    //http://sachinchoolur.github.io/lightslider/
+    $(document).ready(function(){
+        $('.image-editor').cropit({
+            exportZoom: 1.25,
+            imageBackground: true,
+            imageBackgroundBorderWidth: 20,
+            imageState: {
+                <!--src:'{{req.customBaseURI}}img/project/img-origin/545519220298.png',-->
+                <!--src:'{{req.customBaseURI}}img/profile/main/profile.jpg',-->
+                <!--src:'{{req.customBaseURI}}img/project/img-origin/{{products_obj.hits.hits.0._source.image_obj.hits.hits.0._source.name}}',-->
+
+            },
+        });
+        $('form#cropit-form').submit(function() {
+            // Move cropped image data to hidden input
+            var imageData = $('.image-editor').cropit('export');
+            $('.hidden-image-data').val(imageData);
+
+            // Print HTTP request params
+            var formValue = $(this).serialize();
+            // console.log(formValue);
+            // $('#result-data').text(formValue);
+
+            // Prevent the form from actually submitting
+            return false;
+        });
+    });
+
+
+    /**  This code control User Profile Photo upload **/
+    $(function() {
+
+
+        $("#imageUpload").change(function() {
+            var ext = getEXtession();
+            if(ext != '')
+            {
+                $('.hidden-image-format').val(ext);
+            }
+            else {
+                $('.hidden-image-format').val('');
+                $('#image-format-alert').modal('show');
+            }
+        });
+        function getEXtession(){
+            var value = $("#imageUpload").val();
+            var array = value.split('.');
+            var ext =  array[array.length-1].toLowerCase();
+            if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif')
+            {
+                return ext;
+            }
+            else {
+                return '';
+            }
+        }
+        $('.rotate-cw').click(function() {
+            $('.image-editor').cropit('rotateCW');
+        });
+        $('.rotate-ccw').click(function() {
+            $('.image-editor').cropit('rotateCCW');
+        });
+        /*
+        	 $('.export').click(function() {
+        		var imageData = $('.image-editor').cropit('export');
+        		window.open(imageData);
+           });*/
+        $('form').submit(function() {
+            // Move cropped image data to hidden input
+            var imageData = $('.image-editor').cropit('export');
+            $('.hidden-image-data').val(imageData);
+
+            var array = imageData.split(',');
+            var ext =  array[0].toLowerCase();
+            if(ext.match('jpg') || ext.match('jpeg') || ext.match('png') || ext.match('gif'))
+            {
+                //var new_ext = getEXtession()
+                //   if(new_ext != 'png'){
+                $('.hidden-image-format').val(ext);
+                //}
+            }
+            else {
+                $('.hidden-image-format').val('');
+            }
+
+            // Print HTTP request params
+            //var formValue = $(this).serialize();
+            //$('#result-data').html(formValue);
+
+            // Prevent the form from actually submitting
+            //return false;
+        });
+
+
+
+        $('#save-template-form').validate({
+            rules: {
+                template_name: {
+                    required: true,
+                },language: {
+                    required: true,
+                },price: {
+                    required: true,
+                },discount_price: {
+                    required: true,
+                },built_price: {
+                    required: true,
+                },hosting_price: {
+                    required: true,
+                },extra: {
+                    required: true,
+                },category: {
+                    required: true,
+                },features: {
+                    required: true,
+                },code_quality: {
+                    required: true,
+                },description: {
+                    required: true,
+                }
+            },
+            messages: {
+                template_name: {
+                    required: 'Please template name',
+                },language: {
+                    required: 'Please select your default language',
+                },price: {
+                    required: 'Please enter template price',
+                },discount_price: {
+                    required: 'Please enter template discount price',
+                },built_price: {
+                    required: 'Please enter template built price',
+                },hosting_price: {
+                    required: 'Please enter template hosting price',
+                },extra: {
+                    required: 'Please select template extra',
+                },category: {
+                    required: 'Please select template main category',
+                },features: {
+                    required: 'Please select template features',
+                },code_quality: {
+                    required: 'Please enter template code quality',
+                },description: {
+                    required: 'Please enter template description',
+                }
+            }
+        });
+    });
+</script>

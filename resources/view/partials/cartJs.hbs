@@ -1,0 +1,122 @@
+<script type='text/javascript' src='/js/currency.js'></script>
+
+<script type="text/javascript">
+
+    var modifyCart = new Vue({
+        el: '#cart__wrapper',
+        data: {
+            formError:'',
+            isActive:'',
+            showEmptyCartCont:'',
+            total_cost: '{{total_cost}}',
+            showCart:true,
+            cart_obj:[
+    {{#each req.session.cart_obj.hits.hits}}
+        {
+            product_id:'{{_source.product_id}}',
+            image1:'{{req.customBaseURI}}img/project/img-thumb/{{_source.image1}}',
+            product_url:'/product/{{#replaceUrl '' ''}}{{_source.product_name}}{{/replaceUrl}}/{{_source.product_id}}',
+            product_name:'{{_source.product_name}}',
+            main_category:'{{_source.main_category}}',
+            quantity:{{_source.quantity}},
+            removeCartItem: "modifyCart.removeCartItem('{{_id}}',{{_source.quantity}})",
+            offer_price:'{{_source.offer_price}}',
+            built_price:'{{_source.built_price}}',
+            hosting_price:'{{_source.hosting_price}}',
+        },
+    {{/each}}
+            ],
+
+        },methods: {
+            checkOut: function (e) {
+                {{#if req.session.isLoggedin}}
+                    window.location.replace('/checkout');
+                {{else}}
+                    $('[data-open=login_reveal]').trigger('click');
+                    appLogin.destinationUrl = '/checkout';
+                {{/if}}
+            },confirmCheckOut: function (e) {
+                {{#if req.session.isLoggedin}}
+                    window.location.replace('/paypal-checkout');
+                {{else}}
+                    $('[data-open=login_reveal]').trigger('click');
+                    appLogin.destinationUrl = '/paypal-checkout';
+                {{/if}}
+            },
+            getTotalPrice: function(offer_price, built_price, hosting_price){
+                return  '$'+currency(parseFloat(offer_price)+parseFloat(built_price)+parseFloat(hosting_price));
+            },
+            removeCartItem: function (id, quantity) {
+
+                this.isActive = 'active-btn';
+
+                axios.post('{{req.customBaseURI}}modify-cart',
+                        {
+                            action: 'remove',
+                            ref: id,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+
+                    this.isActive = '';
+
+                    if (response.data.error) {
+
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<ul>'
+                        response.data.error[0] ? this.formError += '<li style="text-align: left !important;">'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li style="text-align: left !important;">'+response.data
+                                .error[1]
+                                .msg+'</li>':'';
+
+                        this.formError += '</ul>';
+                        this.showError = true;
+
+                    }else{
+                        var tmp_cart_obj = [];
+                        var tmp_total_cost = 0;
+
+                        response.data.cart_obj.forEach((cart_obj)=>{
+
+                            tmp_total_cost += parseFloat(cart_obj.offer_price);
+
+                            tmp_cart_obj.push({
+                                product_id:''+cart_obj.product_id+'',
+                                image1:'{{req.customBaseURI}}img/project/img-thumb/'+cart_obj.image1+'',
+                                product_url:'/product/'+cart_obj.product_name.replace(/ /g, '+')+'/'+cart_obj.product_id+'',
+                                product_name:''+cart_obj.product_name+'',
+                                main_category:''+cart_obj.main_category+'',
+                                quantity: cart_obj.quantity,
+                                removeCartItem: 'modifyCart.removeCartItem(\''+cart_obj._id+'\','+cart_obj
+                                    .quantity+')',
+                                offer_price:''+cart_obj.offer_price+'',
+                            });
+                        });
+
+                        if (tmp_cart_obj.length===0) {
+                            this.showCart = false;
+                            this.showEmptyCartCont = ' <div class="medium-12 cell text-center" style="padding-top: 6rem;font-size: 2rem;">' +
+                                    '                    No Item found in your cart. </div>' +
+                                    '                <div class="medium-2 cell" style="padding-top:2rem;padding-bottom: 6rem;">' +
+                                    '                    <a href="/"><button type="button" name="button" class="button primary expanded">Continue Shopping >>' +
+                                    '                    </button></a>' +
+                                    '                </div>';
+                        }
+
+                        this.total_cost = tmp_total_cost;
+                        this.cart_obj = tmp_cart_obj;
+                        headerCont.cart_total = headerCont.cart_total - quantity;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+    </script>

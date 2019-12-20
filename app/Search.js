@@ -34,31 +34,4 @@ module.exports.getSearchResults = (getBlogs=null) =>{
        //  });
 
     return search_arr;
-}
-
-module.exports.getFromSearchQueryCategories = (search_obj=null,req) =>{
-
-    let category_arr = [];
-    let checked = false;
-
-    search_obj.forEach((category_obj)=>{
-        if (!_.isEmpty(category_obj.category)) {
-
-            if (_.includes(req.query.categories,category_obj.category)) {
-                checked = true;
-            }else {
-                checked = false;
-            }
-
-            // checked
-
-            category_arr.push({
-                'name':category_obj.category,
-                'tmp_name':category_obj.category.toLowerCase().replace(/\s/g, '-'),
-                'checked' : checked
-            });
-        }
-    });
-    category_arr = _.uniq(category_arr);
-    return category_arr;
-}
+};

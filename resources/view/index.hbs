@@ -46,10 +46,22 @@
 
                 <ul id="work-content-slider" class="slide__wrapper">
                     <li class="lslide cell-item">
-                        <img src="/img/project/pr1.png" alt="project image">
+                        <img src="/img/project/encraze-responsive.png" alt="project image">
                     </li><!-- ./medium cell -->
                     <li class="lslide cell-item">
-                        <img src="/img/project/pr1.png" alt="project image">
+                        <img src="/img/project/leadswork-responsive.png" alt="project image">
+                    </li><!-- ./medium cell -->
+                    <li class="lslide cell-item">
+                        <img src="/img/project/vantworks-responsive.png" alt="project image">
+                    </li><!-- ./medium cell -->
+                    <li class="lslide cell-item">
+                        <img src="/img/project/ultimateresourcesltd-responsive.png" alt="project image">
+                    </li><!-- ./medium cell -->
+                    <li class="lslide cell-item">
+                        <img src="/img/project/ridebliss-responsive.png" alt="project image">
+                    </li><!-- ./medium cell -->
+                    <li class="lslide cell-item">
+                        <img src="/img/project/pooleholidayrentals-responsive.png" alt="project image">
                     </li><!-- ./medium cell -->
                 </ul>
 
@@ -79,13 +91,16 @@
 
                 <ul id="foundation-content-slider" class="slide__wrapper">
 
-                    {{#each foundation_templates}}
+                    {{#each foundation_templates.hits.hits}}
                         <li class="lslide cell-item">
-                            <a href="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
-                                <img src="/img/temp/thumb-1/{{thumb_img_1}}" alt="{{category_1}}">
+                            <a href="/product/{{_source.url_name}}/{{_id}}" title="{{_source.name}}">
+                                <img src="{{req.customBaseURI}}img/project/img-origin/{{_source.image_obj.hits.hits.0._source.name}}" alt="{{_source.url_name}}">
                             </a>
-                                <div>{{created_by_field}} <a href="">{{creator}}</a></div>
-                                <span>{{category_1}}</span>
+                                <!--<div>Created by <a href="/product/{{_source.url_name}}/{{_id}}">{{_source.user_obj.hits.hits.0._source.first_name}}-->
+                                    <!--{{_source.user_obj.hits.hits.0._source.last_name_short}}-->
+                                <!--</a></div>-->
+                                <div><span>{{_source.name}}</span><span>${{_source.offer_price}}</span></div>
+                                <div>{{_source.main_category}}</div>
                         </li><!-- ./medium cell -->
                     {{/each}}
                 </ul>
@@ -96,6 +111,7 @@
 
         <br>
 
+        {{#compare req.session.body.access_level '>' 6}}
         <div class="grid-x grid-padding-x">
             <div class="medium-12 cell">
                 {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "===" 'En'}}
@@ -120,7 +136,7 @@
 
 
         </div><!-- ./grid-x grid-padding-x -->
-
+        {{/compare}}
 
     </div><!-- ./grid-container -->
 </section>
@@ -185,24 +201,24 @@
 
 <section class="s__cta__2 cont_padding">
     <div class="grid-container">
-        <ul class="align-center-middle">
+        <ul class="align-center-middle text-center">
             <!-- <li>Over 389,734 Over Members</li> -->
-            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}
-        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}}
-        {{else}}
-        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.support_field}}}{{/if}}</li>
+            <!--<li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}-->
+        <!--{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}}-->
+        <!--{{else}}-->
+        <!--{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.support_field}}}{{/if}}</li>-->
             <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}
         {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}}
         {{else}}
         {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}}{{/if}}</li>
-            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}
-        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}}
-        {{else}}
-        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.multi_language}}}{{/if}}</li>
+            <!--<li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}-->
+        <!--{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}}-->
+        <!--{{else}}-->
+        <!--{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.multi_language}}}{{/if}}</li>-->
         </ul>
     </div><!-- ./grid-container -->
 </section>
-
+{{#compare req.session.body.access_level '>' 6}}
 <section class="api__wrapper cont_padding">
     <div class="grid-container">
         <div class="grid-x grid-padding-x align-center-middle text-center">
@@ -291,3 +307,4 @@
         </ul>
     </div><!-- ./grid-container -->
 </section>
+{{/compare}}

@@ -5,24 +5,13 @@
 <section class="product__session">
     <div class="grid-container">
         <div class="grid-x grid-margin-x">
-<!-- {{req.session.contact_seller_errors}} -->
             <div class="medium-auto cell">
-                <div class="callout warning profile-msg {{#compare contact_seller_form_errors '==' false}}hidden{{/compare}}">
-                    {{#if contact_seller_form_errors}}
-                        <h2 style="font-size: 1.2rem;">Email occerred we couldn't send your message</h2>
-                        <ul>
-                            {{# each contact_seller_messages}}
-                                <li>{{this.msg}}</li>
-                            {{/each}}
-                        </ul>
-                    {{/if}}
-                </div>
 
                 <div class="product__wrapper">
                     <div class="grid-x grid-margin-x">
 
                         <div class="medium-12 cell">
-                            <h1>Space – Multipurpose Responsive Template</h1>
+                            <h1>{{product_obj.hits.hits.0._source.name}}</h1>
                         </div>
 
                         <div class="medium-12 cell social-btn flex-container">
@@ -34,164 +23,204 @@
 
                             <div class="clearfix" style="max-width:474px;">
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                    <li data-thumb="/img/temp/thumb-1/dashboard.png">
-                                        <img src="/img/temp/thumb-1/dashboard.png" />
-                                         </li>
-                                    <li data-thumb="/img/temp/thumb-1/dashboard.png">
-                                        <img src="/img/temp/thumb-1/dashboard.png" />
-                                         </li>
-                                    <li data-thumb="/img/temp/thumb-1/dashboard.png">
-                                        <img src="/img/temp/thumb-1/dashboard.png" />
-                                         </li>
-
+                                    {{#each product_obj.hits.hits.0._source.image_obj.hits.hits}}
+                                    <li data-thumb="/img/project/img-thumb/{{_source.name}}">
+                                        <img src="/img/project/img-origin/{{_source.name}}" alt="{{product_obj.hits
+                                        .hits.0._source.name}}" /></li>
+                                    {{/each}}
                                 </ul>
                             </div>
 
                             <div class="product__cont">
-                                <h2>The History of Parisian Style</h2>
-                                <p>
-                                    Turn your project from mediocre to remarkable — a design that is simple, seamless and alive! With Sparrow, your outstanding website is just one step away. Create with it what you will.
-                                </p>
+                                {{#if product_obj.hits.hits.0._source.description}}
+                                    <h2>Description</h2>
+                                    {{product_obj.hits.hits.0._source.description}}
+                                {{/if}}
 
-                                <h2>Code Quality</h2>
+                                {{#if product_obj.hits.hits.0._source.description}}
+                                    <h2>Code Quality</h2>
+                                    {{product_obj.hits.hits.0._source.code_quality}}
+                                {{/if}}
 
-                                <p>
-                                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.code_quality_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.code_quality_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.code_quality_field}}}{{/if}}
-                                </p>
-
-                                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.features_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.features_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.features_field}}}{{/if}}</h2>
-                                <ul>
-                                    <li>3 Stuning Home Pages</li>
-                                    <li>Clean Code and unique design</li>
-                                    <li>HTML5 & CSS3 Validated</li>
-                                    <li>Responsive Design</li>
-                                    <li>SEO Friendly</li>
-                                    <li>Working Contact Form</li>
-                                    <li>Google fonts</li>
-                                    <li>Very easy to customize</li>
-                                    <li>Full Documented</li>
-                                </ul>
+                                {{#if product_obj.hits.hits.0._source.features}}
+                                    <h2>Features</h2>
+                                    <ul>
+                                        {{#each product_obj.hits.hits.0._source.features as | value |}}
+                                            <li>{{value}}</li>
+                                        {{/each}}
+                                    </ul>
+                                {{/if}}
                             </div>
 
-                            <div class="review__wrapper">
-
-                                <div class="callout warning profile-msg {{#compare save_review_form_errors '==' false}}hidden{{/compare}}">
-                                    {{#if save_review_form_errors}}
-                                        <ul>
-                                            {{# each save_review_messages}}
-                                                <li>{{this.msg}}</li>
-                                            {{/each}}
-                                        </ul>
-                                    {{/if}}
-                                </div>
-
-                                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_review_field}}}{{/if}}</h2>
+                            <div class="review__wrapper" id="review__wrapper">
 
                                 <div class="review_r_wrapper">
-                                    <form action="/save-review" method="post">
-                                        <div class="grid-x grid-margin-x">
-
+                                    {{# if req.session.isLoggedin}}
+                                    <form action="/save-review" id="add-review-form" v-on:submit.prevent="addReview" method="post">
+                                        <div class="grid-x grid-margin-x align-center-middle">
                                             <div class="medium-12 cell">
-                                                <div class="rate1 rate_control" data-rate-value="5"></div>
-                                                <input id="rate_input1" type="hidden" name="rate_input" value="">
+                                                <!--<h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_review_field}}}{{/if}}</h2>-->
+                                                <h2>
+                                                    Leave your review below
+                                                </h2>
+                                            </div>
+
+                                            <div class="small-3 medium-2 large-1 cell">
+                                                <label>Ratings</label>
+                                            </div>
+
+                                            <div class="small-9 medium-10 large-11 cell">
+                                                <div class="rate1 rate_control" :data-rate-value="rate_input"></div>
+                                                <input
+                                                        id="rate_input1"
+                                                        type="hidden" name="rate_input" value="0">
                                             </div>
 
                                             <div class="medium-12 cell">
-                                                <textarea name="name" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_review_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_review_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_review_here_field}}}{{/if}}" rows="3" cols="5"></textarea>
+                                                <label>Comment</label>
                                             </div>
+
+                                            <div class="small-3 medium-2 large-1 cell">
+                                                <img src="/img/profile/thumb/user.svg"
+                                                     style="border-radius: 50%;width: 100%;"
+                                                     alt="profile image">
+                                            </div>
+
+                                            <div class="small-9 medium-10 large-11 cell">
+                                                <textarea
+                                                        v-model="comment"
+                                                        class="r-margin"
+                                                        name="comment" placeholder="{{#if req.session.LanguagePack
+                                                                                    .selected_pack.hits.hits.0._source.leave_your_review_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_review_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_review_here_field}}}{{/if}}" rows="3" cols="5"></textarea>
+                                            </div>
+
                                             <div class="medium-12 cell">
-                                                <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
-                                                <input class="button primary" type="submit" name="" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
+                                                <div v-if="showError" style="margin-top: 1rem">
+                                                    <div v-html="formError">
+
+                                                    </div>
+                                                </div>
+
+                                                <p v-html="formSuccess" style="margin-top: 1rem">
+                                                <div v-if="showSuccessMsg">
+
+                                                </div>
+                                                </p>
+                                            </div>
+
+                                            <div class="medium-12 cell" :class="isActive">
+                                                <!--<input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">-->
+                                                <input class="button primary small-100" type="submit"
+                                                       style="margin-top: 0rem;min-width: 15rem;"
+                                                       value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
+                                                <img src="/img/icon/spinner-circle.svg" style="display: none;top: .6rem;left: 13rem;" alt="loading..." width="15">
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-
-                                <h3>24 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviews_field}}}{{/if}}</h3>
-
-                                <div class="callout warning profile-msg {{#compare remove_review_form_errors '==' false}}hidden{{/compare}}">
-                                    {{#if remove_review_form_errors}}
-                                        <ul>
-                                            {{# each remove_review_messages}}
-                                                <li>{{this.msg}}</li>
-                                            {{/each}}
-                                        </ul>
+                                    {{else}}
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="medium-12">
+                                                <input data-open="login_reveal" class="button primary" type="submit" name="" value="Add Review">
+                                            </div><!-- ./medium cell -->
+                                        </div><!-- ./grid-x grid-padding-x -->
                                     {{/if}}
                                 </div>
 
-                                <div class="media-object">
+                                <h3><span v-html="total_reviews">{{product_obj.hits.hits.0._source.user_reviews}}</span> {{#if req
+                                                                                                              .session
+                                                                                                        .LanguagePack.selected_pack
+                                                                               .hits.hits.0._source
+                                            .reviews_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviews_field}}}{{/if}}</h3>
+
+                                <div class="media-object"
+                                     v-for="(comment_obj, index) in comments_obj"
+                                     :id="comment_obj.main_comment_cont.review_id" >
                                      <div class="media-object-section">
-                                        <div class="thumbnail">
-                                          <img src= "/img/profile/thumb/anthony-mackie.jpg" width="100">
-                                        </div>
+
+                                        <div class="thumbnail" style="box-shadow: none" v-html="comment_obj
+                                        .main_comment_cont
+                                        .profile_img"></div>
+
                                      </div>
-                                      <div class="media-object-section">
-                                        <h4>Patrick K</h4>
-                                        <div class="star__ratings flex-container align-middle">
-                                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
-                                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
-                                            <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
-                                            <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
-                                            <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
-                                            <span class="small">(4)</span>
+                                      <div class="media-object-section" style="width: 100%">
+                                        <h4 v-html="comment_obj.main_comment_cont.name"></h4>
+                                        <div
+                                                v-html="comment_obj.main_comment_cont.ratings"
+                                                class="star__ratings flex-container align-middle">
+
                                         </div>
-                                        <div class="date">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.posted_on_field}}}{{/if}} February 19, 2016</div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro at, tenetur cum beatae excepturi id ipsa? Esse dolor laboriosam itaque ea nesciunt, earum, ipsum commodi beatae velit id enim repellat.</p>
-                                        <div class="remove-review">
-                                            <input type="button" onclick="controller.removeProductReview('review','main','xxx')" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remove_review_field}}}{{/if}}">
-                                            <form action="/remove-review" id="main-xxx" onsubmit="event.preventDefault();" method="post">
-                                                <div class="grid-x grid-margin-x">
-                                                    <div class="medium-12 cell">
-                                                        <input type="hidden" name="review_id" value="xxx">
-                                                        <input type="hidden" name="action" value="main">
-                                                        <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
-                                                        <input class="button primary hidden" type="submit" name="" value="Submit">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+
+                                        <div class="date" v-html="comment_obj.main_comment_cont.date"></div>
+                                        <div v-html="comment_obj.main_comment_cont.review"></div>
+
+                                          <span class="remove-review" :class="comment_obj.main_comment_cont.show_review_reply_btn" style="display: none">
+                                              {{#if req.session.isLoggedin}}
+                                                      <input
+                                                              @click="comment_obj.main_comment_cont.show_review_reply_btn='',
+                                                      comment_obj.main_comment_cont.review_comment=true"
+                                                              type="button" value="Add Review">
+                                              {{else}}
+                                                  <input type="button" data-open="login_reveal" value="Add Review">
+                                              {{/if}}
+                                          </span>
+                                          <span class="remove-review" v-html="comment_obj.main_comment_cont.is_User_cont">
+
+                                        </span>
+
+                                          <div class="review_r_wrapper">
+                                              {{# if req.session.isLoggedin}}
+                                                  <form action="/save-review-reply" v-on:submit.prevent="addReviewReply(index,$event)"
+                                                        v-if="comment_obj.main_comment_cont.review_comment"
+                                                        method="post">
+                                                      <div class="grid-x grid-margin-x">
+                                                          <div class="medium-12 cell">
+                                                        <textarea
+                                                                class="r-margin"
+                                                                name="name" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{/if}}" rows="1" cols="5"></textarea>
+                                                          </div>
+
+                                                          <div class="medium-12 cell">
+                                                              <div v-if="comment_obj.main_comment_cont.showError">
+                                                                  <div v-html="comment_obj.main_comment_cont.formError">
+
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+
+                                                          <div class="medium-12 cell" :class="comment_obj.main_comment_cont.isActive">
+                                                              <input
+                                                                      v-model="comment_obj.main_comment_cont.review_id"
+                                                                      type="hidden" name="review_id">
+                                                              <input
+                                                                      style="margin-top: .6rem"
+                                                                      class="button secondary" type="submit" name="" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
+                                                              <img src="/img/icon/spinner-circle.svg" style="display: none;left: 7rem;top: .6rem;" alt="loading..." width="15">
+                                                          </div>
+                                                      </div>
+                                                  </form>
+                                                  <p v-html="comment_obj.main_comment_cont.formSuccess">
+                                                  <div v-if="comment_obj.main_comment_cont.showSuccessMsg">
+
+                                                  </div>
+                                                  </p>
+                                              {{/if}}
+                                          </div>
+
                                         <!-- Nested media object starts here -->
-                                        <div class="media-object">
+                                        <div class="media-object"
+                                             v-for="(comment_replay_obj, index) in comment_obj.comment_replays_obj"
+                                             :id="comment_replay_obj.review_replies_id"
+                                        >
                                           <div class="media-object-section">
-                                            <div class="thumbnail">
-                                              <img src= "/img/profile/thumb/anthony-mackie.jpg" width="100">
-                                            </div>
+                                            <div class="thumbnail" style="box-shadow: none;" v-html="comment_replay_obj.profile_img"></div>
                                           </div>
                                           <div class="media-object-section">
-                                            <h4>Patrick K</h4>
-                                            <div class="date">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.posted_on_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.posted_on_field}}}{{/if}} February 19, 2016</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas magni, quam mollitia voluptatum in, animi suscipit tempora ea consequuntur non nulla vitae doloremque. Eius rerum, cum earum quae eveniet odio.</p>
-                                            <div class="remove-review">
-                                                <input type="button" onclick="controller.removeProductReview('review reply','reply','xxxx')" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remove_review_field}}}{{/if}}" >
-                                                <form action="/remove-review" id="reply-xxxx" onsubmit="event.preventDefault();" method="post" >
-                                                    <div class="grid-x grid-margin-x">
-                                                        <div class="medium-12 cell">
-                                                            <input type="hidden" name="review_id" value="xxxx">
-                                                            <input type="hidden" name="action" value="reply">
-                                                            <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
-                                                            <input class="button primary hidden" type="submit" name="" value="Submit">
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                            <h4 v-html="comment_replay_obj.name">Patrick K</h4>
+                                            <div class="date" v-html="comment_replay_obj.date"></div>
+                                            <div v-html="comment_replay_obj.review"></div>
+                                            <div class="remove-review" v-html="comment_replay_obj.is_User_cont"></div>
                                           </div>
 
-                                        </div>
-
-                                        <div class="review_r_wrapper">
-                                            <form action="/save-review-reply" method="post">
-                                                <div class="grid-x grid-margin-x">
-
-                                                    <div class="medium-12 cell">
-                                                        <textarea name="name" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{/if}}" rows="1" cols="5"></textarea>
-                                                    </div>
-                                                    <div class="medium-12 cell">
-                                                        <input type="hidden" name="review_id" value="3f9sfWUBtJ_6JLhQCHJU">
-                                                        <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
-                                                        <input class="button secondary" type="submit" name="" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </div>
 
                                         <!-- And ends here -->
@@ -204,27 +233,90 @@
             </div>
 
             <div class="medium-4 large-3 cell">
-                <div class="s__left__wrapper">
-                    <div>
-                        <label>
-                            <input type="radio" name="order" value="55">
-                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.standard_license_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.standard_license_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.standard_license_field}}}{{/if}} <b>$55</b>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="radio" name="order" value="55">
-                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_for_our_business_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_for_our_business_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.get_it_design_for_our_business_field}}}{{/if}}  <b>$599</b>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="radio" name="order" value="55">
-                            {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_and_hosteds_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.get_it_design_and_hosteds_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.get_it_design_and_hosteds_field}}}{{/if}} <b>$599</b>
-                        </label>
-                    </div>
-                    <!-- <hr> -->
-                    <button class="button primary expanded cart-btn" type="button" name="button">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.add_to_cart_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.add_to_cart_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.add_to_cart_field}}}{{/if}}</button>
+                <div class="s__left__wrapper" id="add-to-cart">
+                    <form v-on:submit.prevent="addToCart"
+                          method="post">
+                        <div class="grid-x grid-padding-x">
+                            <div class="medium-12 cell">
+                        {{#if product_obj.hits.hits.0._source.offer_price}}
+                            <div>
+                                <label>
+                                    <!--:disabled="disabled"-->
+                                    <input
+                                            v-model="order"
+                                            checked
+                                            type="radio" name="order" value="1">
+                                    Standard License <b>${{product_obj.hits.hits.0._source.offer_price}}</b>
+                                </label>
+                            </div>
+                        {{/if}}
+
+                        {{#compare product_obj.hits.hits.0._source.built_price '>' 0}}
+                            <div>
+                                <label>
+                                    <input
+                                            v-model="designed"
+                                            type="checkbox" name="designed" value="1">
+                                    Get It Implemented <b>${{product_obj.hits.hits.0._source.built_price}}</b>
+                                </label>
+                            </div>
+                        {{/compare}}
+
+                        {{#compare product_obj.hits.hits.0._source.hosting_price '>' 0}}
+
+                            <div>
+                                <label>
+                                    <input
+                                            v-model="hosted"
+                                            type="checkbox" name="hosted" value="1">
+                                    Get It Hosted <b>${{product_obj.hits.hits.0._source.hosting_price}}</b> Monthly
+                                </label>
+                            </div>
+                        {{/compare}}
+                            </div><!-- ./medium cell -->
+
+                            <div class="medium-12 cell">
+                                <div v-if="showError&&disabled">
+                                    <div v-html="formError">
+                                    </div>
+                                </div>
+                                <div v-if="showSuccessMsg&&disabled">
+                                    <div v-html="formSuccess">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="medium-12 cell small" :class="isActive">
+                                <hr style="margin-top: .4rem">
+
+                                <div>Total Price: <b v-html="'$'+currentTotalPrice"></b></div>
+                                <br>
+
+                                <input v-if="!disabled" class="button primary expanded r-margin cart-btn" type="submit" value="Add To Cart">
+                                <a
+                                        :class="show_btn"
+                                        v-if="disabled"
+                                        class=""
+                                        style="display: none"
+                                        href="/cart">
+                                    <input type="button" class="button primary expanded r-margin cart-btn" value="View Cart" ></a>
+                                <img src="/img/icon/spinner-circle.svg" style="display: none;" alt="loading..." width="15">
+                            </div>
+
+                            {{#compare 1 '==' 2}}
+                               <div class="medium-12 cell" style="margin-top: 1rem">
+                                   <input
+                                           v-if="!disabled"
+                                          style="background-color: #FFF;color: #1779ba;border: 1px solid #1779ba"
+                                          class="button primary expanded r-margin cart-btn"
+                                          type="button"
+                                          value="Live Preview">
+                               </div>
+                            {{/compare}}
+
+                        </div><!-- ./grid-x grid-padding-x -->
+
+                    </form>
                 </div>
 
 
@@ -236,16 +328,17 @@
                             <img src="/img/icon/mark-as-favorite-star.svg" width="18" alt="star ratings">
                             <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
                             <img src="/img/icon/mark-as-favorite-star1.svg" width="18" alt="star ratings">
-                            <span class="small"> 4 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviews_field}}}{{/if}}</span>
+                            <span class="small"> {{product_obj.hits.hits.0._source.user_reviews}} Reviews</span>
                         </div>
 
                         <div class="u-sold">
-                            <img src="/img/icon/shopping-cart.svg" width="18" alt="shopping cart icon"> 65 {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.sold_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.sold_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.sold_field}}}{{/if}}
+                            <img src="/img/icon/shopping-cart.svg" width="18" alt="shopping cart icon"> {{product_obj.hits.hits.0._source.order_counts}} Sold
                         </div>
 
                         <ul class="flex-container align-center-middle contact-seller-wrapper">
-                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.questions_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.questions_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.questions_field}}}{{/if}}</li>
-                            <li><button data-open="contact-seller" class="button primary expanded" type="button" name="button">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_seller_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.contact_seller_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.contact_seller_field}}}{{/if}}</button></li>
+                            <li>Questions</li>
+                            <li><button data-open="contact-seller" class="button primary expanded" type="button" name="button">
+                                Contact Us</button></li>
                         </ul>
 
                     </div>
@@ -253,34 +346,26 @@
 
                 <div class="s__left__wrapper">
                     <ul class="quality__wrapper flex-container">
-                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16"> {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.reviewed_by_our_Foundation_6_team_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviewed_by_our_Foundation_6_team_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviewed_by_our_Foundation_6_team_field}}}{{/if}}</li>
-                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.months_support_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.months_support_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.months_support_field}}}{{/if}}</li>
-                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.money_back_guarantee_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.money_back_guarantee_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.money_back_guarantee_field}}}{{/if}}</li>
+                    {{#each product_obj.hits.hits.0._source.extra as | value |}}
+                        <li class="small"><img src="/img/icon/checked-data.svg" alt="checked data" width="16">{{value}}</li>
+                    {{/each}}
                     </ul>
                 </div>
 
                 <div class="s__left__wrapper">
                     <div class="version__wrapper">
-                        <ul>
-                            <li>Foundation 6 Grid XY</li>
-                            <li>v6.1.1</li>
-                        </ul>
-                        <ul>
-                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.released_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.released_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.released_field}}}{{/if}}</li>
-                            <li>3 weeks ago</li>
-                        </ul>
-                        <ul>
-                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.version_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.version_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.version_field}}}{{/if}}</li>
-                            <li>1.0.0</li>
-                        </ul>
-                        <ul>
-                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.files_included_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.files_included_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.files_included_field}}}{{/if}}</li>
-                            <li>HTML, SCSS, CSS. JS</li>
-                        </ul>
-                        <ul>
-                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.layout_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.layout_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.layout_field}}}{{/if}}</li>
-                            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.responsive_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.responsive_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.responsive_field}}}{{/if}}</li>
-                        </ul>
+                        {{#each product_obj.hits.hits.0._source.version as | value |}}
+                            <ul>
+                                {{#strIncludes value '|'}}
+                                    {{#strSplitVersion value '|' 0}}
+                                        <li>{{value}}</li>
+                                    {{/strSplitVersion}}
+                                    {{#strSplitVersion value '|' 1}}
+                                        <li>{{value}}</li>
+                                    {{/strSplitVersion}}
+                                {{/strIncludes}}
+                            </ul>
+                        {{/each}}
                     </div>
                 </div>
 
@@ -291,14 +376,17 @@
 
 
 <div class="reveal r-contact-seller" id="contact-seller" data-reveal>
-    <h1>Contact Seller.</h1>
+    <h1>Contact Us.</h1>
 
-    <form action="/contact-seller" method="post">
+    <form action="/send-contact-us-message" v-on:submit.prevent="sendEmail" id="send-contact-us-message" method="post">
         <div class="grid-x grid-margin-x">
 
             <div class="medium-4 cell">
                 <label for="title">Title <span class="required">*</span></label>
-                <select id="title" name="title">
+                <select
+                        v-model="title"
+                        @keyup.enter="sendEmail"
+                        id="title" name="title">
                         <optgroup label="Select Title">
                         <option value="">Select Title</option>
                         <option value="Mr">Mr</option>
@@ -310,28 +398,69 @@
             </div>
 
             <div class="medium-8 cell">
-                <label for="name">Name <span class="required">*</span></label>
-                <input placeholder="Name" name="name" type="text" value="{{req.body.name}}" id="name">
+                <div class="grid-x grid-padding-x">
+                    <div class="small-6 cell">
+                        <label for="first_name">First Name <span class="required">*</span></label>
+                        <input type="text" name="first_name" class="form-control margin-0" value="{{req.body.first_name}}">
+                    </div><!-- ./medium cell -->
+
+                    <div class="small-6 cell">
+                        <label for="last_name">Last Name <span class="required">*</span></label>
+                        <input type="text" name="last_name" class="form-control margin-0" value="{{req.body.last_name}}">
+                    </div><!-- ./medium cell -->
+                </div><!-- ./grid-x grid-padding-x -->
+
+                <!--<label for="name">Name <span class="required">*</span></label>-->
+                <!--<input-->
+                        <!--v-model="name"-->
+                        <!--@keyup.enter="sendEmail"-->
+                        <!--placeholder="Name" name="name" type="text" value="" id="name">-->
             </div>
 
             <div class="medium-6 cell">
                 <label for="mobile">Mobile <span class="required">*</span></label>
-                <input placeholder="Mobile" name="mobile" type="text" value="{{req.body.mobile}}" id="mobile">
+                <input
+                        v-model="mobile"
+                        @keyup.enter="sendEmail"
+                        placeholder="Mobile" name="mobile" type="text" value="{{req.body.mobile}}" id="mobile">
             </div>
 
             <div class="medium-6 cell">
                 <label for="email">Email <span class="required">*</span></label>
-                <input placeholder="Email" name="email" type="email" value="{{req.body.email}}" id="email">
+                <input
+                        v-model="email"
+                        @keyup.enter="sendEmail"
+                        placeholder="Email" name="email" type="email" value="{{req.body.email}}" id="email">
             </div>
 
             <div class="medium-12 cell">
                 <label for="description">Message <span class="required">*</span></label>
-                <textarea rows="3" placeholder="Message" name="message" cols="50" id="message"></textarea>
+                <textarea
+                        v-model="message"
+                        @keyup.enter="sendEmail"
+                        rows="3" placeholder="Message" name="message" cols="50" id="message"></textarea>
             </div>
 
             <div class="medium-12 cell">
+                <div v-if="showError">
+                    <div v-html="formError">
+
+                    </div>
+                </div>
+
+                <p v-html="formSuccess">
+                <div v-if="showSuccessMsg">
+
+                </div>
+                </p>
+            </div>
+
+            <div class="medium-12 cell"  :class="isActive">
                 <input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">
-                <input class="button primary expanded" type="submit" name="" value="Submit">
+                <input
+                        class="button primary large expanded" type="submit" name="" value="Send Message">
+                <img src="/img/icon/spinner-circle.svg" style="display: none;" alt="loading..." width="15">
+
             </div>
 
         </div>

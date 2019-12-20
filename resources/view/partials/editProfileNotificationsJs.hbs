@@ -1,0 +1,89 @@
+<script type="text/javascript">
+    var appEditProfile = new Vue({
+        el: '#notifications',
+        data: {
+            email: '{{req.session.body.email}}',
+            mobile:'{{req.session.body.mobile}}',
+
+            email_notifications:{{#if req.session.body.emailme}}true{{else}}false{{/if}},
+            sms_notifications:{{#if req.session.body.textme}}true{{else}}false{{/if}},
+            emailme:false,
+            textme:false,
+
+            isActive:'',
+            formError:'',
+            formSuccess:'',
+            showError:false,
+            showSuccessMsg:false,
+        },methods: {
+            editProfileNotifications: function (e) {
+                this.isActive = 'active-btn';
+                this.formError = '';
+                this.emailme = this.email_notifications===true?1:0;
+                this.textme = this.sms_notifications===true?1:0;
+
+                axios.post('http://localhost:3000/save-notifications',
+                        {
+                            email:this.email,
+                            mobile: this.mobile,
+
+                            emailme:this.emailme,
+                            textme:this.textme,
+
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    this.isActive = '';
+
+                    if (response.data.error) {
+                        this.showSuccessMsg=false;
+                        this.formSuccess='';
+                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        this.formError += '</ul></div>';
+                        this.showError = true;
+
+                    }else{
+                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account Notifications ' +
+                                'details are update successfully.</div>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+
+    $(function(){
+        $('#edit-notifications-form').validate({
+            rules: {
+                mobile: {
+                    required: true,
+                    minlength: 11,
+                    maxlength: 20,
+                },email: {
+                    required: true,
+                    email:true,
+                    maxlength: 60,
+                }
+            },
+            messages: {
+                mobile: {
+                    required: 'Please enter your mobile number',
+                    minlength: 'Please enter a valid mobile number. i.e. 07457528436',
+                },email: {
+                    required: 'Please enter your address',
+                    email: 'Please enter a valid email address'
+                }
+            }
+        });
+    });
+</script>

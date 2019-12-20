@@ -1,279 +1,81 @@
 const _ = require(`lodash`);
 const products = require(`../../Products`);
+const emails = require(`../../Emails`);
+const reviews = require(`../../Reviews`);
+const cart = require(`../../Cart`);
+const currencyFormatter = require('currency-formatter');
+const order = require('../../Order');
 
 exports.indexAction = function(req, res) {
 
-    let templates = require(res.modulePath+`/app/Products`);
+    let products = require(res.modulePath+`/app/Products`);
+    req.from = 0;
+    req.size = 3;
+    req.category = `Foundation`;
 
-    //http://sachinchoolur.github.io/lightslider/
-    let exportScripts = `
-    <script type='text/javascript' src='/js/lightslider.min.js'></script>
-    <script type='text/javascript' src='/js/typed.min.js'></script>
-    `;
-    let exportStyles = `<link href='/css/lightslider.min.css' media='screen' rel='stylesheet' type='text/css'>`;
-
-    let slider_setting = `{
-        keyPress:false,
-        item:3,
-        slideMargin: 32,
-        controls: true,
-        prevHtml: '',
-        nextHtml: '',
-        loop:true,
-        responsive : [
-            {
-                breakpoint:800,
-                settings: {
-                    item:3,
-                    slideMove:1,
-                  }
-            },
-            {
-                breakpoint:480,
-                settings: {
-                    item:1,
-                    slideMove:1
-                  }
-            }
-        ]
-    }`;
-
-    let slider_setting_2 = `{
-        keyPress:false,
-        item:2,
-        slideMargin: 32,
-        controls: true,
-        prevHtml: '',
-        nextHtml: '',
-        loop:true,
-        pager: false,
-        responsive : [
-            {
-                breakpoint:800,
-                settings: {
-                    item:2,
-                    slideMove:1,
-                  }
-            },
-            {
-                breakpoint:480,
-                settings: {
-                    item:1,
-                    slideMove:1
-                  }
-            }
-        ]
-    }`;
-
-    let slider_setting_3 = `{
-        keyPress:false,
-        item:4,
-        slideMargin: 32,
-        controls: true,
-        prevHtml: '',
-        nextHtml: '',
-        loop:true,
-        pager: false,
-        responsive : [
-            {
-                breakpoint:800,
-                settings: {
-                    item:4,
-                    slideMove:1,
-                  }
-            },
-            {
-                breakpoint:480,
-                settings: {
-                    item:1,
-                    slideMove:1
-                  }
-            }
-        ]
-    }`;
-
-    let slider_setting_4 = `{
-        keyPress:false,
-        item:1,
-        slideMargin: 32,
-        controls: false,
-
-        auto: true,
-        speed: 1000,
-        loop:true,
-        slideEndAnimation: true,
-        pause: 6000,
-        pager: false,
-
-        responsive : [
-            {
-                breakpoint:800,
-                settings: {
-                    item:1,
-                    slideMove:1,
-                  }
-            },
-            {
-                breakpoint:480,
-                settings: {
-                    item:1,
-                    slideMove:1
-                  }
-            }
-        ]
-    }`;
-
-    let inlineScripts = `
-        $('#foundation-content-slider').lightSlider(${slider_setting});
-        $('#bootstrap-content-slider').lightSlider(${slider_setting});
-        $('#websites-design-content-slider').lightSlider(${slider_setting_2});
-        $('#email-templates-content-slider').lightSlider(${slider_setting_3});
-        $('#work-content-slider').lightSlider(${slider_setting_4});
-        $(function() {
-            var typed = new Typed('#typed', {
-                stringsElement: '#typed-strings',
-                typeSpeed: 80,
-                backDelay: 2000,
-                contentType: 'html',
-                backSpeed: 30,
-                startDelay: 100,
-                loop: true,
-                loopCount: Infinity
+        products.getProducts(req).then((foundation_templates)=>{
+            // console.log(foundation_templates);
+            res.render(`index`,{
+                showTitle: false,
+                searchAction:`search`,
+                req,
+                indexJs:true,
+                foundation_templates,
+                // bootstrap_templates: products.getTemplates(req,`bootstrap`),
+                // website_design: products.getTemplates(req,`bootstrap`),
+                // email_templates: products.getTemplates(req,`email`)
             });
-        });
-    `;
-
-    let login_form_errors = false;
-    let login_flush_error = req.flash('login_msg');
-
-    if (!_.isEmpty(login_flush_error)){
-        login_form_errors = true;
-    }
-
-    let join_form_errors = false;
-    let join_flush_error = req.flash('join_msg');
-
-    if (!_.isEmpty(join_flush_error)){
-        join_form_errors = true;
-    }
-
-    res.render(`index`,{
-        showTitle: false,
-        searchAction:`search`,
-        req,
-        login_form_errors,
-        join_form_errors,
-        login_messages:login_flush_error,
-        join_messages:join_flush_error,
-        exportStyles,
-        exportScripts,
-        inlineScripts,
-        foundation_templates: templates.getTemplates(req,`foundation`),
-        bootstrap_templates: templates.getTemplates(req,`bootstrap`),
-        website_design: templates.getTemplates(req,`bootstrap`),
-        email_templates: templates.getTemplates(req,`email`)
-    });
+        },(error)=>{
+            console.trace(error.message)
+        }).catch(err => console.error(err));
 };
 
 
 
 exports.productAction = function(req, res) {
 
-    //http://sachinchoolur.github.io/lightslider/
+    products.getMyProductByID(req).then((product_obj)=>{
 
-    //http://auxiliary.github.io/rater/
+        req.body.ref = product_obj.hits.hits[0]._id;
 
-    let exportScripts = `
-    <script type='text/javascript' src='/js/lightslider.min.js'></script>
-    <script type='text/javascript' src='/js/typed.min.js'></script>
-    <script type='text/javascript' src='/js/rater.min.js'></script>
-    `;
-    let exportStyles = `
-    <link href='/css/lightslider.min.css' media='screen' rel='stylesheet' type='text/css'>
-    `;
+        req.from = 0;
+        req.size = 20;
 
-    let slider_setting = `{
-        gallery:true,
-        item:1,
-        thumbItem:9,
-        slideMargin: 0,
-        speed:1000,
-        auto:false,
-        controls: false,
-        loop:true,
-        onSliderLoad: function() {
-            $('#image-gallery').removeClass('cS-hidden');
-        }
-    }`;
+        reviews.searchProductReviews(req).then((res2)=>{
 
-
-
-    let inlineScripts = `
-        $('#image-gallery').lightSlider(${slider_setting});
-
-        $(".rate1").rate({
-            max_value: 5,
-            step_size: 1,
-            cursor: 'pointer',
-            initial_value: 5,
-            update_input_field_name: $("#rate_input1"),
-        });
-    `;
-
-    let contact_seller_form_errors = false;
-    let contact_seller_flush_error = req.flash('contact_seller_msg');
-
-    if (!_.isEmpty(contact_seller_flush_error)){
-        contact_seller_form_errors = true;
-    }
-
-
-    let remove_review_form_errors = false;
-    let remove_review_flush_error = req.flash('remove_review_msg');
-
-    if (!_.isEmpty(remove_review_flush_error)){
-        remove_review_form_errors = true;
-    }
-
-    let save_review_form_errors = false;
-    let save_review_flush_error = req.flash('save_review_msg');
-
-    if (!_.isEmpty(save_review_flush_error)){
-        save_review_form_errors = true;
-    }
-
-
-    res.render(`product`,{
-        showTitle: true,
-        req:req,
-
-        contact_seller_messages:contact_seller_flush_error,
-        contact_seller_form_errors:contact_seller_form_errors,
-
-        remove_review_messages:remove_review_flush_error,
-        remove_review_form_errors:remove_review_form_errors,
-
-        save_review_messages:save_review_flush_error,
-        save_review_form_errors:save_review_form_errors,
-
-        exportStyles: exportStyles,
-        exportScripts: exportScripts,
-        inlineScripts:inlineScripts,
-        title:`Space – Multipurpose Responsive Template`
-    });
+            if (product_obj.hits.total>0){
+                res.render(`product`,{
+                    showTitle: true,
+                    req,
+                    successMgs:'<div class="callout success" style="border-radius: .3rem;">Your account Notifications' +
+                        ' details are update successfully.</div>',
+                    product_obj,
+                    searchAction:`/search`,
+                    reviews_obj:res2,
+                    productJs: true,
+                    title:product_obj.hits.hits[0]._source.name
+                });
+            }else{
+                res.redirect(`/`);
+            }
+        },(error)=>{
+            console.trace(error.message)
+        }).catch(err => console.error(err));
+    },(error)=>{
+        console.trace(error.message)
+    }).catch(err => console.error(err));
 };
 
 
 exports.searchAction = function(req, res) {
 
-    let search = require(res.modulePath+`/app/Search`);
+    // let search = require(res.modulePath+`/app/Search`);
 
-    searchResults = search.getSearchResults(req);
 
     let minPrice = 0;
-    let maxPrice = 100;
-    let selected_minPrice = 20;
-    let selected_maxPrice = 20;
+    let maxPrice = 400;
+    let selected_minPrice = minPrice;
+    let selected_maxPrice = maxPrice-10;
 
 
 
@@ -283,27 +85,39 @@ exports.searchAction = function(req, res) {
         selected_maxPrice = tmp_price[1];
     }
 
-    let exportScripts = `<script type='text/javascript' src='/js/jquery.range-min.js'></script>`;
-    let exportStyles = `<link href='/css/jquery.range.css' media='screen' rel='stylesheet' type='text/css'>`;
+    products.searchProducts(req).then((searchResults) => {
 
-    let inlineScripts = `$('.range-slider').jRange({ondragend:function(){controller.loadUrl()},from:${minPrice},to: ${maxPrice},step: 1,scale: [${minPrice},${maxPrice}],format: '%s',width: 300,showLabels: true, showScale:true, snap:false,  isRange : true});$('.range-slider').jRange('setValue', '${selected_minPrice},${selected_maxPrice}');`;
+        const categoriesObj = products.getCategoriesFromSearchedResults(searchResults,req);
 
-    if (req.query.sort==``||req.query.sort==`undefined`||typeof req.query.sort == `undefined`) {
-        req.query.sort = `Relevance`;
-    }
+        const exportScripts = `<script type='text/javascript' src='/js/jquery.range-min.js'></script>`;
+        const exportStyles = `<link href='/css/jquery.range.css' media='screen' rel='stylesheet' type='text/css'>`;
 
-    res.render(`search`,{
-        showTitle: true,
-        searchResults: searchResults,
-        categories: search.getFromSearchQueryCategories(searchResults,req),
-        maxPrice: 70,
-        searchAction:`search`,
-        inlineScripts:inlineScripts,
-        exportScripts:exportScripts,
-        exportStyles:exportStyles,
-        req:req,
-        title:`Search`
+        const inlineScripts = `$('.range-slider').jRange({ondragend:function(){controller.loadUrl()},from:${minPrice},to: ${maxPrice},step: 1,scale: [${minPrice},${maxPrice}],format: '%s',width: 300,showLabels: true, showScale:true, snap:false,  isRange : true});$('.range-slider').jRange('setValue', '${selected_minPrice},${selected_maxPrice}');`;
+
+        if (req.query.sort==``||req.query.sort==`undefined`||typeof req.query.sort == `undefined`) {
+            req.query.sort = `Relevance`;
+        }
+
+        res.render(`search`,{
+            showTitle: true,
+            searchJs: true,
+            searchResults: searchResults,
+            categories: categoriesObj,
+            maxPrice: 70,
+            searchAction:`search`,
+            inlineScripts:inlineScripts,
+            exportScripts:exportScripts,
+            exportStyles:exportStyles,
+            req:req,
+            title:`Search`
+        });
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).json({
+            error: error
+        });
     });
+
 };
 
 
@@ -337,12 +151,14 @@ exports.themesAction = function(req, res) {
 
     let search = require(res.modulePath+`/app/Search`);
 
-    searchResults = search.getSearchResults(req);
-
     let minPrice = 0;
     let maxPrice = 100;
     let selected_minPrice = 20;
     let selected_maxPrice = 20;
+
+    req.from = 0;
+    req.size = 1999;
+    req.category = '';
 
 
 
@@ -361,18 +177,24 @@ exports.themesAction = function(req, res) {
         req.query.sort = `Relevance`;
     }
 
-    res.render(`themes`,{
-        showTitle: true,
-        searchResults: searchResults,
-        categories: search.getFromSearchQueryCategories(searchResults,req),
-        maxPrice: 70,
-        searchAction:searchAction,
-        inlineScripts:inlineScripts,
-        exportScripts:exportScripts,
-        exportStyles:exportStyles,
-        req:req,
-        title:title
-    });
+    products.searchProducts(req).then((products_obj) => {
+
+        console.log(products_obj);
+        res.render(`search`,{ //themes
+            showTitle: true,
+            searchResults: products_obj,
+            // categories: search.getCategoriesFromSearchedResults(searchResults,req),
+            categories: [],
+            maxPrice: 70,
+            searchAction:searchAction,
+            inlineScripts:inlineScripts,
+            exportScripts:exportScripts,
+            exportStyles:exportStyles,
+            req:req,
+            title:title
+        });
+
+    }).catch(err => console.error(err));
 };
 
 
@@ -428,59 +250,42 @@ exports.membersAction = function(req, res) {
 };
 
 
-exports.contactSellerAction = function(req, res) {
-
-    req.check(`title`,`Please enter title`).isLength({min:2,max:4});
-    req.check(`name`, `Please enter your full name`).isLength({min:1,max:100});
-    req.check(`email`,`Please enter a valid email`).isEmail();
-    req.check(`mobile`,`Please enter a valid mobile number. i.e. 07457528436`).isLength({min:11,max:20});
-    req.check(`message`,`Message must be at least 2 characters long`).isLength({min:2});
-    req.check(`page_route`,`Invalid page route`).isLength({min:2});
-
-    let errors = req.validationErrors();
-
-    if (errors) {
-
-        req.flash('contact_seller_msg', errors);
-    }
-
-
-    //Redirect back to the previous page
-    res.redirect(req.body.page_route);
-};
-
-
-exports.saveReviewAction = function(req, res) {
-
-    req.check(`rate_input`,`Please select ratings`).isLength({min:1});
-    req.check(`name`,`Review must be at least 2 characters long`).isLength({min:2});
-    req.check(`page_route`,`Invalid page route`).isLength({min:2});
-
-    let errors = req.validationErrors();
-
-    if (errors) {
-
-        req.flash('save_review_msg', errors);
-    }
-    //Redirect back to the previous page
-    res.redirect(req.body.page_route);
-};
-
-exports.saveReviewReplyAction = function(req, res) {
-
-    req.check(`review_id`, `Invalid review id`).isLength({min:1,max:100});
-    req.check(`name`,`Reply must be at least 2 characters long`).isLength({min:2});
-    req.check(`page_route`,`Invalid page route`).isLength({min:2});
-
-    let errors = req.validationErrors();
-
-    if (errors) {
-
-        req.flash('save_review_msg', errors);
-    }
-    //Redirect back to the previous page
-    res.redirect(req.body.page_route);
-};
+// exports.contactSellerAction = function(req, res) {
+//
+//     req.check(`title`,`Please select your title`).isLength({min:2,max:4});
+//     req.check(`name`, `Please enter your full name`).isLength({min:1,max:100});
+//     req.check(`email`,`Please enter a valid email`).isEmail();
+//     req.check(`mobile`,`Please enter a valid mobile number. i.e. 07457528436`).isLength({min:11,max:20});
+//     req.check(`message`,`Please enter your message`).isLength({min:1});
+//     req.check(`ref`,`Invalid page route`).isLength({min:2});
+//
+//     let errors = req.validationErrors();
+//
+//     if(errors){
+//         res.status(200).json({
+//             error: errors
+//         });
+//     }else{
+//
+//         req.params.id = req.body.ref;
+//
+//         products.getMyProductByID(req).then((res2)=>{
+//
+//             req.products_obj = res2;
+//
+//             emails.sendContactSellerEmail(req).then(()=>{
+//                 res.status(200).json({
+//                     body: req.body,
+//                 });
+//             },(error)=>{
+//                 console.trace(error.message)
+//             }).catch(err => console.error(err));
+//
+//         },(error)=>{
+//             console.trace(error.message)
+//         }).catch(err => console.error(err));
+//     }
+// };
 
 exports.removeReviewAction = function(req, res) {
 
@@ -533,7 +338,7 @@ exports.creativesAction = function(req, res) {
 
     let search = require(res.modulePath+`/app/Search`);
 
-    searchResults = search.getSearchResults(req);
+    const searchResults = search.getSearchResults(req);
 
     let minPrice = 0;
     let maxPrice = 100;
@@ -593,22 +398,157 @@ exports.aboutUsAction = function(req, res) {
     });
 };
 
+exports.contactUsAction = function(req, res) {
+    res.render(`contact-us`,{
+        showTitle: true,
+        contactUsJs: true,
+        title:`Contact Us`,
+        req:req,
+        searchAction:`search`,
+    });
+};
+
 exports.cartAction = function(req, res) {
+
+    let total_cost = 0;
+
+    if (req.session.cart_obj.hits.total>0) {
+        req.session.cart_obj.hits.hits.forEach((cart_obj)=>{
+            total_cost += parseFloat(cart_obj._source.offer_price)+parseFloat(cart_obj._source.built_price)+parseFloat(cart_obj._source.hosting_price);
+        });
+    }
+    total_cost = currencyFormatter.format(total_cost, { code: 'USD' });
+
+
     res.render(`cart`,{
         showTitle: true,
+        cartJs:true,
+        total_cost,
         title:`Cart`,
         req,
         searchAction:`search`,
     });
 };
 
-exports.profileAction = function(req, res) {
-    res.render(`profile`,{
-        showTitle: true,
-        title:`Profile`,
-        req:req,
-        searchAction:`search`,
+exports.checkoutAction = function(req, res) {
+
+    let total_cost = 0;
+
+    cart.synchronizeCart(req).then(() => {
+
+        if (req.session.cart_obj.hits.total > 0 && req.session.isLoggedin) {
+
+            req.session.cart_obj.hits.hits.forEach((cart_obj) => {
+                total_cost += parseFloat(cart_obj._source.offer_price) + parseFloat(cart_obj._source.built_price) + parseFloat(cart_obj._source.hosting_price);
+            });
+
+            total_cost = currencyFormatter.format(total_cost, {code: 'USD'});
+
+            res.render(`checkout`, {
+                showTitle: true,
+                cartJs: true,
+                total_cost,
+                title: `Checkout`,
+                req,
+                searchAction: `search`,
+            });
+
+        } else {
+            res.redirect(`/`);
+        }
+
+    }).catch((error) => {
+        res.status(402).json({
+            error: error
+        });
     });
+};
+
+
+exports.profileAction = function(req, res) {
+
+    req.from = 0;
+    req.size = 1999;
+
+    const flush_message_array = req.flash('payment_confirmed');
+    let flush_message = [];
+
+    if (!_.isEmpty(flush_message_array)) {
+        flush_message_array.forEach((item) => {
+            if (item.type==='payment') {
+                flush_message = item;
+            }
+        });
+    }
+
+    products.getProductsBySupplier(req).then((products_obj)=>{
+
+        order.getOrderedProductByUserId(req).then((order_response) => {
+
+            let order_obj = [];
+            let order_status = 'Order has been received';
+
+            order_response.hits.hits.forEach((item) => {
+
+                item._source.order_items.forEach((item2) => {
+                    if (item._source.order_status===6) {
+                        order_status = 'Completed';
+                    }  else if (item._source.order_status===5) { //setting up docker hosting completed
+                        order_status = 'Setting up docker hosting';
+                    } else if (item._source.order_status===2) { //Designing in progress
+                        order_status = 'Designing in progress';
+                    }
+
+                    order_obj.push({
+                        order_id: item._id.toString(),
+                        cart_id: item2._id.toString(),
+                        product_id: item2._source.product_id.toString(),
+                        payment_id: item._source.payment_id.toString(),
+                        payment_method: item._source.payment_method.toString(),
+                        order_status,
+                        total_quantity: item._source.quantity.toString(),
+                        total_price: item._source.total_price.toString(),
+                        user_id: item._source.user_id.toString(),
+                        date_created: item._source.date_created.toString(),
+                        date_last_updated: item._source.date_last_updated.toString(),
+                        image1: `${req.customBaseURI}img/project/img-thumb/${item2._source.image1}`,
+                        product_url: `/product/${item2._source.product_name.toString()}/${item2._source.product_id}`,
+                        product_name: item2._source.product_name.toString(),
+                        main_category: item2._source.main_category.toString(),
+                        hosted: item2._source.hosted?1:0,
+                        designed: item2._source.hosted?1:0,
+                        quantity: item2._source.quantity.toString(),
+                        offer_price: currencyFormatter.format(parseFloat(item2._source.offer_price), { code: 'USD' }),
+                        built_price: currencyFormatter.format(parseFloat(item2._source.built_price), { code: 'USD' }),
+                        hosting_price: currencyFormatter.format(parseFloat(item2._source.hosting_price), { code: 'USD' }),
+                    });
+                });
+            });
+
+            const total_order = order_obj.length;
+
+            res.render(`profile`,{
+                showTitle: true,
+                title:`Profile`,
+                profileJs: true,
+                flush_message,
+                order_obj,
+                total_order,
+                products_obj,
+                req,
+                searchAction:`search`,
+            });
+
+        }).catch((error) => {
+            res.status(402).json({
+                error,
+                error_code: `Error code 4987958`,
+            });
+        });
+    },(error)=>{
+        console.trace(error.message)
+    }).catch(err => console.error(err));
+
 };
 
 exports.editLanguagePackAction = async function(req, res) {
@@ -666,335 +606,35 @@ exports.editLanguagePackAction = async function(req, res) {
 
 exports.editProfileAction = function(req, res) {
 
-    let exportScripts = ``;
-    let exportStyles = ``;
-    let inlineScripts = `
-    $(function(){
-            $('#edit-profile-details-form').validate({
-            rules: {
-                    title: {
-                        required: true,
-                        maxlength: 8,
-                    },language: {
-                        required: true,
-                        maxlength: 20,
-                    },first_name: {
-                        required: true,
-                        maxlength: 60,
-                    },last_name: {
-                        required: true,
-                        maxlength: 60,
-                    },username: {
-                        required: true,
-                        maxlength: 60,
-                    },country: {
-                        required: true,
-                        maxlength: 60,
-                    }
-                },
-            messages: {
-                    title: {
-                        required: 'Please select your title',
-                    },language: {
-                        required: 'Please select your defualt language',
-                    },first_name: {
-                        required: 'Please enter your first name',
-                    },last_name: {
-                        required: 'Please enter your last name',
-                    },username: {
-                        required: 'Please enter your username',
-                    },country: {
-                        required: 'Please select your country!',
-                    }
-                }
-            });
-
-        });
-
-
-        $(function(){
-            $('#edit-description-form').validate({
-            rules: {
-                description: {
-                    required: true,
-                }
-            },
-            messages: {
-                    description: {
-                        required: 'Please enter description',
-                    }
-                }
-            });
-        });
-
-
-        $(function(){
-            $('#edit-notifications-form').validate({
-            rules: {
-                mobile: {
-                    required: true,
-                    minlength: 11,
-                    maxlength: 20,
-                },email: {
-                    required: true,
-                    email:true,
-                    maxlength: 60,
-                }
-            },
-            messages: {
-                mobile: {
-                    required: 'Please enter your mobile number',
-                    minlength: 'Please enter a valid mobile number. i.e. 07457528436',
-                },email: {
-                    required: 'Please enter your address',
-                    email: 'Please enter a valid email address'
-                }
-            }
-        });
-    });
-
-    $(function(){
-        $('#edit-password-form').validate({
-        rules: {
-            old_password: {
-                required: true,
-            },new_password: {
-                required: true,
-                minlength: 6
-            },confirm_password: {
-                required: true,
-                minlength: 6,
-                equalTo:'#new_password'
-            }
-        },
-        messages: {
-                old_password: {
-                    required: 'Please enter your old password',
-                },new_password: {
-                    required: 'Please enter your password',
-                    minlength: 'Your password must be at least 6 characters long'
-                },confirm_password: {
-                    required: 'Please enter your password',
-                    minlength: 'Your password must be at least 6 characters long',
-                    equalTo: 'Please enter the same password'
-                }
-            }
-        });
-    });
-
-    `;
-
-    let form_errors = false;
-    let flush_error = req.flash('msg');
-
-    if (!_.isEmpty(flush_error)){
-        form_errors = true;
-    }
-
-    res.render(`edit-profile`,{
-        showTitle: true,
-        title:`Edit Profile`,
-        inlineScripts:inlineScripts,
-        exportScripts:exportScripts,
-        exportStyles:exportStyles,
-        form_errors:form_errors,
-        messages:flush_error,
-        req:req,
-        searchAction:`search`,
-    });
-};
-
-
-
-
-exports.editTemplatesAction = function(req, res) {
-
-    let exportScripts = `<script type='text/javascript' src='/js/cropit/dist/jquery.cropit.js'></script>`;
-    let exportStyles = ``;
-    let inlineScripts = `
-    $(function(){
-
-        $('.image-editor').cropit({
-            exportZoom: 1.25,
-        	imageBackground: true,
-        	imageBackgroundBorderWidth: 20,
-            imageState: {
-			  src:'http://localhost:3000/img/profile/main/profile.jpg',
-			},
-        });
-            $('form#cropit-form').submit(function() {
-                // Move cropped image data to hidden input
-                var imageData = $('.image-editor').cropit('export');
-                $('.hidden-image-data').val(imageData);
-
-                // Print HTTP request params
-                var formValue = $(this).serialize();
-                console.log(formValue);
-                // $('#result-data').text(formValue);
-
-                // Prevent the form from actually submitting
-                return false;
-            });
-        });
-
-
-        /**  This code control User Profile Photo upload **/
-          $(function() {
-
-
-          $("#imageUpload").change(function() {
-                var ext = getEXtession();
-               if(ext != '')
-               {
-                 $('.hidden-image-format').val(ext);
-               }
-               else {
-                 $('.hidden-image-format').val('');
-                 $('#image-format-alert').modal('show');
-               }
-            });
-            function getEXtession(){
-              var value = $("#imageUpload").val();
-              var array = value.split('.');
-              var ext =  array[array.length-1].toLowerCase();
-              if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif')
-              {
-                 return ext;
-              }
-              else {
-                 return '';
-              }
-           }
-        	 $('.rotate-cw').click(function() {
-        		$('.image-editor').cropit('rotateCW');
-        	 });
-        	 $('.rotate-ccw').click(function() {
-        		$('.image-editor').cropit('rotateCCW');
-        	 });
-        /*
-        	 $('.export').click(function() {
-        		var imageData = $('.image-editor').cropit('export');
-        		window.open(imageData);
-           });*/
-        	 $('form').submit(function() {
-        		// Move cropped image data to hidden input
-        		var imageData = $('.image-editor').cropit('export');
-        		$('.hidden-image-data').val(imageData);
-
-              var array = imageData.split(',');
-              var ext =  array[0].toLowerCase();
-              if(ext.match('jpg') || ext.match('jpeg') || ext.match('png') || ext.match('gif'))
-              {
-                 //var new_ext = getEXtession()
-              //   if(new_ext != 'png'){
-                    $('.hidden-image-format').val(ext);
-                 //}
-              }
-              else {
-                $('.hidden-image-format').val('');
-              }
-
-        		// Print HTTP request params
-        		//var formValue = $(this).serialize();
-        		//$('#result-data').html(formValue);
-
-        		// Prevent the form from actually submitting
-        		//return false;
-        	});
-
-
-
-            $('#edit-templates-form').validate({
-            rules: {
-                    title: {
-                        required: true,
-                        maxlength: 8,
-                    },language: {
-                        required: true,
-                        maxlength: 20,
-                    },first_name: {
-                        required: true,
-                        maxlength: 60,
-                    },last_name: {
-                        required: true,
-                        maxlength: 60,
-                    },username: {
-                        required: true,
-                        maxlength: 60,
-                    },country: {
-                        required: true,
-                        maxlength: 60,
-                    }
-                },
-            messages: {
-                    title: {
-                        required: 'Please select your title',
-                    },language: {
-                        required: 'Please select your defualt language',
-                    },first_name: {
-                        required: 'Please enter your first name',
-                    },last_name: {
-                        required: 'Please enter your last name',
-                    },username: {
-                        required: 'Please enter your username',
-                    },country: {
-                        required: 'Please select your country!',
-                    }
-                }
-            });
-
-        });
-
-    `;
-
-    let form_errors = false;
-    let flush_error = req.flash('msg');
-
-    if (!_.isEmpty(flush_error)){
-        form_errors = true;
-    }
-
-    let product_obj = {}
-
-    if (!_.isEmpty(req.query.ref)) {
-        products.getProductByID(req,req.query.ref).then((req2)=>{
-            if (!_.isEmpty(req2._source)&&(req2._source.owner=='set_user_id_here')||1==1) {
-
-                req.product = req2;
-
-                req.body = req.flash('query')[0]
-
-                res.render(`edit-templates`,{
-                    showTitle: true,
-                    title:`Edit Template`,
-                    inlineScripts:inlineScripts,
-                    exportScripts:exportScripts,
-                    exportStyles:exportStyles,
-                    form_errors:form_errors,
-                    messages:flush_error,
-                    req:req,
-                    searchAction:`search`,
-                });
-
-            }else {
-                throw new Error(`Error code 47987498. Something bad happened`);
-            }
-        })
-    }else {
-
-        req.body = req.flash('query')[0]
-
-        res.render(`edit-templates`,{
+    if (req.session.isLoggedin) {
+        res.render(`edit-profile`,{
             showTitle: true,
-            title:`Edit Template`,
-            inlineScripts:inlineScripts,
-            exportScripts:exportScripts,
-            exportStyles:exportStyles,
-            form_errors:form_errors,
-            messages:flush_error,
+            title:`Edit Profile`,
+            editProfile:true,
             req:req,
             searchAction:`search`,
         });
+    }else {
+        res.redirect(`/`);
+    }
+};
+
+
+exports.editTemplatesAction = function(req, res) {
+    if (req.session.isLoggedin) {
+        products.getMyProductByID(req).then((products_obj)=>{
+            res.render(`edit-templates`,{
+                showTitle: true,
+                title:`Edit Template`,
+                addTemplate: _.isEmpty(products_obj)?true:false,
+                req,
+                editTemplatesJs:true,
+                products_obj,
+                searchAction:`search`,
+            });
+        }).catch(err => console.error(err))
+    }else {
+        res.redirect(`/`);
     }
 };
 

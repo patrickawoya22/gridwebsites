@@ -1,0 +1,128 @@
+<script type="text/javascript">
+    var appJoin = new Vue({
+        el: '#join_reveal',
+        data: {
+            rTitle: 'Mr',
+            rFirstName:'Patrick',
+            rLastName: 'Kakande',
+            rUsername:'patrick22',
+            rEmail:'patrickawoya22@hotmail.co.uk',
+            rPassword: 'password',
+            rAction:'',
+            rFormError:'',
+            formSuccess:'',
+            showError:false,
+            showSuccessMsg:false
+        },methods: {
+            reSetError: function () {
+                this.rTitle='';
+                this.rFirstName='';
+                this.rLastName='';
+                this.rUsername='';
+                this.rEmail='';
+                this.rPassword='';
+            },
+            join: function (e) {
+                this.rAction = 'active-btn';
+                this.rFormError = '';
+                axios.post('http://localhost:3000/join',
+                        {
+                            title:this.rTitle,
+                            first_name: this.rFirstName,
+                            last_name:this.rLastName,
+                            username:this.rUsername,
+                            email:this.rEmail,
+                            password:this.rPassword,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    this.rAction = '';
+                    if (response.data.error) {
+
+                        response.data.error[0] ? this.rFormError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? this.rFormError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? this.rFormError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        response.data.error[3] ? this.rFormError += '<li>'+response.data.error[3].msg+'</li>':'';
+                        response.data.error[4] ? this.rFormError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        this.showError = true;
+                        console.log(response.data.error);
+
+                    }else{
+                        this.formSuccess='<p><b>Congratulation!</b> Your account has been created ' +
+                                'successfully. Account activation code has been sent to your email.</p>' +
+                                '<p>Please login to your email <a href="mailto:'+response.data.body.email+'">('+response.data.body
+                                        .email+')</a> to activate your account.</p>';
+                        this.showSuccessMsg=true;
+                        this.showError = false;
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+
+    var appLogin = new Vue({
+        el: '#login_reveal',
+        data: {
+            lEmail: 'patrickawoya22@hotmail.co.uk',
+            lPassword: 'password',
+            lAction:'',
+            destinationUrl:'',
+            lEmailError:'',
+            lPasswordError:'',
+            remember_me: '',
+        },methods: {
+            reSetError: function () {
+                this.lPasswordError='';
+                this.lEmailError='';
+            },
+            login: function (e) {
+                this.lAction = 'active-btn';
+                axios.post('http://localhost:3000/login',
+                        {
+                            password:this.lPassword,
+                            email: this.lEmail,
+                            remember_me:this.remember_me,
+                        },
+                        { headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }).then(response => {
+                    if (response.data.error) {
+
+                        this.lAction = '';
+
+                        if (response.data.error[0].param === 'email') {
+                            this.lEmailError = response.data.error[0].msg;
+                        }else if (response.data.error[1].param === 'email') {
+                            this.lEmailError = response.data.error[1].msg;
+                        }
+                        if (response.data.error[0].param === 'password') {
+                            this.lPasswordError = response.data.error[0].msg;
+                        } else if (response.data.error[1].param === 'password') {
+                            this.lPasswordError = response.data.error[1].msg;
+                        }
+                    }else{
+
+                        if (this.destinationUrl.length > 0) {
+                            window.location.replace(this.destinationUrl);
+                        } else {
+                            location.reload();
+                        }
+                    }
+
+                },function(err){
+                    this.lAction = '';
+                    console.log(err);
+                    alert(err);
+                });
+            }
+        }
+    });
+</script>

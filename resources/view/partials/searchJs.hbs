@@ -1,0 +1,60 @@
+
+<script type="text/javascript">
+
+    var searchProducts = new Vue({
+        el: '#search-container',
+        data: {
+            tmpCurrentCategories: [{{#each categories}}
+                {
+                    categories:'{{name}}',
+                },
+            {{/each}}],
+            currentCategories: [],
+            selectedCategories:[],
+        },methods: {
+            getCategories: function () {
+
+            },getUrlParameter: function (sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            }
+        }, mounted(){
+            var tmpCategories = this.getUrlParameter('categories');
+            var tmpArray = [];
+            var tmpArray2 = [];
+            if (tmpCategories&&tmpCategories.length>0) {
+
+                tmpCategories = tmpCategories.split('|');
+                tmpCategories.forEach(function (item) {
+                    tmpCategories = item.split(':');
+                    tmpCategories.forEach(function (item2, index2) {
+                        if (item2.length > 1) {
+                            tmpArray.push({categories:item2});
+                            if (parseInt(tmpCategories[index2+1])===1) {
+                                tmpArray2.push(item2);
+                            }
+                        }
+                    });
+                });
+                this.selectedCategories = tmpArray2;
+                this.currentCategories = tmpArray;
+            } else {
+                this.currentCategories = this.tmpCurrentCategories;
+                this.currentCategories.forEach(function (item) {
+                    tmpArray2.push(item.categories);
+                });
+                this.selectedCategories = tmpArray2;
+            }
+        }
+    });
+</script>
