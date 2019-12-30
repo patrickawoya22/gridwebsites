@@ -1,5 +1,19 @@
 <script type="text/javascript">
-    var appEditProfile = new Vue({
+
+    $(document).ready(function() {
+        $('#title').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfileDetails.title = $('#title').val();
+            appEditProfileDetails.editProfile();
+        });
+    });
+
+    var appEditProfileDetails = new Vue({
         el: '#account',
         data: {
             title: '{{req.session.body.title}}',

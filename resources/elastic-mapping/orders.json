@@ -1,9 +1,9 @@
 #https://www.youtube.com/watch?v=p_cviIn1f_k
 
-GET /orders/_search?q=*
+GET /gw_orders/_search?q=*
 
-GET /orders
-GET /orders/_mapping
+GET /gw_orders
+GET /gw_orders/_mapping
 
 
 PUT _settings
@@ -19,7 +19,7 @@ PUT _settings
 build_option 1=>Standard License, 2=>Get It Implemented, 3=>Get It Hosted
 
 
-PUT /orders
+PUT /gw_orders
 {
     "settings": {
         "max_result_window": 1999999999,

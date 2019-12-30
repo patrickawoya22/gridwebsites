@@ -175,7 +175,7 @@ const deleteDuplicates = (req) => {
 
 const deleteDuplicate = async (req) => {
     return await req.client.delete({
-        index: 'cart',
+        index: req.env.GW_CART,
         type: '_doc',
         id: req.item_id
     });
@@ -183,7 +183,7 @@ const deleteDuplicate = async (req) => {
 
 module.exports.deleteCartItem = async (req) => {
     return await req.client.delete({
-        index: 'cart',
+        index: req.env.GW_CART,
         type: '_doc',
         id: req.body.ref
     });
@@ -226,7 +226,7 @@ module.exports.deleteCartByIds = async (req, cartObj) => {
 module.exports.getCartById = (req) => {
     return new Promise((resolve, reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             q: `_id: "${req.body.ref}"`
         }).then((res)=>{
 
@@ -240,7 +240,7 @@ module.exports.getCartById = (req) => {
 
 const updateCartCookieId =  async (req) => {
     return await req.client.update({
-        index: 'cart',
+        index: req.env.GW_CART,
         type: '_doc',
         id: req.cart_obj._id,
         body: {
@@ -253,7 +253,7 @@ const updateCartCookieId =  async (req) => {
 
 const updateCartUserId =  async (req) => {
     return await req.client.update({
-        index: 'cart',
+        index: req.env.GW_CART,
         type: '_doc',
         id: req.cart_obj._id,
         body: {
@@ -267,7 +267,7 @@ const updateCartUserId =  async (req) => {
 const getMyOfflineCartItems = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             type: '_doc',
             body:{
                 query:{
@@ -295,7 +295,7 @@ const getMyOfflineCartItems = (req) => {
 module.exports.getCartItemsByCookieId = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             type: '_doc',
             body:{
                 query:{
@@ -336,7 +336,7 @@ module.exports.getCartItemsByCookieIdEx = (req,res) => {
             }
 
             req.client.search({
-                index: 'cart',
+                index: req.env.GW_CART,
                 type: '_doc',
                 body:{
                     query:{
@@ -358,7 +358,7 @@ module.exports.getCartItemsByCookieIdEx = (req,res) => {
 const getCartItemsByProductId = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             type: '_doc',
             body:{
                 sort: [{ 'date_last_updated': { 'order': 'ASC' } }],
@@ -380,7 +380,7 @@ const getCartItemsByProductId = (req) => {
 module.exports.getCartItemsByUserId = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             type: '_doc',
             body:{
                 query:{
@@ -400,7 +400,7 @@ module.exports.getCartItemsByUserId = (req) => {
 };
 module.exports.addOrderToCart = async (req) => {
     return await req.client.index({
-        index: 'cart',
+        index: req.env.GW_CART,
         type: '_doc',
         body: {
             cart_cookie: req.cookies.cookieName,
@@ -427,7 +427,7 @@ module.exports.addOrderToCart = async (req) => {
 module.exports.updateCart = async (req,res2) => {
 
     return await req.client.update({
-        index: 'cart',
+        index: req.env.GW_CART,
         type: '_doc',
         id: res2.hits.hits[0]._id,
         body: {
@@ -452,7 +452,7 @@ module.exports.updateCart = async (req,res2) => {
 module.exports.getMyCartProductByCookieId = (req) =>{
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             type: '_doc',
             body:{
                 query:{
@@ -481,7 +481,7 @@ module.exports.getMyCartProductByCookieId = (req) =>{
 module.exports.getMyCartItemsByUserId = (req) =>{
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'cart',
+            index: req.env.GW_CART,
             type: '_doc',
             body:{
                 query:{

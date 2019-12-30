@@ -9,37 +9,16 @@
                 <h1>
                     <span class="type-wrap">
                         <span id="typed-strings">
-                            <span>
-                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}
-                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}}
-                                {{else}}
-                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.website_design_field}}}
-                                {{/if}}
-                            </span>
-                            <span>
-                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}
-                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}
-                                {{else}}
-                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}
-                                {{/if}}
-                            </span>
-                            <span>
-                                {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.landing_pages_field}}
-                                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.landing_pages_field}}}
-                                {{else}}
-                                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.landing_pages_field}}}
-                                {{/if}}
-                            </span>
+                            <span>Website Design</span>
+                            <span>API Integration</span>
+                            <span>Email Templates</span>
+                            <span>Landing Pages</span>
                         </span>
                         <span id="typed"></span>
                     </span>
                 </h1>
                 <p class="d__paragraph">
-                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_1}}
-                    {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_1}}}
-                    {{else}}
-                    {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_1}}}
-                    {{/if}}
+                    Find over 3100 website templates to design landing pages, portfolio sites, blogs, or corporate websites. Explore a curated collection of HTML website templates as well as complementary tools like UI graphics and social media icons to make the web design process much easier.
                 </p>
             </div><!-- ./medium cell -->
             <div class="medium-4 cell">
@@ -73,16 +52,10 @@
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-12 cell">
-                <h2>
-                    {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "===" 'En'}}Foundation Grid XY Templates{{/compare}}
-                    {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "!==" 'En'}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.templates_field}}}{{/compare}}</h2>
+                <h2>Foundation Grid XY Templates</h2>
 
                     <p>
-                        {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_2}}
-                        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_2}}}
-                        {{else}}
-                        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_2}}}
-                        {{/if}}
+                        Component-based frameworks designed, built, and supported by foundation.zurb Team.
                     </p>
 
             </div>
@@ -111,75 +84,31 @@
 
         <br>
 
-        {{#compare req.session.body.access_level '>' 6}}
-        <div class="grid-x grid-padding-x">
-            <div class="medium-12 cell">
-                {{#compare req.session.LanguagePack.selected_pack.hits.hits.0._source.language_code_field "===" 'En'}}
-                <h2>Bootstrap 4 Templates</h2>
-                <p>Component-based frameworks designed, built, and supported by foundation.zurb Team.</p>
-                {{/compare}}
-            </div>
-
-            <div class="medium-12 cell">
-
-                <ul id="bootstrap-content-slider" class="slide__wrapper">
-                    {{#each bootstrap_templates}}
-                        <li class="lslide cell-item">
-                            <a href="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml"><img src="/img/temp/thumb-1/{{thumb_img_1}}" alt="{{category_1}}"></a>
-                            <span>By <a href="">{{creator}}</a></span>
-                            <span>{{category_1}}</span>
-                        </li><!-- ./medium cell -->
-                    {{/each}}
-                </ul>
-
-            </div>
-
-
-        </div><!-- ./grid-x grid-padding-x -->
-        {{/compare}}
-
     </div><!-- ./grid-container -->
 </section>
 
-<section class="s__cta cont_padding">
-    <div class="grid-container">
-        <ul class="align-middle">
-            <li><img src="/img/icon/web-design.svg" width="130" alt="web design"></li>
-            <li>
-                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}
-            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}}
-            {{else}}
-            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_header_1}}}{{/if}}</h2>
-                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}
-            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}}
-            {{else}}
-            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_paragraph_1}}}{{/if}}</p>
-            </li>
-            <li class="text-right">
-                <button type="button" name="button" class="button primary">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.learn_more_field}}}
-                {{/if}}</button>
-            </li>
-        </ul>
-    </div><!-- ./grid-container -->
-</section>
+<hr>
+<!--<section class="s__cta cont_padding">-->
+    <!--<div class="grid-container">-->
+        <!--<ul class="align-middle">-->
+            <!--<li><img src="/img/icon/web-design.svg" width="130" alt="web design"></li>-->
+            <!--<li>-->
+                <!--<h2>Ever thought about creating your own Udemy course?</h2>-->
+                <!--<p>Share your knowledge on the world’s largest online learning marketplace.</p>-->
+            <!--</li>-->
+            <!--<li class="text-right">-->
+                <!--<button type="button" name="button" class="button primary">Learn More</button>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>&lt;!&ndash; ./grid-container &ndash;&gt;-->
+<!--</section>-->
 
 <section class="web__wrapper cont_padding">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-12 cell">
-                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.website_design_field}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.website_design_field}}}
-                {{/if}}</h2>
-                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.our_most_recently_work_field}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.our_most_recently_work_field}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.our_most_recently_work_field}}}
-                {{/if}}</p>
+                <h2>Website Design</h2>
+                <p>Our Most recently Work</p>
             </div>
 
             <div class="medium-12 cell">
@@ -202,44 +131,19 @@
 <section class="s__cta__2 cont_padding">
     <div class="grid-container">
         <ul class="align-center-middle text-center">
-            <!-- <li>Over 389,734 Over Members</li> -->
-            <!--<li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}-->
-        <!--{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.support_field}}}-->
-        <!--{{else}}-->
-        <!--{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.support_field}}}{{/if}}</li>-->
-            <li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}
-        {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}}
-        {{else}}
-        {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.days_money_back_guarantee_on_all_products_field}}}{{/if}}</li>
-            <!--<li>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}-->
-        <!--{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.multi_language}}}-->
-        <!--{{else}}-->
-        <!--{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.multi_language}}}{{/if}}</li>-->
+             <!--<li>Responsive Templates</li>-->
+            <li>30 Days Money Back Guarantee On All Products</li>
         </ul>
     </div><!-- ./grid-container -->
 </section>
-{{#compare req.session.body.access_level '>' 6}}
+
 <section class="api__wrapper cont_padding">
     <div class="grid-container">
         <div class="grid-x grid-padding-x align-center-middle text-center">
             <div class="medium-8 cell">
-                <h2>
-                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.api_intergration_field}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.api_intergration_field}}}{{/if}}</h2>
-                <p>
-                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_4}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_4}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_4}}}{{/if}}
-                </p>
-                <p>
-                    {{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_5}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_paragraph_5}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_paragraph_5}}}{{/if}}
-                </p>
+                <h2>API Integration</h2>
+                <p>In most modern websites, application program interfaces (APIs) plays significant role to support your website functions. Most of these APIs requires advanced background to get the full benefits.</p>
+                <p>Here are some of the APIs I've installed For out clients:</p>
             </div>  <!--./medium-8 cell-->
 
         </div><!-- ./grid-x grid-padding-x -->
@@ -251,14 +155,8 @@
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-12 cell">
-                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_field}}
-            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_field}}}
-            {{else}}
-            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.email_emplates_field}}}{{/if}}</h2>
-                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_paragraph_field}}
-            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.email_emplates_paragraph_field}}}
-            {{else}}
-            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.email_emplates_paragraph_field}}}{{/if}}</p>
+                <h2>Email Templates</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
             </div>  <!--./medium-8 cell-->
 
             <div class="medium-12 cell">
@@ -289,22 +187,12 @@
         <ul class="align-middle">
             <li><img src="/img/icon/web-design.svg" width="130" alt="web design"></li>
             <li>
-                <h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}
-            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_header_1}}}
-            {{else}}
-            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_header_1}}}{{/if}}</h2>
-                <p>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}
-            {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.home_cta_paragraph_1}}}
-            {{else}}
-            {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.home_cta_paragraph_1}}}{{/if}}</p>
+                <h2>Ever thought about creating your own Udemy course?</h2>
+                <p>Share your knowledge on the world’s largest online learning marketplace.</p>
             </li>
             <li class="text-right">
-                <button type="button" name="button" class="button primary">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}
-                {{{req.session.LanguagePack.selected_pack.hits.hits.0._source.learn_more_field}}}
-                {{else}}
-                {{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.learn_more_field}}}{{/if}}</button>
+                <button type="button" name="button" class="button primary">Learn More</button>
             </li>
         </ul>
     </div><!-- ./grid-container -->
 </section>
-{{/compare}}

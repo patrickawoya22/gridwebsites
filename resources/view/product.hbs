@@ -15,8 +15,15 @@
                         </div>
 
                         <div class="medium-12 cell social-btn flex-container">
-                            <button class="button primary twitter" type="button" name="button">Tweet this</button>
-                            <button class="button primary facebook" type="button" name="button">Share this</button>
+
+                            <!--<button class="button primary twitter" type="button" name="button">Tweet this</button>-->
+
+                            <a href="http://www.facebook.com/sharer.php?u={{ogUrl}}" target="_blank">
+
+                                <button class="button primary facebook" type="button" name="button">Share this</button>
+
+                            </a>
+
                         </div>
 
                         <div class="medium-12 cell">
@@ -59,7 +66,6 @@
                                     <form action="/save-review" id="add-review-form" v-on:submit.prevent="addReview" method="post">
                                         <div class="grid-x grid-margin-x align-center-middle">
                                             <div class="medium-12 cell">
-                                                <!--<h2>{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_review_field}}}{{/if}}</h2>-->
                                                 <h2>
                                                     Leave your review below
                                                 </h2>
@@ -90,8 +96,7 @@
                                                 <textarea
                                                         v-model="comment"
                                                         class="r-margin"
-                                                        name="comment" placeholder="{{#if req.session.LanguagePack
-                                                                                    .selected_pack.hits.hits.0._source.leave_your_review_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_review_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_review_here_field}}}{{/if}}" rows="3" cols="5"></textarea>
+                                                        name="comment" placeholder="Leave your review here" rows="3" cols="5"></textarea>
                                             </div>
 
                                             <div class="medium-12 cell">
@@ -112,8 +117,8 @@
                                                 <!--<input type="hidden" name="page_route" value="/product/3f9sfWUBtJ_6JLhQCHJU/Ri+Na+Mara+Facial+Oil+30ml">-->
                                                 <input class="button primary small-100" type="submit"
                                                        style="margin-top: 0rem;min-width: 15rem;"
-                                                       value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
-                                                <img src="/img/icon/spinner-circle.svg" style="display: none;top: .6rem;left: 13rem;" alt="loading..." width="15">
+                                                       value="Add Review">
+                                                <img src="/img/icon/spinner-circle.svg" style="display: none;top:10px;left: 13rem;" alt="loading..." width="15">
                                             </div>
                                         </div>
                                     </form>
@@ -126,11 +131,7 @@
                                     {{/if}}
                                 </div>
 
-                                <h3><span v-html="total_reviews">{{product_obj.hits.hits.0._source.user_reviews}}</span> {{#if req
-                                                                                                              .session
-                                                                                                        .LanguagePack.selected_pack
-                                                                               .hits.hits.0._source
-                                            .reviews_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.reviews_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.reviews_field}}}{{/if}}</h3>
+                                <h3><span v-html="total_reviews">{{product_obj.hits.hits.0._source.user_reviews}}</span> Reviews</h3>
 
                                 <div class="media-object"
                                      v-for="(comment_obj, index) in comments_obj"
@@ -158,7 +159,7 @@
                                                       <input
                                                               @click="comment_obj.main_comment_cont.show_review_reply_btn='',
                                                       comment_obj.main_comment_cont.review_comment=true"
-                                                              type="button" value="Add Review">
+                                                              type="button" value="Add Reply">
                                               {{else}}
                                                   <input type="button" data-open="login_reveal" value="Add Review">
                                               {{/if}}
@@ -176,7 +177,7 @@
                                                           <div class="medium-12 cell">
                                                         <textarea
                                                                 class="r-margin"
-                                                                name="name" placeholder="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.leave_your_reply_here_field}}}{{/if}}" rows="1" cols="5"></textarea>
+                                                                name="name" placeholder="Leave your reply here" rows="1" cols="5"></textarea>
                                                           </div>
 
                                                           <div class="medium-12 cell">
@@ -193,8 +194,9 @@
                                                                       type="hidden" name="review_id">
                                                               <input
                                                                       style="margin-top: .6rem"
-                                                                      class="button secondary" type="submit" name="" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.submit_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.submit_field}}}{{/if}}">
-                                                              <img src="/img/icon/spinner-circle.svg" style="display: none;left: 7rem;top: .6rem;" alt="loading..." width="15">
+                                                                      class="button secondary" type="submit" name=""
+                                                                      value="Add Reply">
+                                                              <img src="/img/icon/spinner-circle.svg" style="display:none;left: 7rem;top: 20px" alt="loading..." width="15">
                                                           </div>
                                                       </div>
                                                   </form>
@@ -209,13 +211,12 @@
                                         <!-- Nested media object starts here -->
                                         <div class="media-object"
                                              v-for="(comment_replay_obj, index) in comment_obj.comment_replays_obj"
-                                             :id="comment_replay_obj.review_replies_id"
-                                        >
+                                             :id="comment_replay_obj.review_replies_id" >
                                           <div class="media-object-section">
                                             <div class="thumbnail" style="box-shadow: none;" v-html="comment_replay_obj.profile_img"></div>
                                           </div>
                                           <div class="media-object-section">
-                                            <h4 v-html="comment_replay_obj.name">Patrick K</h4>
+                                            <h4 v-html="comment_replay_obj.name"></h4>
                                             <div class="date" v-html="comment_replay_obj.date"></div>
                                             <div v-html="comment_replay_obj.review"></div>
                                             <div class="remove-review" v-html="comment_replay_obj.is_User_cont"></div>
@@ -267,7 +268,7 @@
                             <div>
                                 <label>
                                     <input
-                                            v-model="hosted"
+                                            v-model="hosted" :disabled="disableHosted"
                                             type="checkbox" name="hosted" value="1">
                                     Get It Hosted <b>${{product_obj.hits.hits.0._source.hosting_price}}</b> Monthly
                                 </label>
@@ -471,8 +472,12 @@
     </button>
 </div>
 
-<div id="dialog-confirm" style="display:none" title="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.remove_review_field}}}{{/if}}" class="confirm-prompt">
-    <p  id="ui-body">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.please_press_confirm_to_remove_review_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.please_press_confirm_to_remove_review_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.please_press_confirm_to_remove_review_field}}}{{/if}}</p>
+<div id="review-dialog-confirm" style="display:none" title="Remove review" class="confirm-prompt">
+    <p  id="ui-body">Please press Confirm to remove review</p>
 </div>
 
-<input type="hidden" name="confirm" id="confirm" value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.cancel_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.cancel_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.cancel_field}}}{{/if}}">
+<div id="review-reply-dialog-confirm" style="display:none" title="Remove review reply" class="confirm-prompt">
+    <p  id="ui-body">Please press Confirm to remove review reply</p>
+</div>
+
+<input type="hidden" name="confirm" id="confirm" value="Cancel">

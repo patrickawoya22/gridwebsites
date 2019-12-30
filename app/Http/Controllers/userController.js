@@ -5,6 +5,7 @@ const reviews = require(`../../Reviews`);
 const cart = require(`../../Cart`);
 const currencyFormatter = require('currency-formatter');
 const order = require('../../Order');
+const file = require('../../File');
 
 exports.indexAction = function(req, res) {
 
@@ -30,7 +31,21 @@ exports.indexAction = function(req, res) {
         }).catch(err => console.error(err));
 };
 
+exports.productJsonAction = function(req, res) {
 
+    products.getAutoCompleteProducts(req).then((productJson) => {
+
+        res.status(200).json({
+            suggestions:productJson
+        });
+
+    }).catch((error) => {
+        res.status(402).json({
+            error: error
+        });
+    });
+
+};
 
 exports.productAction = function(req, res) {
 
@@ -43,6 +58,12 @@ exports.productAction = function(req, res) {
 
         reviews.searchProductReviews(req).then((res2)=>{
 
+            const ogUrl = `${req.customBaseURI}product/${product_obj.hits.hits[0]._source.name.replace(/ /g, '+')}/${product_obj.hits.hits[0]._id}`;
+            const ogType = 'website';
+            const ogTitle = product_obj.hits.hits[0]._source.name;
+            const ogDescription = product_obj.hits.hits[0]._source.description;
+            const ogImage = `${req.customBaseURI}img/project/img-origin/${product_obj.hits.hits[0]._source.image_obj.hits.hits[0]._source.name}`;
+
             if (product_obj.hits.total>0){
                 res.render(`product`,{
                     showTitle: true,
@@ -52,6 +73,11 @@ exports.productAction = function(req, res) {
                     product_obj,
                     searchAction:`/search`,
                     reviews_obj:res2,
+                    ogUrl,
+                    ogType,
+                    ogTitle,
+                    ogDescription,
+                    ogImage,
                     productJs: true,
                     title:product_obj.hits.hits[0]._source.name
                 });
@@ -464,13 +490,69 @@ exports.checkoutAction = function(req, res) {
     });
 };
 
+exports.fileDownloadAction = async function(req, res) {
+
+    file.getProductZipFileAccessUsersByOrderCodeAndProductId(req).then((accessResponse) => {
+
+        if (accessResponse.hits.total > 0) {
+
+            req.body.file_id = accessResponse.hits.hits[0]._source.file_id;
+
+            file.getFileByFileId(req).then((fileResponse) => {
+
+                if (fileResponse.hits.total > 0) {
+
+                    order.checkValidOrderByOrderIdAndProductCode(req).then((orderResponse) => {
+
+                        if (orderResponse) {
+
+                            const zipPath = `${res.modulePath}/resources/assets/files/${fileResponse.hits.hits[0]._source.name}`;
+
+                            res.download(zipPath);
+
+                        } else {
+                            res.status(402).json({
+                                error: `Error code 129838943! Order was cancelled.`
+                            });
+                        }
+
+                    }).catch((error) => {
+                        res.status(402).json({
+                            error: error
+                        });
+                    });
+
+                } else {
+                    res.status(402).json({
+                        error: `Error code 409409338! Not file found matching order code and product id selected.`
+                    });
+                }
+
+            }).catch((error) => {
+                res.status(402).json({
+                    error: error
+                });
+            });
+
+        } else {
+            res.status(402).json({
+                error: `Error code 124895448! Not file found matching order code and product id selected.`
+            });
+        }
+
+    }).catch((error) => {
+        res.status(402).json({
+            error: error
+        });
+    });
+};
 
 exports.profileAction = function(req, res) {
 
     req.from = 0;
     req.size = 1999;
 
-    const flush_message_array = req.flash('payment_confirmed');
+    const flush_message_array = req.flash('profile_alert');
     let flush_message = [];
 
     if (!_.isEmpty(flush_message_array)) {
@@ -486,18 +568,10 @@ exports.profileAction = function(req, res) {
         order.getOrderedProductByUserId(req).then((order_response) => {
 
             let order_obj = [];
-            let order_status = 'Order has been received';
 
             order_response.hits.hits.forEach((item) => {
 
                 item._source.order_items.forEach((item2) => {
-                    if (item._source.order_status===6) {
-                        order_status = 'Completed';
-                    }  else if (item._source.order_status===5) { //setting up docker hosting completed
-                        order_status = 'Setting up docker hosting';
-                    } else if (item._source.order_status===2) { //Designing in progress
-                        order_status = 'Designing in progress';
-                    }
 
                     order_obj.push({
                         order_id: item._id.toString(),
@@ -505,7 +579,8 @@ exports.profileAction = function(req, res) {
                         product_id: item2._source.product_id.toString(),
                         payment_id: item._source.payment_id.toString(),
                         payment_method: item._source.payment_method.toString(),
-                        order_status,
+                        order_status: order.getStatusCode(item2._source.order_status?item2._source.order_status:1),
+                        order_status_key: item2._source.order_status?item2._source.order_status:1,
                         total_quantity: item._source.quantity.toString(),
                         total_price: item._source.total_price.toString(),
                         user_id: item._source.user_id.toString(),
@@ -516,7 +591,7 @@ exports.profileAction = function(req, res) {
                         product_name: item2._source.product_name.toString(),
                         main_category: item2._source.main_category.toString(),
                         hosted: item2._source.hosted?1:0,
-                        designed: item2._source.hosted?1:0,
+                        designed: item2._source.designed?1:0,
                         quantity: item2._source.quantity.toString(),
                         offer_price: currencyFormatter.format(parseFloat(item2._source.offer_price), { code: 'USD' }),
                         built_price: currencyFormatter.format(parseFloat(item2._source.built_price), { code: 'USD' }),
@@ -607,10 +682,23 @@ exports.editLanguagePackAction = async function(req, res) {
 exports.editProfileAction = function(req, res) {
 
     if (req.session.isLoggedin) {
+
+        const flush_message_array = req.flash('profile_alert');
+        let flush_message = [];
+
+        if (!_.isEmpty(flush_message_array)) {
+            flush_message_array.forEach((item) => {
+                if (item.type==='xxxxxx') {
+                    flush_message = item;
+                }
+            });
+        }
+
         res.render(`edit-profile`,{
             showTitle: true,
             title:`Edit Profile`,
             editProfile:true,
+            flush_message,
             req:req,
             searchAction:`search`,
         });
@@ -622,16 +710,42 @@ exports.editProfileAction = function(req, res) {
 
 exports.editTemplatesAction = function(req, res) {
     if (req.session.isLoggedin) {
-        products.getMyProductByID(req).then((products_obj)=>{
-            res.render(`edit-templates`,{
-                showTitle: true,
-                title:`Edit Template`,
-                addTemplate: _.isEmpty(products_obj)?true:false,
-                req,
-                editTemplatesJs:true,
-                products_obj,
-                searchAction:`search`,
+
+        const flush_message_array = req.flash('profile_alert');
+        let flush_message = [];
+
+        if (!_.isEmpty(flush_message_array)) {
+            flush_message_array.forEach((item) => {
+                if (item.type==='add-file') {
+                    flush_message = item;
+                }
             });
+        }
+
+        products.getMyProductByID(req).then((products_obj) => {
+
+            const user_id = ((req.session.isLoggedin) ? req.session.body.id : req.DEFAULT_USER_ID);
+
+            file.getUserFilesUserId(req, user_id).then((file_obj) => {
+
+                res.render(`edit-templates`,{
+                    showTitle: true,
+                    title:`Edit Template`,
+                    addTemplate: _.isEmpty(products_obj)?true:false,
+                    req,
+                    file_obj,
+                    flush_message,
+                    editTemplatesJs:true,
+                    products_obj,
+                    searchAction:`search`,
+                });
+
+            }).catch((error) => {
+                res.status(402).json({
+                    error: error
+                });
+            });
+
         }).catch(err => console.error(err))
     }else {
         res.redirect(`/`);

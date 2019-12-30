@@ -20,13 +20,18 @@
                 <div class="profile__wrapper">
                     <div class="grid-x grid-margin-x">
                         <div class="large-2 large-order-2 profile-img profile-img-ex text-center cell">
+                           {{#if products_obj.hits.hits.0._source.image_obj.hits.hits.0._source.name}}
                             <a onclick="$('#open-image-tab').trigger('click')"><img src="{{req
                             .customBaseURI}}img/project/img-thumb/{{products_obj.hits.hits.0._source.image_obj.hits.hits
                             .0._source.name}}" alt="{{products_obj.hits.hits.0._source.image_obj.hits.hits
                             .0._source.name}}"></a>
+
+                           {{/if}}
+
                         </div>
                         <div class="large-10 large-order-1 cell">
-                            <h2>{{#if addTemplate}}Add Template{{else}}Edit Template{{/if}}</h2>
+                            <h2>{{#if addTemplate}}<a href="/profile#templates">Add Template</a>{{else}}<a
+                                    href="/profile#templates">Edit Template</a>{{/if}}</h2>
 
                             <div class="grid-x grid-margin-x edit-form-wrapper">
                                 <div class="large-4 cell">
@@ -44,6 +49,7 @@
                                 <div class="large-8 cell">
 
                                     <div class="tabs-content" data-tabs-content="profile__taps">
+
                                         <div class="tabs-panel" id="template">
                                             <form action="/save-template" v-on:submit.prevent="editTemplate"
                                                   method="post" id="save-template-form">
@@ -193,7 +199,7 @@
                                                                 id="version"
                                                                 @keyup.enter="editTemplate"
                                                                 value="[{{#each products_obj.hits.hits.0._source.version  as |value|}}'{{value}}',{{/each}}]"
-                                                                name="features" multiple="multiple">
+                                                                name="version" multiple="multiple">
                                                                 <option value="Foundation 6 Grid XY | v6.1">Foundation 6 Grid XY - v6.1</option>
                                                                 <option value="Foundation 6 Grid XY | v6.5">Foundation 6 Grid XY - v6.5</option>
                                                                 <option value="bootstrap 4 | v4.3">bootstrap 4 - v4.3</option>
@@ -209,7 +215,7 @@
                                                     </div>
 
                                                     <div class="small-12 cell">
-                                                        <label for="code_quality">Code Quality</label>
+                                                        <label for="code_quality">Code Quality *</label>
                                                         <textarea
                                                                 v-model="code_quality"
                                                                 @keyup.enter="editTemplate"
@@ -217,7 +223,7 @@
                                                     </div>
 
                                                     <div class="small-12 cell">
-                                                        <label for="description">Description</label>
+                                                        <label for="description">Description *</label>
                                                         <textarea
                                                                 v-model="description"
                                                                 @keyup.enter="editTemplate"
@@ -357,10 +363,24 @@
                                                                 <img :src="tmp_img.img_url" width="100%" :alt="tmp_img.name">
 
                                                                 <form action="/delete-template-image" method="post">
-                                                                    <button type="button" name="button" class="button remove-template-image" @click="deleteTemplateImg(tmp_img.image_id)">x</button>
+                                                                    <button type="button" name="button" class="button remove-template-image" @click="confirmDeleteTemplateImg(tmp_img.image_id)">x</button>
                                                                 </form>
                                                             </div>
                                                         </div><!-- ./medium cell -->
+
+                                                        <div class="medium-12 cell">
+                                                            <div v-if="showError">
+                                                                <div v-html="formError">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <p v-html="formSuccess">
+                                                            <div v-if="showSuccessMsg">
+
+                                                            </div>
+                                                            </p>
+                                                        </div>
 
                                                     </div><!-- ./grid-x grid-padding-x -->
                                                 </div>
@@ -371,61 +391,76 @@
 
                                           <div class="tabs-panel" id="files">
 
-                                              <div class="grid-x grid-margin-x">
+                                              {{#if flush_message}}
+                                                  <div class="grid-x grid-margin-x">
+                                                      <div class="medium-12 cell">
+                                                          <div class="callout {{flush_message.class}}">
+                                                              {{flush_message.message}}
+                                                          </div>
+                                                      </div><!-- ./medium cell -->
+                                                  </div><!-- ./grid-x g-padding-x -->
+                                              {{/if}}
+
+                                              <div class="grid-x grid-margin-x" id="edit-template-file">
 
                                                   <div class="small-12 cell">
                                                       <div class="grid-x grid-padding-x">
-                                                          <div class="small-3 medium-3 cell text-center">
+                                                          <div class="medium-12 cell text-center">
                                                               <a href="#files">
-                                                                  <div  style="padding-bottom: 1rem">
-                                                                      <img src="/img/icon/zip.svg">
-                                                                  </div>
-                                                                  <img src="/img/icon/download.svg" width="50">
+
+                                                                  <form ref='uploadForm'
+                                                                        id='uploadForm'
+                                                                        action="/upload-template-file" method="post"
+                                                                        encType="multipart/form-data">
+
+                                                                      <input type="hidden" name="product_id"
+                                                                             value="{{products_obj.hits.hits.0._id}}"
+                                                                             id="product_id">
+
+                                                                      <input type="file" required name="sampleFile"
+                                                                             id="sampleFile">
+
+                                                                      <input type="submit" value="Upload File"
+                                                                             class="button primary large expanded"
+                                                                             name="submit">
+
+                                                                  </form>
+
+                                                                  <!--<div  style="padding-bottom: 1rem">-->
+                                                                      <!--<img src="/img/icon/zip.svg">-->
+                                                                  <!--</div>-->
+                                                                  <!--<img src="/img/icon/download.svg" width="50">-->
                                                               </a>
                                                           </div><!-- ./medium cell -->
-                                                          <div class="small-9 medium-9 cell">
+                                                          <div class="medium-12 cell">
+                                                              <p v-if="template_files.length > 0" class="r-margin" v-html="fileCounterMsg">
+                                                                  No Images found
+                                                              </p><br>
                                                               <table>
                                                                   <tbody>
-                                                                     <tr>
-                                                                         <td  style="width: 3rem">
-                                                                             <img src="/img/icon/html-file.svg" width="25">
-                                                                         </td>
-                                                                         <td>
-                                                                             index.html
-                                                                         </td>
-                                                                     </tr>
-                                                                     <tr>
-                                                                         <td>
-                                                                             <img src="/img/icon/css.svg" width="25">
-                                                                         </td>
-                                                                         <td>
-                                                                             foundation-6.css
-                                                                         </td>
-                                                                     </tr>
-                                                                     <tr>
-                                                                         <td>
-                                                                             <img src="/img/icon/css.svg" width="25">
-                                                                         </td>
-                                                                         <td>
-                                                                             app.css
-                                                                         </td>
-                                                                     </tr>
-                                                                     <tr>
-                                                                         <td>
-                                                                             <img src="/img/icon/javascript.svg" width="25">
-                                                                         </td>
-                                                                         <td>
-                                                                             foundation-6.js
-                                                                         </td>
-                                                                     </tr>
-                                                                     <tr>
-                                                                         <td>
-                                                                             <img src="/img/icon/javascript.svg" width="25">
-                                                                         </td>
-                                                                         <td>
-                                                                             app.js
-                                                                         </td>
-                                                                     </tr>
+                                                                         <tr v-if="template_files.length > 0"
+                                                                             v-for="(item, index) in template_files">
+                                                                             <td  style="width: 3rem">
+                                                                                 <img src="/img/icon/zip.svg" width="25">
+                                                                             </td>
+                                                                             <td class="small">
+                                                                                 <div v-html="item.name"></div>
+                                                                                 <div v-html="item.date_created"></div>
+                                                                             </td>
+                                                                             <td width="30">
+                                                                                 <form action="/delete-template-file" method="post">
+                                                                                     <button type="button" name="button"
+                                                                                             class="button r-margin
+                                                                                             remove-template-file"
+                                                                                             @click="confirmDeleteTemplateFile(item.file_id)">x</button>
+                                                                                 </form>
+                                                                             </td>
+                                                                         </tr>
+                                                                      <tr v-else>
+                                                                          <td class="text-center">
+                                                                              No file uploaded
+                                                                          </td>
+                                                                      </tr>
                                                                   </tbody>
                                                               </table>
 
@@ -440,6 +475,21 @@
                                                                   <!--</li>-->
                                                               <!--</ul>-->
                                                           </div><!-- ./medium cell -->
+
+                                                          <div class="medium-12 cell">
+                                                              <div v-if="showFileError">
+                                                                  <div v-html="formFileError">
+
+                                                                  </div>
+                                                              </div>
+
+                                                              <p v-html="formFileSuccess">
+                                                              <div v-if="showFileSuccessMsg">
+
+                                                              </div>
+                                                              </p>
+                                                          </div>
+
                                                       </div><!-- ./grid-x grid-padding-x -->
                                                   </div>
 
@@ -504,3 +554,11 @@
         </div>
     </div><!-- ./grid-container -->
 </section>
+
+<div id="template-image-dialog-confirm" style="display:none" title="Remove template image" class="confirm-prompt">
+    <p  id="ui-body">Please press Confirm to remove template image</p>
+</div>
+
+<div id="template-file-dialog-confirm" style="display:none" title="Remove template file" class="confirm-prompt">
+    <p  id="ui-body">Please press Confirm to remove template file</p>
+</div>

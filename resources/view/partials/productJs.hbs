@@ -5,6 +5,19 @@
 
 <script type="text/javascript">
 
+    $(document).ready(function() {
+        $('#title').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfileDetails.title = $('#title').val();
+            appEditProfileDetails.editProfile();
+        });
+    });
+
     var contactUs = new Vue({
         el: '#contact-seller',
         data: {
@@ -87,10 +100,12 @@
 
             order: '1',
             currentTotalPrice: {{product_obj.hits.hits.0._source.offer_price}},
+            staticTotalPrice: {{product_obj.hits.hits.0._source.offer_price}},
             HostedPrice: {{product_obj.hits.hits.0._source.hosting_price}},
             builtPrice: {{product_obj.hits.hits.0._source.built_price}},
             hosted: false,
             designed: false,
+            disableHosted: true,
             ref: '{{product_obj.hits.hits.0._id}}',
 
             isActive:'',
@@ -105,7 +120,7 @@
                 this.disabled = false;
                 if (this.hosted) {
                     this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)+parseFloat(this.HostedPrice));
-                } else {
+                } else if (this.designed) {
                     this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)-parseFloat(this.HostedPrice));
                 }
             },
@@ -113,8 +128,11 @@
                 this.disabled = false;
                 if (this.designed) {
                     this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)+parseFloat(this.builtPrice));
+                    this.disableHosted = false;
                 } else {
-                    this.currentTotalPrice = currency(parseFloat(this.currentTotalPrice)-parseFloat(this.builtPrice));
+                    this.currentTotalPrice = currency(parseFloat(this.staticTotalPrice));
+                    this.disableHosted = true;
+                    this.hosted = false;
                 }
             }
         },methods: {

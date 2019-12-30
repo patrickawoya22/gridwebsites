@@ -63,9 +63,9 @@ module.exports.setReplaceUrlHelper = (Handlebars) => {
     });
 };
 
-module.exports.setReplaceUrlHelper = (Handlebars) => {
+module.exports.setTrimStringHelper = (Handlebars) => {
     Handlebars.registerHelper('trimString', function(passedString) {
-        let theString = passedString.trim();
+        let theString = passedString ? passedString.trim():'';
         return new Handlebars.SafeString(theString)
     });
 };

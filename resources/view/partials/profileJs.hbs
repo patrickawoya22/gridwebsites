@@ -1,9 +1,28 @@
+<script type='text/javascript' src='/js/currency.js'></script>
+
 <script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#select_order_status').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function (e) {
+            appProfile.select_order_status = parseInt(e.target.value);
+            appProfile.filterOrderStatus();
+        });
+    });
+
+
     var appProfile = new Vue({
         el: '#profile',
         data: {
             showAll: true,
             selectProductObj: {},
+            select_order_status: 0,
+            staticPurchasesItems: [],
             purchasesItems: [
                 {{#each order_obj}}
                     {
@@ -13,7 +32,8 @@
                         payment_id: '{{payment_id}}',
                         payment_method: '{{payment_method}}',
                         order_status: '{{order_status}}',
-                        total_quantity: '{{total_quantity}}',
+                        order_status_key: parseInt('{{order_status_key}}'),
+                        total_quantity: parseInt('{{total_quantity}}'),
                         total_price: '{{total_price}}',
                         user_id: '{{user_id}}',
                         date_created: '{{date_created}}',
@@ -33,13 +53,152 @@
             ],
 
         },methods: {
+            filterOrderStatus: function(){
+                if (appProfile.staticPurchasesItems.length === 0 && appProfile.purchasesItems.length > 0) {
+                    appProfile.staticPurchasesItems = appProfile.purchasesItems;
+                } else {
+                    appProfile.purchasesItems = appProfile.staticPurchasesItems;
+                }
+
+
+                if (appProfile.select_order_status > 0) {
+                    var tmpArr = [];
+                    appProfile.purchasesItems.forEach(function (item) {
+                        console.log(item.order_status_key, appProfile.select_order_status);
+                        if (item.order_status_key===appProfile.select_order_status) {
+                            tmpArr.push(item);
+                        }
+                    });
+                    appProfile.purchasesItems = tmpArr;
+                }
+            },
+            getTotalPrice: function(offer_price, built_price, hosting_price){
+                return  '$'+currency(parseFloat(offer_price)+parseFloat(built_price?built_price:0)+parseFloat(hosting_price?hosting_price:0));
+            },
+            changeOrderStatus: function(event,order_id,product_id){
+                var status = event.target.value.trim();
+                if (status.length===0){
+
+                    PNotify.alert({
+                        title: 'Change Order status',
+                        text: 'Please select new order status.',
+                        shadow: false,
+                        hide: true,
+                        modules: {
+                            Buttons: {
+                                closer: true,
+                                sticker: false
+                            },
+                            Mobile: {
+                                swipeDismiss: true
+                            }
+                        },
+                    });
+
+                } else {
+
+                    var percent = 0;
+                    var notice = PNotify.info({
+                        text: 'Please Wait',
+                        icon: 'fas fa-spinner fa-pulse',
+                        hide: false,
+                        shadow: false,
+                        width: '200px',
+                        modules: {
+                            Buttons: {
+                                closer: false,
+                                sticker: false
+                            }
+                        }
+                    });
+
+                    var options = {
+                        text: percent + '% complete.'
+                    };
+
+                    axios.post('{{req.customBaseURI}}change-order-status',
+                            {
+                                order_id: order_id,
+                                product_id:product_id,
+                                status: parseInt(status),
+                            },
+                            {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            }).then(response => {
+
+                        percent = 100;
+                        options.title = 'Completed!';
+                        options.type = 'success';
+                        options.text = 'You have successfully update order status';
+                        options.hide = true;
+                        options.icon = 'fas fa-check';
+                        options.shadow = false;
+                        options.width = PNotify.defaults.width;
+                        options.modules = {
+                            Buttons: {
+                                closer: true,
+                                sticker: false
+                            }
+                        };
+
+                        notice.update(options);
+                        appProfile.selectProductObj.order_status = response.data.statusText;
+                        appProfile.selectProductObj.order_status_key = status;
+                        appProfile.purchasesItems[appProfile.selectProductObj.index].order_status_key = parseInt(status);
+                        appProfile.purchasesItems[appProfile.selectProductObj.index].order_status = response.data.statusText;
+
+
+                    }, function (error) {
+
+                        percent = 100;
+                        options.title = 'Failed!';
+                        options.type = 'error';
+                        options.text = error;
+                        options.hide = true;
+                        options.icon = 'fas fa-check';
+                        options.shadow = false;
+                        options.width = PNotify.defaults.width;
+                        options.modules = {
+                            Buttons: {
+                                closer: true,
+                                sticker: false
+                            }
+                        };
+
+                        notice.update(options);
+
+                    });
+
+                }
+            },
             loadProduct: function (index) {
 
                 this.selectProductObj = this.purchasesItems[index];
+                this.selectProductObj.index = index;
                 this.showAll = false;
+
             }, backToProfile: function () {
                 this.showAll = true;
                 this.selectProductObj = {};
+
+                console.log('this');
+
+               setTimeout(function () {
+                   $('#select_order_status').select2({
+                       maximumSelectionLength: 6,
+                       scrollAfterSelect: false,
+                       closeOnSelect: false,
+                       theme: 'default custom-class',
+                       // placeholder: 'please select item',
+                   }).on('change', function (e) {
+                       appProfile.select_order_status = parseInt(e.target.value);
+                       appProfile.filterOrderStatus();
+                   });
+               },10);
+
+
             }
         }
     });

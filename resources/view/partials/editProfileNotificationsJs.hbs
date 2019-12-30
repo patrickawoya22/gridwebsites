@@ -22,7 +22,7 @@
                 this.emailme = this.email_notifications===true?1:0;
                 this.textme = this.sms_notifications===true?1:0;
 
-                axios.post('http://localhost:3000/save-notifications',
+                axios.post('{{req.customBaseURI}}save-notifications',
                         {
                             email:this.email,
                             mobile: this.mobile,

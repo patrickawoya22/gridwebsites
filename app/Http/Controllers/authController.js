@@ -11,7 +11,10 @@ const replies = require(`../../ReviewsReplies`);
 const paypal = require('paypal-rest-sdk');
 const paypalModal = require('../../PayPal');
 const order = require('../../Order');
+const file = require('../../File');
 const currencyFormatter = require('currency-formatter');
+const rimraf = require(`rimraf`);
+
 
 exports.joinAction = function(req, res) {
 
@@ -183,23 +186,39 @@ exports.paypalPaymentConfirmationAction = (req, res) => {
 
                                             paypalModal.updatePayPalCheckoutStatusAndOrderId(req, p_token, 'payment_confirmed', order_id).then(() => {
 
-                                                order.updateOrderStatus(req, order_id, 6).then(() => {
+                                                file.addNewProductZipFileAccessUsers(req, cartResponse, order_id).then(() => {
 
                                                     products.updateProductOrderCounts(req, cartResponse).then(() => {
 
                                                         cart.deleteCartByIds(req, cartResponse).then(() => {
 
-                                                            const msg = {
-                                                                message: `THANKS for your order. Order files are listed below.`,
-                                                                type: `payment`,
-                                                                class: `success`,
-                                                            };
+                                                            // emails.sentOrderEmail(req).then(() => {
+                                                            //     console.log('Email sent');
+                                                            // }).catch((error) => {
+                                                            //
+                                                            //     console.log(error,' email failed');
+                                                            //     res.status(402).json({
+                                                            //         error,
+                                                            //         error_code: `Error code 39849093`,
+                                                            //     });
+                                                            //
+                                                            // });
 
-                                                            req.flash('payment_confirmed', msg);
+                                                            setTimeout(() => {
 
-                                                            res.redirect(`${req.BASE_URL}/profile`);
+                                                                const msg = {
+                                                                    message: `THANKS for your order. Order files are listed below.`,
+                                                                    type: `payment`,
+                                                                    class: `success`,
+                                                                };
 
-                                                        }).catch(() => {
+                                                                req.flash('profile_alert', msg);
+
+                                                                res.redirect(`${req.BASE_URL}/profile`);
+
+                                                            }, 1000);
+
+                                                        }).catch((error) => {
 
                                                             res.status(402).json({
                                                                 error,
@@ -218,9 +237,10 @@ exports.paypalPaymentConfirmationAction = (req, res) => {
                                                 }).catch((error) => {
                                                     res.status(402).json({
                                                         error,
-                                                        error_code: `Error code 98409849`,
+                                                        error_code: `Error code 2930828201`,
                                                     });
                                                 });
+
 
                                             }).catch((error) => {
                                                 res.status(402).json({
@@ -740,6 +760,85 @@ exports.saveAccountDetailsAction = function(req, res) {
         }).catch(err => console.error(err))
     }
 };
+
+exports.saveTemplateFileAction = function(req, res) {
+
+    req.check(`product_id`,`Please enter product ID`).isLength({min:2});
+
+    let errors = req.validationErrors();
+
+    if (!req.session.isLoggedin) {
+        res.status(200).json({
+            error: [
+                {
+                    param:`first_name`,
+                    msg:`Invalid login details.`
+                }
+            ]
+        });
+    }else if(errors){
+        res.status(200).json({
+            error: errors
+        });
+    }else {
+
+        // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+
+        file.addFile(req, '', req.body.product_id).then((fileResponse) => {
+
+            let msg = '';
+
+            // Use the mv() method to place the file somewhere on your server
+            if (req.files.sampleFile.mimetype==='application/zip') {
+                req.files.sampleFile.mv(`${res.modulePath}/resources/assets/files/${fileResponse._id}-${req.files.sampleFile.name}`, function (err) {
+                    file.updateFileName(req, fileResponse._id, `${fileResponse._id}-${req.files.sampleFile.name}`).then(() => {
+
+                        if (err) {
+                            msg = {
+                                message: err,
+                                class: `success`,
+                            };
+                        }
+
+                        msg = {
+                            message: `File has been add successfully.`,
+                            type: `add-file`,
+                            class: `success`,
+                        };
+
+                        setTimeout(() => {
+                            req.flash('profile_alert', msg);
+
+                            res.redirect(`/edit-templates/${req.body.product_id}#files`);
+                        },1000)
+
+                    }).catch(err => {
+                        res.status(401).json({
+                            res:err
+                        });
+                        console.error(err)
+                    });
+                });
+            } else {
+                msg = {
+                    message: `Error! Invalid file format only zip allowed.`,
+                    type: `add-file`,
+                    class: `alert`,
+                };
+
+                req.flash('profile_alert', msg);
+
+                res.redirect(`/edit-templates/${req.body.product_id}#files`);
+            }
+
+        }).catch(err => {
+            res.status(401).json({
+                res:err
+            });
+            console.error(err)
+        });
+    }
+};
 exports.saveTemplateImageAction = function(req, res) {
 
     req.check(`image_data`,`Please select template image`).isLength({min:1});
@@ -775,9 +874,9 @@ exports.saveTemplateImageAction = function(req, res) {
 
                     if (product_res.hits.total < 6) {
 
-                        req.sort = product_res.hits.total + 1
+                        req.sort = product_res.hits.total + 1;
                         req.name = product_obj_req.hits.hits[0]._source.name+`-${utility.getDateAsNumber()}`;
-                        req.name = req.name.toString().replace(/'/g, ''.replace(/ /g, '-'));
+                        req.name = req.name.toLowerCase().trim().replace(/ /g, '_').replace(/-/g, '_');
 
                         products.addNewProductImageToDB(req).then((res2) => {
 
@@ -830,9 +929,11 @@ exports.saveTemplateAction = function(req, res) {
     req.check(`built_price`, `Please enter a valid format i.e 59.99`).isLength({min:1,max:10});
     req.check(`hosting_price`,`Please enter a valid format i.e 59.99`).isLength({min:1,max:10});
 
+    req.check(`extra`,`Please select template extra`).isLength({min:1});
     req.check(`category`,`Please select categories`).isLength({min:1});
     req.check(`type`,`Please select type`).isLength({min:1});
     req.check(`features`,`Please select features`).isLength({min:1});
+    req.check(`version`,`Please select version`).isLength({min:1});
     req.check(`code_quality`,`Please enter code quality`).isLength({min:1});
     req.check(`description`,`Please enter description`).isLength({min:1});
 
@@ -932,10 +1033,146 @@ exports.deleteTemplateImageAction = function(req, res) {
             error: errors
         });
     }else{
-        products.deleteProductImage(req).then((res2)=>{
-            res.status(200).json({
-                res:res2
+
+        products.getProductImageById(req).then((imageResponse) => {
+
+            if (imageResponse.hits.total > 0 && imageResponse.hits.hits[0]._source.user_id === req.session.body.id) {
+
+                req.body.name = imageResponse.hits.hits[0]._source.name;
+
+                order.getOrderByProductImageName(req).then((orderResponse) => {
+
+                    if (orderResponse.hits.total === 0) {
+
+                        products.deleteProductImage(req).then((res2) => {
+
+                            rimraf(`${req.modulePath}/public/img/project/img-thumb/${imageResponse.hits.hits[0]._source.name}`, function () {});
+                            rimraf(`${req.modulePath}/public/img/project/img-origin/${imageResponse.hits.hits[0]._source.name}`, function () {});
+                            rimraf(`${req.modulePath}/public/img/project/img-main/${imageResponse.hits.hits[0]._source.name}`, function () {});
+
+                            res.status(200).json({
+                                res: res2
+                            });
+
+                        }).catch(err => {
+                            res.status(401).json({
+                                res:err
+                            });
+                            console.error(err)
+                        });
+
+                    } else {
+                        res.status(200).json({
+                            error: [
+                                {
+                                    param:`name`,
+                                    msg:`Image can not be removed because it was purchased.`
+                                }
+                            ]
+                        });
+                    }
+
+                }).catch(err => {
+                    res.status(401).json({
+                        res:err
+                    });
+                    console.error(err)
+                });
+
+            } else {
+                res.status(402).json({
+                    error: [
+                        {
+                            param:`name`,
+                            msg:`No Image matches the provided image ID.`
+                        }
+                    ]
+                });
+            }
+        }).catch(err => {
+            res.status(401).json({
+                res:err
             });
+            console.error(err)
+        });
+    }
+};
+
+exports.deleteTemplateFileAction = function(req, res) {
+
+    req.check(`file_id`,`Please select template file id`).isLength({min:2,max:100});
+
+    let errors = req.validationErrors();
+
+    if (!req.session.isLoggedin) {
+        res.status(200).json({
+            error: [
+                {
+                    param:`name`,
+                    msg:`Invalid login details.`
+                }
+            ]
+        });
+    }else if(errors){
+        res.status(200).json({
+            error: errors
+        });
+    }else{
+        file.getProductZipFileAccessUsersByFileId(req).then((fileAccessResponse) => {
+
+            file.getFileByFileId(req).then((fileResponse) => {
+
+                if (fileResponse.hits.total > 0 && fileResponse.hits.hits[0]._source.user_id === req.session.body.id) {
+
+                    if (fileAccessResponse.hits.total === 0) {
+
+                        file.deleteProductFile(req).then((res2) => {
+
+                            if (!_.isEmpty(fileResponse.hits.hits[0]._source.name)) {
+                                rimraf(`${req.modulePath}/resources/assets/files/${fileResponse.hits.hits[0]._source.name}`, function () {
+                                    // console.log("done");
+                                });
+                            }
+
+                            res.status(200).json({
+                                res:res2
+                            });
+                        }).catch(err => {
+                            res.status(401).json({
+                                res:err
+                            });
+                            console.error(err)
+                        });
+
+                    } else {
+                        res.status(200).json({
+                            error: [
+                                {
+                                    param:`name`,
+                                    msg:`File can not be removed because it was purchased.`
+                                }
+                            ]
+                        });
+                    }
+
+                } else {
+                    res.status(402).json({
+                        error: [
+                            {
+                                param:`name`,
+                                msg:`No file matches the provided file ID.`
+                            }
+                        ]
+                    });
+                }
+
+            }).catch(err => {
+                res.status(401).json({
+                    res:err
+                });
+                console.error(err)
+            });
+
         }).catch(err => {
             res.status(401).json({
                 res:err
@@ -958,6 +1195,57 @@ exports.saveDescriptionAction = function(req, res) {
     res.redirect(`/edit-profile#description`);
 };
 
+exports.saveOrderStatusAction = function(req, res) {
+
+    req.check(`order_id`,`No order id selected`).isLength({min:1});
+    req.check(`product_id`,`No product ID selected`).isLength({min:1});
+    req.check(`status`,`No order status selected`).isLength({min:1});
+
+    let errors = req.validationErrors();
+
+    if(errors){
+        res.status(200).json({
+            error: errors
+        });
+    }else if (!req.session.isLoggedin) {
+
+        res.status(200).json({
+            error: [
+                {
+                    param:`order_status`,
+                    msg:`Invalid login details.`
+                }
+            ]
+        });
+
+    }else{
+
+        if (req.session.body.email === 'patrickawoya22@hotmail.co.uk') {
+
+            order.updateOrderStatus(req, req.body.order_id, req.body.product_id, +req.body.status).then((res2) => {
+
+                res.status(200).json({
+                    res: res2,
+                    statusText: order.getStatusCode(req.body.status),
+                });
+
+            }).catch(err => {
+                res.status(401).json({
+                    res:err
+                });
+                console.error(err)
+            });
+
+        } else {
+
+            res.status(402).json({
+                error: `Invalid user id`
+            });
+
+        }
+
+    }
+};
 
 exports.saveCartAction = function(req, res) {
 

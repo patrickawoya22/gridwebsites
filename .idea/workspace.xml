@@ -2,91 +2,893 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aead73f5-5510-465e-a5a2-58c886c8291f" name="Default" comment="§§§">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Cart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Emails.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/helpers/activation_email_template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/helpers/contact_seller_email_template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/helpers/contact_us_email_template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/helpers/review_reply_email_template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Order.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/PayPal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Reviews.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ReviewsReplies.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Users.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utility.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/css.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/customer-service.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/download-to-storage-drive.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/download.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/html-file.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/javascript.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon/zip.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/logo/payment-methods.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/logo/paypal.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/profile/main/user.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/profile/thumb/user.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/profile/user.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/project/img-origin/545519220298.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/project/img-origin/profile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/project/img-origin/test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/currency.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/main_cart.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/orders.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/product_images.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/products.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/reviewReplies.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/reviews.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/users.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/checkout.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/contact-us.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/authJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/cartJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/contactUsJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/editProfileChangePasswordJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/editProfileJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/editProfileNotificationsJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/indexJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/layoutJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/productJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/profileJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/reviewsJs.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/view/partials/searchJs.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/File.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/helpers/order_email_template.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/auto-complete-styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/pnotify/PNotifyBrightTheme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/autocomplete-custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui-1-12-1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui.min-1-11-4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.csslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.jscsrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.mailmap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/AUTHORS.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/Gruntfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/build/release-test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/build/release.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/build/tasks/build.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/build/tasks/testswarm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/build/themes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/collapsible.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/custom-icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/fillspace.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/no-auto-height.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/accordion/sortable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/combobox.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/custom-data.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/folding.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/images/jquery_32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/images/jqueryui_32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/images/sizzlejs_32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/images/transparent_1x1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/images/ui-anim_basic_16x16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/london.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/maxheight.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/multiple-remote.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/multiple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/remote-jsonp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/remote-with-cache.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/remote.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/search.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/autocomplete/xml.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/button/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/button/icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/button/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/images/jquery-mobile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/images/jquery-ui.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/images/jquery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/images/qunit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/images/sizzle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/no-icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/product-selector.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/checkboxradio/radiogroup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/controlgroup/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/controlgroup/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/controlgroup/splitbutton.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/controlgroup/toolbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/alt-field.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/animation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/buttonbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/date-formats.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/date-range.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/dropdown-month-year.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/icon-trigger.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/images/calendar.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/inline.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/localization.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/min-max.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/multiple-calendars.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/other-months.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/datepicker/show-week.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/demos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/dialog/animated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/dialog/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/dialog/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/dialog/modal-confirmation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/dialog/modal-form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/dialog/modal-message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/constrain-movement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/cursor-style.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/events.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/handle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/revert.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/scroll.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/snap-to.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/sortable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/draggable/visual-feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/accepted-elements.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras2_min.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras3_min.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras4_min.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/images/high_tatras_min.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/photo-manager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/propagation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/revert.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/droppable/visual-feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/addClass.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/animate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/easing.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/hide.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/removeClass.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/show.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/switchClass.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/toggle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/effect/toggleClass.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/calendar.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/demo-config-on-tile.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/demo-config-on.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/demo-spindown-closed.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/demo-spindown-open.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/icon-docs-info.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/images/pbar-ani.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/menu/categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/menu/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/menu/icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/menu/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/position/cycler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/position/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/position/images/earth.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/position/images/flight.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/position/images/rocket.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/position/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/progressbar/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/progressbar/download.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/progressbar/images/pbar-ani.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/progressbar/indeterminate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/progressbar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/progressbar/label.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/animate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/aspect-ratio.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/constrain-area.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/helper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/max-min.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/snap-to-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/synchronous-resize.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/textarea.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/resizable/visual-feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectable/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectable/display-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectable/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectable/serialize.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/custom_render.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/images/24-podcast-square.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/images/24-rss-square.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/images/24-video-square.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/selectmenu/product-selection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/colorpicker.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/custom-handle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/hotelrooms.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/multiple-vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/range-vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/range.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/rangemax.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/rangemin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/slider-vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/slider/steps.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/connect-lists.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/display-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/empty-lists.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/items.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/placeholder.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/sortable/portlets.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/currency.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/decimal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/latlong.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/overflow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/spinner/time.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/ajax.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/ajax/content1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/ajax/content2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/ajax/content3-slow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/ajax/content4-broken.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/collapsible.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/manipulation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/mouseover.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/sortable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tabs/vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/ajax/content1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/ajax/content2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/custom-animation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/custom-content.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/custom-style.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/forms.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/images/st-stephens.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/images/tower-bridge.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/tracking.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/tooltip/video-player.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/widget/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/demos/widget/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/globalize/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/globalize/globalize.culture.de-DE.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/globalize/globalize.culture.ja-JP.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/globalize/globalize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.10.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.10.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.10.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.10.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.10.2/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.10.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.2/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.3/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.11.3/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.0/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.1/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.2/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.3/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.3/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.4/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.12.4/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.7.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.7.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.7.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.7.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.7.2/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.7.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.2/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.3/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.8.3/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.9.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.9.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.9.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-1.9.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.2/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.3/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.0.3/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.0/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.1/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.2/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.3/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.3/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.4/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.1.4/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.0/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.1/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.1/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.2/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.2/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.3/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.3/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.4/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-2.2.4/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-3.0.0/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-3.0.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-3.1.0/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-3.1.0/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-custom/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-custom/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-mousewheel/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-mousewheel/jquery.mousewheel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-simulate/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery-simulate/jquery.simulate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jquery/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jshint/LICENSE/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/jshint/jshint.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-assert-classes/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-assert-classes/qunit-assert-classes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-assert-close/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-assert-close/qunit-assert-close.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-composite/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-composite/qunit-composite.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit-composite/qunit-composite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit/qunit.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/qunit/qunit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/external/requirejs/require.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/images/jquery_521x191.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/images/jqueryui_32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/lib/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/lib/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/lib/css.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/lib/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/lib/qunit-assert-domequal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/lib/qunit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/accordion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/accordion/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/autocomplete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/remote_object_array_labels.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/remote_object_array_values.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/autocomplete/remote_string_array.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/button.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/common-deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/deprecated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/button/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/checkboxradio.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/checkboxradio/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/controlgroup/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/controlgroup/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/controlgroup/controlgroup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/controlgroup/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/controlgroup/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/controlgroup/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/core/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/core/core.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/core/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/core/selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/datepicker.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/images/calendar.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/datepicker/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/common-deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/deprecated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/dialog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/dialog/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/draggable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/draggable/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/common-deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/deprecated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/droppable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/droppable/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/effects/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/effects/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/effects/effects.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/effects/scale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/form-reset-mixin/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/form-reset-mixin/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/form-reset-mixin/form-reset-mixin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/menu/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/position/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/position/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/position/position.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/progressbar/progressbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/images/test.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/resizable/resizable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectable/selectable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/selectmenu/selectmenu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/slider/slider.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/sortable/sortable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/common-deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/deprecated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/spinner/spinner.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/subsuite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/data/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tabs/tabs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/common-deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/deprecated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/methods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/tooltip/tooltip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/widget/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/widget/animation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/widget/classes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/widget/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/widget/extend.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/unit/widget/widget.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/accordion/icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/addClass/queue.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/checkboxradio/checkboxradio.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/accordion_tabs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/datepicker_dialog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/dialog_widgets.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/draggable_accordion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/draggable_accordion_accordion_tabs_draggable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/draggable_resizable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/sortable_accordion_sortable_tabs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/tabs_selectmenu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/tabs_tabs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/compound/tabs_tooltips.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/dialog/animated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/dialog/complex-dialogs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/dialog/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/dialog/performance.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/dialog/stacking.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/draggable/replaced.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/clip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/effects.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/effects.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/scale.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/effects/shake.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/menu/menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/position/position.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/position/position_feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/selectmenu/selectmenu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/slider/range_slider.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/tooltip/animations.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/tooltip/tooltip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/tests/visual/visual.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/accordion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/all.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/autocomplete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/checkboxradio.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/controlgroup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/core.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/datepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/dialog.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/draggable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-icons_444444_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-icons_555555_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-icons_777620_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-icons_777777_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-icons_cc0000_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/images/ui-icons_ffffff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/menu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/progressbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/resizable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/selectable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/selectmenu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/slider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/sortable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/spinner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/tabs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/themes/base/tooltip.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/disable-selection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-blind.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-bounce.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-clip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-drop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-explode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-fade.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-fold.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-highlight.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-puff.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-pulsate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-scale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-shake.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-size.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-slide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/effects/effect-transfer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/escape-selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/focusable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/form-reset-mixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-af.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ar-DZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-be.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-bs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-cy-GB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-en-AU.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-en-GB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-en-NZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-eo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-fo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-fr-CA.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-fr-CH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-hi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-hy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-it-CH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-kk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ky.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-lb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-mk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ml.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-nl-BE.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-nn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-no.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-pt-BR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-rm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-sr-SR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-ta.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-tj.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-zh-CN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-zh-HK.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-zh-TW.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/ie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/jquery-1-7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/keycode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/labels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/position.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/safe-active-element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/safe-blur.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/scroll-parent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/tabbable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/unique-id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/version.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widget.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/accordion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/autocomplete.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/checkboxradio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/controlgroup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/datepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/dialog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/draggable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/droppable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/mouse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/progressbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/resizable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/selectable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/selectmenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/sortable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/spinner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/tabs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui/ui/widgets/tooltip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery.autocomplete.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyAnimate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyButtons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyCallbacks.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyCompat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyConfirm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyDesktop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyMobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyNonBlock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyReference.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pnotify/PNotifyStyleMaterial.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/promise-6.1.0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/elastic-mapping/product_zip_files.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/view/product-json.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Emails.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Emails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/authController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/userController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/helpers/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/helpers/helpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/LanguagePack.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/LanguagePack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Order.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/PayPal.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/PayPal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Products.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dotenv/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dotenv/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/appveyor.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dotenv/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/lib/cli-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dotenv/lib/cli-options.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/lib/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dotenv/lib/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dotenv/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/tests/test-cli-options.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/tests/test-config-cli.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/tests/test-config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dotenv/tests/test-parse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ReviewsReplies.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/ReviewsReplies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/equal.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/equal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/defaults.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/defaults.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/definitions.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/definitions.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/validate.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/validate.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limit.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitLength.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitLength.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitProperties.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitProperties.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/allOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/allOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/anyOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/anyOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/const.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/const.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/contains.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/contains.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/dependencies.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/dependencies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/enum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/format.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/format.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/if.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/if.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/items.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/items.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/multipleOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/multipleOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/not.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/not.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/oneOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/oneOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/pattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/pattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/properties.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/properties.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/propertyNames.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/propertyNames.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/ref.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/ref.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/required.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/required.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/uniqueItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/uniqueItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/keyword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/aws4/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/aws4/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/aws4/aws4.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/aws4/aws4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/aws4/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/aws4/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/combined-stream/lib/combined_stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/combined-stream/lib/combined_stream.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/combined-stream/lib/defer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/combined-stream/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/combined-stream/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/build/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/build/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/mime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/mime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/types.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/psl/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/data/rules.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/psl/data/rules.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/dist/psl.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/psl/dist/psl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/dist/psl.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/psl/dist/psl.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/psl/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/psl/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/request/node_modules/safe-buffer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/request/node_modules/safe-buffer/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/request/node_modules/safe-buffer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/request/node_modules/safe-buffer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/request/node_modules/safe-buffer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/request/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/request/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/request/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rimraf/bin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rimraf/bin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rimraf/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rimraf/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rimraf/rimraf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rimraf/rimraf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/lib/formats/pkcs8.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/lib/formats/pkcs8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/lib/formats/x509.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/lib/formats/x509.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/uuid/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/uuid/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uuid/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/uuid/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uuid/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/uuid/README_js.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/uuid/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uuid/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/SCSS/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/SCSS/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/SCSS/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/SCSS/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/elastic-mapping/templates copy.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/templates copy.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/elastic-mapping/templates.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/templates.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-main/Paper Dashboard PRO React-1572806168713.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-main/Paper Dashboard PRO React-1572806364394.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-main/Paper Dashboard React-1573763496766.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-main/Paper Dashboard React-1573763532165.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-main/undefined-1573763671392.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-main/undefined-1573763720806.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-origin/Paper Dashboard PRO React-1572806168713.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-origin/Paper Dashboard PRO React-1572806364394.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-origin/Paper Dashboard React-1573763496766.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-origin/Paper Dashboard React-1573763532165.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-origin/undefined-1573763671392.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-origin/undefined-1573763720806.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-thumb/Paper Dashboard PRO React-1572806168713.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-thumb/Paper Dashboard PRO React-1572806364394.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-thumb/Paper Dashboard React-1573763496766.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-thumb/Paper Dashboard React-1573763532165.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-thumb/undefined-1573763671392.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/project/img-thumb/undefined-1573763720806.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/main_cart.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/cart.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/orders.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/orders.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/product_images.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/product_images.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/products.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/reviewReplies.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/reviewReplies.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/reviews.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/reviews.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/templates copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/templates.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/templates.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/elastic-mapping/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/elastic-mapping/users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/cart.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/cart.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/contact-us.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/contact-us.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/edit-profile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/edit-profile.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/edit-templates.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/edit-templates.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/index.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/index.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/layouts/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/layouts/layout.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/cartJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/cartJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/contactUsJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/contactUsJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/editProfileChangePasswordJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/editProfileChangePasswordJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/editProfileJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/editProfileJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/editProfileNotificationsJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/editProfileNotificationsJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/layoutJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/layoutJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/productJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/productJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/profileJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/profileJs.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/view/partials/reviewsJs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/partials/reviewsJs.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/product.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/product.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/profile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/profile.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/view/search.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/resources/view/search.hbs" afterDir="false" />
@@ -136,53 +938,53 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="config" value="1" />
-          <entry key="css" value="5" />
-          <entry key="env" value="16" />
-          <entry key="hbs" value="202" />
-          <entry key="jpg" value="6" />
-          <entry key="js" value="245" />
-          <entry key="json" value="67" />
+          <entry key="css" value="7" />
+          <entry key="env" value="18" />
+          <entry key="hbs" value="263" />
+          <entry key="jpg" value="7" />
+          <entry key="js" value="313" />
+          <entry key="json" value="113" />
           <entry key="phtml" value="2" />
-          <entry key="png" value="42" />
-          <entry key="scss" value="28" />
+          <entry key="png" value="43" />
+          <entry key="scss" value="30" />
           <entry key="svg" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="5" />
-          <entry key="Handlebars/Mustache" value="201" />
-          <entry key="Image" value="48" />
-          <entry key="JSON" value="67" />
-          <entry key="JavaScript" value="245" />
+          <entry key="CSS" value="7" />
+          <entry key="Handlebars/Mustache" value="262" />
+          <entry key="Image" value="50" />
+          <entry key="JSON" value="113" />
+          <entry key="JavaScript" value="313" />
           <entry key="PHP" value="2" />
-          <entry key="PLAIN_TEXT" value="18" />
-          <entry key="SCSS" value="28" />
+          <entry key="PLAIN_TEXT" value="20" />
+          <entry key="SCSS" value="30" />
           <entry key="SVG" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="3" />
-          <entry key="env" value="35" />
-          <entry key="hbs" value="17165" />
-          <entry key="js" value="20456" />
-          <entry key="json" value="328" />
+          <entry key="env" value="219" />
+          <entry key="hbs" value="20854" />
+          <entry key="js" value="26029" />
+          <entry key="json" value="349" />
           <entry key="phtml" value="24" />
-          <entry key="scss" value="1183" />
+          <entry key="scss" value="1278" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="19" />
-          <entry key="Handlebars/Mustache" value="17150" />
-          <entry key="JSON" value="328" />
-          <entry key="JavaScript" value="20448" />
+          <entry key="HTML" value="22" />
+          <entry key="Handlebars/Mustache" value="20839" />
+          <entry key="JSON" value="349" />
+          <entry key="JavaScript" value="26018" />
           <entry key="PHP" value="24" />
-          <entry key="PLAIN_TEXT" value="44" />
-          <entry key="SCSS" value="1183" />
+          <entry key="PLAIN_TEXT" value="228" />
+          <entry key="SCSS" value="1278" />
         </counts>
       </usages-collector>
     </session>
@@ -190,96 +992,91 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/userController.js">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/orders.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="483" column="58" selection-start-line="483" selection-start-column="46" selection-end-line="483" selection-end-column="58" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="54">
+              <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/view/partials/profileJs.hbs">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+            <state relative-caret-position="649">
+              <caret line="74" lean-forward="true" selection-start-line="18" selection-end-line="74" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.js">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="364" column="31" selection-start-line="364" selection-start-column="18" selection-end-line="364" selection-end-column="31" />
+            <state relative-caret-position="649">
+              <caret line="54" column="1" lean-forward="true" selection-start-line="8" selection-end-line="54" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/view/profile.hbs">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/products.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-              <folding>
-                <element signature="n#style#0;n#h2#0;n#div#2;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="530">
+              <caret line="121" column="1" lean-forward="true" selection-start-line="10" selection-end-line="121" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/reviewReplies.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="632">
+              <caret line="54" column="1" lean-forward="true" selection-start-line="8" selection-end-line="54" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/reviews.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="649">
+              <caret line="55" lean-forward="true" selection-start-line="8" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/templates.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="632">
+              <caret line="106" column="1" lean-forward="true" selection-start-line="10" selection-end-line="106" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/users.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="479">
+              <caret line="127" column="31" lean-forward="true" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+            <state relative-caret-position="136">
+              <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/view/edit-profile.hbs">
+        <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_files.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/view/edit-templates.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="163" column="90" selection-start-line="163" selection-start-column="90" selection-end-line="163" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2566">
-              <caret line="241" column="14" selection-start-line="241" selection-start-column="14" selection-end-line="241" selection-end-column="14" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Products.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="486" column="100" selection-start-line="486" selection-start-column="100" selection-end-line="486" selection-end-column="100" />
+            <state relative-caret-position="649">
+              <caret line="57" column="1" lean-forward="true" selection-start-line="8" selection-end-line="57" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -295,37 +1092,52 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getProductsBySupplier</find>
-      <find>main_category</find>
-      <find>category`,`Please select categories</find>
-      <find>category`,`Plea</find>
-      <find>Please select type</find>
-      <find>updateProductDetails</find>
-      <find>category</find>
-      <find>template_name</find>
-      <find>appEditProfile</find>
-      <find>appEditProfile =</find>
-      <find>Please enter template</find>
       <find>repla</find>
-      <find>trimString</find>
-      <find>req.body.type</find>
-      <find>keyword:req.body.name +</find>
-      <find>keyword:req.body.name</find>
-      <find>keyword:</find>
-      <find>search</find>
-      <find>searchAction</find>
-      <find>searchProducts</find>
-      <find>order_status</find>
-      <find>Category</find>
-      <find>open-image-tab</find>
-      <find>them</find>
-      <find>searchAction</find>
-      <find>purchases</find>
-      <find>profile</find>
-      <find>order_obj</find>
-      <find>pur</find>
-      <find>tabs-title is-active</find>
+      <find>orders</find>
+      <find>paypal_checkout</find>
+      <find>'cart'</find>
+      <find>gw_users</find>
+      <find>'product_zip_files'</find>
+      <find>product_zip_files</find>
+      <find>'product_zip_file_access_users'</find>
+      <find>.get</find>
+      <find>modifyCartAction</find>
+      <find>cart</find>
+      <find>processCart</find>
+      <find>deleteCartItem</find>
+      <find>req.GW_CART</find>
+      <find>req.process.env.GW_CART</find>
+      <find>getLanguagePackByLanguageOrCode</find>
+      <find>index: req</find>
+      <find>index: req.env</find>
+      <find>'orders'</find>
+      <find>402</find>
+      <find>product_zip_file_access_users</find>
+      <find>'paypal_checkout'</find>
+      <find>'products'</find>
+      <find>'gw_product_images'</find>
+      <find>index: req</find>
+      <find>'review_replies'</find>
+      <find>process.env</find>
+      <find>gw_paypal_checkout</find>
+      <find>'users'</find>
+      <find>'reviews'</find>
     </findStrings>
+    <replaceStrings>
+      <replace>req.GW_PRODUCT_ZIP_FILES</replace>
+      <replace>req.GW_CART</replace>
+      <replace>req.process.env.GW_CART</replace>
+      <replace>req.env.GW_CART</replace>
+      <replace>product_zip_files</replace>
+      <replace>req.</replace>
+      <replace>req.env.</replace>
+      <replace>req.env.GW_PRODUCTS</replace>
+      <replace>req.env = process.env;</replace>
+      <replace>req.env.GW_REVIEW_REPLIES</replace>
+      <replace>/js/pnotify</replace>
+      <replace>req.env.GW_USERS</replace>
+      <replace>req.env.GW_REVIEWS</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -333,57 +1145,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/elastic-mapping/reviewReplies.json" />
-        <option value="$PROJECT_DIR$/app/Http/helpers/review_reply_email_template.js" />
-        <option value="$PROJECT_DIR$/resources/view/partials/reviewsJs.hbs" />
-        <option value="$PROJECT_DIR$/public/elastic-mapping/main_cart.json" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
-        <option value="$PROJECT_DIR$/app/LanguagePack.js" />
-        <option value="$PROJECT_DIR$/app/Http/helpers/activation_email_template.js" />
-        <option value="$PROJECT_DIR$/resources/view/contact-us.hbs" />
-        <option value="$PROJECT_DIR$/resources/view/partials/contactUsJs.hbs" />
-        <option value="$PROJECT_DIR$/public/js/currency.js" />
-        <option value="$PROJECT_DIR$/resources/view/product.hbs" />
         <option value="$PROJECT_DIR$/resources/view/partials/layoutJs.hbs" />
-        <option value="$PROJECT_DIR$/app/Emails.js" />
-        <option value="$PROJECT_DIR$/app/Http/helpers/contact_us_email_template.js" />
-        <option value="$PROJECT_DIR$/resources/view/partials/productJs.hbs" />
-        <option value="$PROJECT_DIR$/app/Search.js" />
-        <option value="$PROJECT_DIR$/resources/view/search.hbs" />
-        <option value="$PROJECT_DIR$/public/js/app.js" />
-        <option value="$PROJECT_DIR$/resources/view/partials/searchJs.hbs" />
-        <option value="/private/var/folders/79/vk1h5dkx37zcb5gn_5ns3j400000gn/T/fz3temp-2/employment-services.phtml" />
-        <option value="/private/var/folders/79/vk1h5dkx37zcb5gn_5ns3j400000gn/T/fz3temp-2/pension-services.phtml" />
-        <option value="$PROJECT_DIR$/resources/view/cart.hbs" />
-        <option value="$PROJECT_DIR$/resources/view/partials/cartJs.hbs" />
-        <option value="$PROJECT_DIR$/resources/view/checkout.hbs" />
-        <option value="$PROJECT_DIR$/app/Utility.js" />
-        <option value="$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json" />
-        <option value="$PROJECT_DIR$/resources/elastic-mapping/main_cart.json" />
-        <option value="$PROJECT_DIR$/resources/elastic-mapping/orders.json" />
-        <option value="$PROJECT_DIR$/app/PayPal.js" />
-        <option value="$PROJECT_DIR$/app/Users.js" />
-        <option value="$PROJECT_DIR$/app/ReviewsReplies.js" />
-        <option value="$PROJECT_DIR$/app/Reviews.js" />
-        <option value="$PROJECT_DIR$/app/Cart.js" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/app/Order.js" />
         <option value="$PROJECT_DIR$/resources/view/partials/editProfileJs.hbs" />
-        <option value="$PROJECT_DIR$/resources/view/layouts/layout.hbs" />
-        <option value="$PROJECT_DIR$/resources/view/partials/profileJs.hbs" />
-        <option value="$PROJECT_DIR$/public/SCSS/_variables.scss" />
-        <option value="$PROJECT_DIR$/public/SCSS/app.scss" />
-        <option value="$PROJECT_DIR$/resources/elastic-mapping/products.json" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/authController.js" />
+        <option value="$PROJECT_DIR$/resources/view/partials/editProfileChangePasswordJs.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/partials/editProfileNotificationsJs.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/search.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/partials/contactUsJs.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/contact-us.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/index.hbs" />
+        <option value="$PROJECT_DIR$/app/Emails.js" />
+        <option value="$PROJECT_DIR$/app/Http/helpers/order_email_template.js" />
         <option value="$PROJECT_DIR$/app/Http/helpers/helpers.js" />
-        <option value="$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs" />
-        <option value="$PROJECT_DIR$/app/Products.js" />
+        <option value="$PROJECT_DIR$/public/js/promise-6.1.0.js" />
+        <option value="$PROJECT_DIR$/resources/view/edit-profile.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/partials/cartJs.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/partials/reviewsJs.hbs" />
         <option value="$PROJECT_DIR$/resources/view/edit-templates.hbs" />
-        <option value="$PROJECT_DIR$/routes/web.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/userController.js" />
+        <option value="$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/authController.js" />
         <option value="$PROJECT_DIR$/resources/view/profile.hbs" />
-        <option value="$PROJECT_DIR$/resources/elastic-mapping/product_zip_file.json" />
+        <option value="$PROJECT_DIR$/resources/view/partials/profileJs.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/partials/productJs.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/product.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/cart.hbs" />
+        <option value="$PROJECT_DIR$/public/SCSS/app.scss" />
+        <option value="$PROJECT_DIR$/public/js/jquery-ui-1-12-1.js" />
+        <option value="$PROJECT_DIR$/resources/view/product-json.hbs" />
+        <option value="$PROJECT_DIR$/resources/view/layouts/layout.hbs" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/userController.js" />
+        <option value="$PROJECT_DIR$/public/js/autocomplete-custom.js" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/users.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/orders.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/product_images.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/product_zip_files.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/products.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/reviewReplies.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/reviews.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/templates.json" />
+        <option value="$PROJECT_DIR$/resources/elastic-mapping/cart.json" />
+        <option value="$PROJECT_DIR$/app/LanguagePack.js" />
+        <option value="$PROJECT_DIR$/routes/web.js" />
+        <option value="$PROJECT_DIR$/app/Cart.js" />
+        <option value="$PROJECT_DIR$/app/File.js" />
+        <option value="$PROJECT_DIR$/app/Order.js" />
+        <option value="$PROJECT_DIR$/app/PayPal.js" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/app/Products.js" />
+        <option value="$PROJECT_DIR$/app/Reviews.js" />
+        <option value="$PROJECT_DIR$/app/ReviewsReplies.js" />
+        <option value="$PROJECT_DIR$/app/Users.js" />
       </list>
     </option>
   </component>
@@ -402,11 +1214,12 @@
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/package.json" />
       <path value="$PROJECT_DIR$/public/js/cropit/package.json" />
+      <path value="$PROJECT_DIR$/public/js/jquery-ui/package.json" />
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
-    <option name="width" value="1440" />
+    <option name="width" value="523" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectView">
@@ -444,42 +1257,6 @@
             <path>
               <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
               <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="icon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="SCSS" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -487,26 +1264,6 @@
               <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="elastic-mapping" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gridwebsites-node" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gridwebsites-node" type="b2602c69:ProjectViewProjectNode" />
@@ -530,12 +1287,14 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/elastic-mapping" />
-      <recent name="$PROJECT_DIR$/public/img/icon" />
-      <recent name="$PROJECT_DIR$/resources/view/partials" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/public/img/logo" />
+      <recent name="$PROJECT_DIR$/public/css" />
+      <recent name="$PROJECT_DIR$/resources/view" />
+      <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$/public/css/pnotify" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$/resources/assets" />
       <recent name="$PROJECT_DIR$/public/img/project" />
     </key>
   </component>
@@ -632,17 +1391,39 @@
       <workItem from="1574714034193" duration="19720000" />
       <workItem from="1575723639334" duration="11489000" />
       <workItem from="1575792450233" duration="17479000" />
-      <workItem from="1576363294747" duration="27796000" />
+      <workItem from="1576363294747" duration="116119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="410560000" />
+    <option name="totallyTimeSpent" value="498883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23247497" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.35903615" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+    <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27682403" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
@@ -656,29 +1437,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.16626506" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31688127" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.15301205" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.35060242" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -694,334 +1453,346 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/img/logo/payment-methos.svg" />
-    <entry file="file://$PROJECT_DIR$/node_modules/paypal-rest-sdk/lib/client.js">
+    <entry file="file://$PROJECT_DIR$/resources/view/contact-us.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="129" column="22" selection-start-line="129" selection-start-column="22" selection-end-line="129" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///private/var/folders/79/vk1h5dkx37zcb5gn_5ns3j400000gn/T/fz3temp-2/employment-services.phtml" />
-    <entry file="file:///private/var/folders/79/vk1h5dkx37zcb5gn_5ns3j400000gn/T/fz3temp-2/pension-services.phtml" />
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/searchJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/currency.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="9" selection-start-line="2" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/helpers/review_reply_email_template.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/helpers/activation_email_template.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_images.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/checkout.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/cart.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="82" column="66" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Utility.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Reviews.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="116" column="14" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/LanguagePack.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Blogs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Emails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/PayPal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/orders.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/main_cart.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="21" selection-start-line="21" selection-end-line="82" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/layoutJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ReviewsReplies.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1043">
-          <caret line="99" column="18" lean-forward="true" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-101">
-          <caret line="190" column="17" lean-forward="true" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/product.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="468" column="37" lean-forward="true" selection-start-line="468" selection-start-column="37" selection-end-line="468" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/productJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2006">
-          <caret line="118" column="13" lean-forward="true" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1580">
-          <caret line="95" column="26" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/editProfileJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="83" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/cartJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/layouts/layout.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="716" column="12" lean-forward="true" selection-start-line="716" selection-start-column="12" selection-end-line="716" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Cart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="409" column="22" selection-start-line="409" selection-start-column="18" selection-end-line="409" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="56" column="32" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/SCSS/_mixins.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/SCSS/_variables.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="13" selection-start-line="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/img/icon/download-to-storage-drive.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/SCSS/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="815" column="15" selection-start-line="815" selection-start-column="15" selection-end-line="815" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/products.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/authController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="827" column="51" selection-start-line="827" selection-start-column="51" selection-end-line="827" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/helpers/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/editTemplatesJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2566">
-          <caret line="241" column="14" selection-start-line="241" selection-start-column="14" selection-end-line="241" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Products.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="486" column="100" selection-start-line="486" selection-start-column="100" selection-end-line="486" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/edit-profile.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/edit-templates.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="163" column="90" selection-start-line="163" selection-start-column="90" selection-end-line="163" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="364" column="31" selection-start-line="364" selection-start-column="18" selection-end-line="364" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/userController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="483" column="58" selection-start-line="483" selection-start-column="46" selection-end-line="483" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/view/partials/profileJs.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        <state relative-caret-position="389">
+          <caret line="37" column="43" lean-forward="true" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/view/profile.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="450">
+          <caret line="102" column="81" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/view/partials/profileJs.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="154" column="32" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/elasticsearch/src/lib/transport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="266" column="6" selection-start-line="266" selection-start-column="6" selection-end-line="266" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/view/partials/contactUsJs.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/view/partials/productJs.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="107" column="31" selection-start-line="107" selection-start-column="31" selection-end-line="107" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#h2#0;n#div#2;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_file.json">
+    <entry file="file://$PROJECT_DIR$/resources/view/product.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="216">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_file.json.json">
+    <entry file="file://$PROJECT_DIR$/resources/view/cart.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/view/partials/cartJs.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1587">
+          <caret line="96" column="20" selection-start-line="96" selection-start-column="20" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/SCSS/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="1488" column="22" selection-start-line="1488" selection-start-column="22" selection-end-line="1488" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery-ui.min.js">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery-ui.min-1-11-4.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery-ui-1-12-1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="6014" column="8" selection-start-line="6014" selection-start-column="8" selection-end-line="6014" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery.autocomplete.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery-ui/ui/i18n/datepicker-af.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/view/product-json.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/auto-complete-styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/view/layouts/layout.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="676" lean-forward="true" selection-start-line="676" selection-end-line="676" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/autocomplete-custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_images.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/templates copy.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/main_cart.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Blogs.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Emails.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/authController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="1249" column="22" selection-start-line="1249" selection-start-column="8" selection-end-line="1249" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/connect-flash/lib/flash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="153" column="26" selection-start-line="153" selection-start-column="26" selection-end-line="153" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Cart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="346" column="25" lean-forward="true" selection-start-line="346" selection-start-column="25" selection-end-line="346" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/LanguagePack.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="106" column="40" lean-forward="true" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1822">
+          <caret line="129" column="13" lean-forward="true" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/PayPal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="69" column="6" lean-forward="true" selection-start-line="69" selection-start-column="6" selection-end-line="69" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Products.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3304">
+          <caret line="588" column="38" selection-start-line="588" selection-start-column="38" selection-end-line="588" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ReviewsReplies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Search.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Utility.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3825">
+          <caret line="225" column="24" selection-start-line="225" selection-start-column="24" selection-end-line="225" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Reviews.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-845">
+          <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/File.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2183">
+          <caret line="148" column="19" lean-forward="true" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/cart.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="82" column="1" lean-forward="true" selection-start-line="21" selection-end-line="82" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/orders.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/paypal_checkout.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="74" lean-forward="true" selection-start-line="18" selection-end-line="74" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_file_access_users.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        <state relative-caret-position="649">
+          <caret line="54" column="1" lean-forward="true" selection-start-line="8" selection-end-line="54" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/product_zip_files.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="57" column="1" lean-forward="true" selection-start-line="8" selection-end-line="57" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/products.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="121" column="1" lean-forward="true" selection-start-line="10" selection-end-line="121" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/reviewReplies.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="54" column="1" lean-forward="true" selection-start-line="8" selection-end-line="54" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/reviews.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="55" lean-forward="true" selection-start-line="8" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/templates.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="106" column="1" lean-forward="true" selection-start-line="10" selection-end-line="106" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/elastic-mapping/users.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="127" column="31" lean-forward="true" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>

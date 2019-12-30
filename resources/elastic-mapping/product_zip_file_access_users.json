@@ -1,14 +1,12 @@
 #https://www.youtube.com/watch?v=p_cviIn1f_k
 
-GET /product_zip_file_access_users/_search?q=*
+GET /gw_product_zip_file_access_users/_search?q=*
 
-GET /product_zip_file_access_users
-GET /product_zip_file_access_users/_mapping
-
-
+GET /gw_product_zip_file_access_users
+GET /gw_product_zip_file_access_users/_mapping
 
 
-PUT /product_zip_file_access_users_access_users
+PUT /gw_product_zip_file_access_users
 {
     "settings": {
         "max_result_window": 1999999999,
@@ -38,15 +36,12 @@ PUT /product_zip_file_access_users_access_users
   "mappings": {
     "_doc": {
       "properties": {
-        "name":{
-          "type":"text",
-          "analyzer":"autocomplete"
-        },
-        "name_no_analyzer":{"type":"keyword"},
         "product_id":{"type":"keyword"},
         "user_id":{"type":"keyword"},
 
-        "sort":{"type":"integer"},
+        "file_id":{"type":"keyword"},
+
+        "order_id":{"type":"keyword"},
 
         "date_created":{"type": "date",
         "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},

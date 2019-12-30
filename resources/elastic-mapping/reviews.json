@@ -1,12 +1,12 @@
 
-GET /product_reviews/_search?q=*
+GET /gw_reviews/_search?q=*
 
-GET /product_reviews
-GET /product_reviews/_mapping
+GET /gw_reviews
+GET /gw_reviews/_mapping
 
 //review_status 5 => Removed
 
-PUT /reviews
+PUT /gw_reviews
 {
     "settings": {
         "max_result_window": 1999999999,

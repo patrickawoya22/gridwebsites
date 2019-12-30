@@ -61,25 +61,18 @@
                                                         <label for="title">Title *</label>
                                                         <select
                                                                 v-model="title"
+                                                                id="title"
                                                                 @keyup.enter="editProfile"
                                                                 value="{{req.session.body.title}}"
                                                                 name="title" required class="input-text">
-                                                            <optgroup label="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.please_select_your_title_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.please_select_your_title_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.please_select_your_title_field}}}{{/if}}">
-                                                                <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mr_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mr_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mr_field}}}{{/if}}</option>
-
-                                                                <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mrs_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.mrs_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.mrs_field}}}{{/if}}</option>
-
-                                                                <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.ms_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.ms_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.ms_field}}}{{/if}}</option>
-
-                                                                <option value="{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.miss_field}}}{{/if}}">{{#if req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}{{{req.session.LanguagePack.selected_pack.hits.hits.0._source.miss_field}}}{{else}}{{{req.session.LanguagePack.defualt_pack.hits.hits.0._source.miss_field}}}{{/if}}</option>
+                                                            <optgroup label="Please Select Your Title">
+                                                                <option value="Mr">Mr</option>
+                                                                <option value="Mrs">Mrs</option>
+                                                                <option value="Ms">Ms</option>
+                                                                <option value="Miss">Miss</option>
                                                             </optgroup>
                                                         </select>
                                                     </div>
-
-                                                    <!--<div class="small-6 cell">-->
-                                                        <!--<label for="language">Defualt language *</label>-->
-                                                        <!--<input type="text" id="language" name="language" value="">-->
-                                                    <!--</div>-->
 
                                                     <div class="small-6 cell">
                                                         <label for="username">Username *</label>

@@ -1,7 +1,7 @@
 #https://www.youtube.com/watch?v=p_cviIn1f_k
 
 
-PUT /users
+PUT /gw_users
 {
     "settings": {
         "max_result_window": 1999999999,

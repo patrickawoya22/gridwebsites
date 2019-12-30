@@ -1,5 +1,18 @@
 <script type="text/javascript">
 
+    $(document).ready(function() {
+        $('#title').select2({
+            maximumSelectionLength: 6,
+            scrollAfterSelect: false,
+            closeOnSelect: false,
+            theme: 'default custom-class',
+            // placeholder: 'please select item',
+        }).on('change', function () {
+            appEditProfileDetails.title = $('#title').val();
+            appEditProfileDetails.editProfile();
+        });
+    });
+
     var contactUs = new Vue({
         el: '#contact__us__wrapper',
         data: {

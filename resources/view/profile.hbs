@@ -37,7 +37,7 @@
                         <div class="medium-12 cell">
                             <div class="scroll-header">
                                 <ul class="tabs" data-tabs id="profile__taps" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="500">
-                                    <li class="tabs-title is-active"><a style="min-width:10rem" href="#projects"
+                                    <li class="tabs-title is-active"><a style="min-width:10rem" href="#projects" @click="backToProfile"
                                                                         aria-selected="true">{{total_order}} Purchases</a></li>
                                     {{#compare req.session.body.email '===' 'patrickawoya22@hotmail.co.uk'}}
                                     <li class="tabs-title"><a style="min-width:10rem" href="#templates">
@@ -68,72 +68,116 @@
                                     </div><!-- ./grid-x g-padding-x -->
                                     {{/if}}
 
-                                    {{#compare 1 '==' 0}}
-                                    <p class="text-center" style="padding: 5rem">No Purchases Yet</p>
-                                    {{/compare}}
+                                    {{#if order_obj}}
+                                        <div class="grid-x grid-margin-x item__list" v-if="showAll">
+                                            <div class="medium-12 cell">
 
-                                    {{#compare 1 '>' 0}}
-                                    <div class="grid-x grid-margin-x item__list" v-if="showAll">
-                                        <div class="medium-4 cell" v-for="(item, index) in purchasesItems">
-                                            <a :href="'#'+item.product_id+'/'+item.product_name" @click="loadProduct(index)">
-                                                <img :src="item.image1" :alt="item.product_name">
-                                                <h2 v-html="item.product_name"></h2>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="grid-x grid-margin-x item__list" v-else>
-                                        <div class="medium-12 cell">
-                                            <a href="#" @click="backToProfile"><< Back</a>
-                                        </div>
-                                        <div class="medium-6 cell">
-                                            <div class="purchase__image__wrapper">
-                                                <a href="#download">
-                                                    <img :src="selectProductObj.image1" :alt="selectProductObj.product_name"
-                                                         class="width-100">
-                                                    <div class="purchase___image_icon">
-                                                        <img src="img/icon/download-to-storage-drive.svg"
-                                                             width="70"
-                                                             alt="download">
-                                                    </div>
+                                                <div class="grid-x grid-padding-x">
+                                                    <div class="medium-4">
+                                                        <select name="select_order_status" id="select_order_status" class="form-control r-margin">
+                                                            <option value="0" selected="selected">Show all</option>
+                                                            <option value="1">Order has been received</option>
+                                                            <option value="2">Cancelled</option>
+                                                            <option value="3">Finalising</option>
+                                                            <option value="4">Designing in progress</option>
+                                                            <option value="5">Setting up docker hosting</option>
+                                                            <option value="6">Completed</option>
+                                                        </select>
+                                                    </div><!-- ./medium cell -->
+                                                </div><!-- ./grid-x grid-padding-x -->
+                                                <br>
+                                                <div>
+                                                    <span v-html="purchasesItems.length"></span> Item(s) found
+                                                </div>
+                                            </div>
+                                            <div class="medium-4 cell" v-for="(item, index) in purchasesItems">
+                                                <a :href="'#'+item.product_id+'/'+item.product_name.replace(/ /g, '+')"
+                                                   @click="loadProduct(index)">
+                                                    <img :src="item.image1" :alt="item.product_name">
+                                                    <h2 v-html="item.product_name"></h2>
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="medium-auto cell">
-                                            <h2 style="font-size: 1.4rem" v-html="selectProductObj.product_name"></h2>
-                                            <div>Order Code: <b v-html="selectProductObj.order_id"></b></div>
-                                            <div>Product ID: <b v-html="selectProductObj.product_id"></b></div>
-                                            <div>Transaction ID: <b v-html="selectProductObj.payment_id"></b></div>
-                                            <div>Category: <b v-html="selectProductObj.main_category"></b></div>
-                                            <div>
-                                                Quantity:
-                                                <b v-html="selectProductObj.quantity"></b>
+                                        <div class="grid-x grid-margin-x item__list" v-else>
+                                            <div class="medium-12 cell">
+                                                <a href="#" @click="backToProfile"><< Back</a>
                                             </div>
-                                            <div>
-                                                License price:
-                                                <b v-html="selectProductObj.offer_price"></b>
+                                            <div class="medium-6 cell">
+                                                <div class="purchase__image__wrapper">
+                                                        <img :src="selectProductObj.image1" :alt="selectProductObj.product_name"
+                                                             class="width-100">
+                                                    <a :href="'/file-download/'+selectProductObj.product_id+'/'+selectProductObj.order_id"
+                                                       target="_blank">
+                                                        <div class="purchase___image_icon">
+                                                            <img src="img/icon/download-to-storage-drive.svg"
+                                                                 width="70"
+                                                                 alt="download">
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div v-if="selectProductObj.designed>0">
-                                                Built price:
-                                                <b  v-html="selectProductObj.built_price"></b>
-                                            </div>
-                                            <div v-if="selectProductObj.hosted>0">
-                                                Hosting price:
-                                                <b v-html="selectProductObj.hosting_price"></b>
-                                            </div>
-                                            <div>
-                                                Order status:
-                                                <b
-                                                        :class="{'text-success': selectProductObj.order_status === 'Completed',
-                                                        'text-warning': selectProductObj.order_status !== 'Completed'}"
-                                                        v-html="selectProductObj.order_status"></b>
-                                            </div>
-                                            <a href="">Dowload.ZIP</a>
-                                            <div>
-                                                <a href="#" @click="backToProfile">Back</a>
+                                            <div class="medium-auto cell">
+                                                <h2 style="font-size: 1.4rem" v-html="selectProductObj.product_name"></h2>
+                                                <div>Order Code: <b v-html="selectProductObj.order_id"></b></div>
+                                                <div>Product ID: <b v-html="selectProductObj.product_id"></b></div>
+                                                <div>Transaction ID: <b v-html="selectProductObj.payment_id"></b></div>
+                                                <div>Category: <b v-html="selectProductObj.main_category"></b></div>
+                                                <div>
+                                                    Quantity:
+                                                    <b v-html="selectProductObj.quantity"></b>
+                                                </div>
+                                                <div>
+                                                    License price:
+                                                    <b v-html="selectProductObj.offer_price"></b>
+                                                </div>
+                                                <div v-if="selectProductObj.designed>0">
+                                                    Built price:
+                                                    <b  v-html="selectProductObj.built_price"></b>
+                                                </div>
+                                                <div v-if="selectProductObj.hosted>0">
+                                                    Hosting price:
+                                                    <b v-html="selectProductObj.hosting_price"></b>
+                                                </div>
+                                                <div>
+                                                    Total price:
+                                                    <b v-html="getTotalPrice(selectProductObj.offer_price.toString().replace('$',''), selectProductObj.built_price.replace('$',''),selectProductObj.hosting_price.replace('$',''))"></b>
+                                                </div>
+                                                <div>
+                                                    Order status:
+                                                    <b
+                                                            :class="{'text-success': selectProductObj.order_status === 'Completed',
+                                                            'text-danger': selectProductObj.order_status === 'Cancelled',
+                                                            'text-warning': selectProductObj.order_status !== 'Completed' && selectProductObj.order_status !== 'Cancelled'}"
+                                                            v-html="selectProductObj.order_status"></b>
+                                                </div>
+                                        {{#compare req.session.body.email '===' 'patrickawoya22@hotmail.co.uk'}}
+                                                <div>
+                                                    Change order status:
+                                                    <select name="change_order_status" id="change_order_status"
+                                                            v-model="selectProductObj.order_status_key"
+                                                            @change="changeOrderStatus($event,selectProductObj.order_id,selectProductObj.product_id)">
+                                                        <optgroup label="Please select order status">
+                                                            <option value="" selected="selected">Select order status</option>
+                                                            <option value="1">Order has been received</option>
+                                                            <option value="2">Cancelled</option>
+                                                            <option value="3">Finalising</option>
+                                                            <option value="4">Designing in progress</option>
+                                                            <option value="5">Setting up docker hosting</option>
+                                                            <option value="6">Completed</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                        {{/compare}}
+                                                <a :href="'/file-download/'+selectProductObj.product_id+'/'+selectProductObj.order_id"
+                                                   target="_blank">Dowload.ZIP</a>
+                                                <!--<div>-->
+                                                    <!--<a href="#" @click="backToProfile">Back</a>-->
+                                                <!--</div>-->
                                             </div>
                                         </div>
-                                    </div>
-                                    {{/compare}}
+                                    {{else}}
+                                        <p class="text-center" style="padding: 5rem">No Purchases Yet</p>
+                                    {{/if}}
                                 </div><!--./projects-->
 
                                 {{#compare req.session.body.email '===' 'patrickawoya22@hotmail.co.uk'}}

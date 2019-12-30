@@ -107,39 +107,39 @@ module.exports.getLanguagePackByLanguage = (client,language) => {
             console.trace(error.message)
         }).catch(err => console.error(err))
     })
-}
+};
 
-module.exports.getLanguagePackByLanguageOrCode = (client,language) => {
-
-    return new Promise((resolve,reject)=>{
-        client.search({
-            index: 'language_pack',
-            type: '_doc',
-            body:{
-                from: 0,
-                size: 1,
-                query:{
-                    bool:{
-                        must:{
-
-                                multi_match:{
-                                    query:language,
-                                    type:'phrase',
-                                    analyzer:'standard',
-                                    fields:['language_code_field','language_field'],
-                                },
-
-                        }
-                    }
-                }
-            }
-        }).then((body)=>{
-            resolve(body)
-        }, (error)=>{
-            console.trace(error.message)
-        }).catch(err => console.error(err))
-    })
-}
+// module.exports.getLanguagePackByLanguageOrCode = (client,language) => {
+//
+//     return new Promise((resolve,reject)=>{
+//         client.search({
+//             index: 'language_pack',
+//             type: '_doc',
+//             body:{
+//                 from: 0,
+//                 size: 1,
+//                 query:{
+//                     bool:{
+//                         must:{
+//
+//                                 multi_match:{
+//                                     query:language,
+//                                     type:'phrase',
+//                                     analyzer:'standard',
+//                                     fields:['language_code_field','language_field'],
+//                                 },
+//
+//                         }
+//                     }
+//                 }
+//             }
+//         }).then((body)=>{
+//             resolve(body)
+//         }, (error)=>{
+//             console.trace(error.message)
+//         }).catch(err => console.error(err))
+//     })
+// };
 
 module.exports.getLanguagePackById = (client,id) => {
     return new Promise((resolve,reject)=>{

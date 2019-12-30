@@ -23,7 +23,7 @@
                         date: 'Posted on {{formatDate _source.date_created "short"}}',
                         ratings: '{{{_source.rating_stars}}}<span class="small">({{_source.rating}})</span>',
                         review: `{{_source.review}}`,
-                        is_User_cont: '{{#if _source.is_user}}<input onclick="reviews.removeReview(\'{{_id}}\')" type="button" ' +
+                        is_User_cont: '{{#if _source.is_user}}<input onclick="reviews.confirmRemoveReview(\'{{_id}}\')" type="button" ' +
                                 'value="Remove review">{{/if}}',
                     },
                     comment_replays_obj:[
@@ -34,7 +34,7 @@
                             date: 'Posted on {{formatDate _source.date_created "short"}}',
                             review: `{{_source.review}}`,
                             profile_img: '<img src="/img/profile/thumb/{{_source.profile_img}}" width="100">',
-                            is_User_cont: '{{#if _source.is_user}}<input onclick="reviews.removeReviewReply(\'{{_id}}\')" type="button" ' +
+                            is_User_cont: '{{#if _source.is_user}}<input onclick="reviews.confirmRemoveReviewReply(\'{{_id}}\')" type="button" ' +
                                     'value="Remove ' +
                                     'Reply">{{/if}}',
                         },
@@ -52,7 +52,87 @@
             showError:false,
             showSuccessMsg:false,
         },methods: {
+            confirmRemoveReviewReply: function(review_reply_id){
+                $( "#review-reply-dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                    buttons: {
+                        Cancel: function() {
+                            $( this ).dialog( "close" );
+                        },
+                        "Confirm": function() {
+                            reviews.removeReviewReply(review_reply_id).then(function () {
 
+                                PNotify.success({
+                                    title: 'Review removed',
+                                    text: 'Your review reply has been removed successfully.',
+                                    shadow: false,
+                                    hide: true,
+                                    modules: {
+                                        Buttons: {
+                                            closer: true,
+                                            sticker: false
+                                        },
+                                        Mobile: {
+                                            swipeDismiss: true
+                                        }
+                                    },
+                                });
+
+                            }).catch(function(err){
+                                console.log(err);
+                            });
+
+                            $( this ).dialog( "close" );
+
+                        }
+                    }
+                });
+
+            },
+            confirmRemoveReview: function(review_id){
+
+                $( "#review-dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                    buttons: {
+                        Cancel: function() {
+                            $( this ).dialog( "close" );
+                        },
+                        "Confirm": function() {
+                            reviews.removeReview(review_id).then(function () {
+
+                                PNotify.success({
+                                    title: 'Review removed',
+                                    text: 'Your review has been removed successfully.',
+                                    shadow: false,
+                                    hide: true,
+                                    modules: {
+                                        Buttons: {
+                                            closer: true,
+                                            sticker: false
+                                        },
+                                        Mobile: {
+                                            swipeDismiss: true
+                                        }
+                                    },
+                                });
+
+                            }).catch(function(err){
+                                console.log(err);
+                            });
+
+                            $( this ).dialog( "close" );
+
+                        }
+                    }
+                });
+
+            },
             removeReview:function(review_id){
 
                 var temp_arr = [];
@@ -67,20 +147,24 @@
 
                 this.total_reviews = temp_arr.length;
 
-                axios.post('{{req.customBaseURI}}remove-review',
-                        {
-                            review_id:review_id,
-                        },
-                        { headers: {
-                                'Content-Type': 'application/json',
-                            }
-                        }).then(response => {
+                return new Promise(function (resolve, reject) {
 
-                            console.log(response.data);
+                    axios.post('{{req.customBaseURI}}remove-review',
+                            {
+                                review_id:review_id,
+                            },
+                            { headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            }).then(function (response){
 
-                },function(err){
-                    console.log(err);
-                    alert(err);
+                                resolve(response);
+
+                    },function(err){
+                        alert(err);
+                        reject(err);
+                    });
+
                 });
 
             },
@@ -108,24 +192,31 @@
 
                 this.comments_obj[review_index].comment_replays_obj = temp_arr;
 
-                axios.post('{{req.customBaseURI}}remove-review-reply',
-                        {
-                            review_reply_id:review_reply_id,
-                        },
-                        { headers: {
-                                'Content-Type': 'application/json',
-                            }
-                        }).then(response => {
 
+                return new Promise(function(resolve, reject) {
 
-                },function(err){
-                    console.log(err);
-                    alert(err);
+                    axios.post('{{req.customBaseURI}}remove-review-reply',
+                            {
+                                review_reply_id:review_reply_id,
+                            },
+                            { headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            }).then(function (response) {
+
+                                resolve(response);
+
+                    },function(err){
+                        alert(err);
+                        reject(err);
+                    });
+
                 });
 
             },
             addReviewReply:function(index,e){
 
+                console.log(this.comments_obj);
                 this.comments_obj[index].main_comment_cont.isActive = 'active-btn';
                 this.comments_obj[index].main_comment_cont.formError = '';
 
@@ -141,36 +232,37 @@
                         { headers: {
                                 'Content-Type': 'application/json',
                             }
-                        }).then(response => {
-                    this.comments_obj[index].main_comment_cont.isActive = '';
+                        }).then(function(response){
+                    reviews.comments_obj[index].main_comment_cont.isActive = '';
 
                     if (response.data.error) {
-                        this.comments_obj[index].main_comment_cont.showSuccessMsg=false;
-                        this.comments_obj[index].main_comment_cont.formSuccess='';
-                        this.comments_obj[index].main_comment_cont.formError = '<div class="callout warning" ' +
+                        reviews.comments_obj[index].main_comment_cont.showSuccessMsg=false;
+                        reviews.comments_obj[index].main_comment_cont.formSuccess='';
+                        reviews.comments_obj[index].main_comment_cont.formError = '<div class="callout warning" ' +
                                 'style="border-radius: .3rem; margin-top: 1rem"><ul>'
-                        response.data.error[0] ? this.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[0].msg+'</li>':'';
-                        response.data.error[1] ? this.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[1].msg+'</li>':'';
-                        response.data.error[2] ? this.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[2].msg+'</li>':'';
-                        this.comments_obj[index].main_comment_cont.formError += '</ul></div>';
-                        this.comments_obj[index].main_comment_cont.showError = true;
+                        response.data.error[0] ? reviews.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? reviews.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? reviews.comments_obj[index].main_comment_cont.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                        reviews.comments_obj[index].main_comment_cont.formError += '</ul></div>';
+                        reviews.comments_obj[index].main_comment_cont.showError = true;
 
                     }else{
-                        this.comments_obj[index].main_comment_cont.formSuccess='<div class="callout success" style="border-radius: .3rem; margin-top: 1rem">Your reply has ' +
+                        reviews.comments_obj[index].main_comment_cont.formSuccess='<div class="callout success" style="border-radius: .3rem; margin-top: 1rem">Your reply has ' +
                                 'been added successfully' +
                                 '.</div>';
-                        this.comments_obj[index].comment_replays_obj.unshift({
+                        reviews.comments_obj[index].comment_replays_obj.unshift({
                             name: ''+response.data.reviewer_name+'',
                             review_replies_id: ''+response.data.review_replies_id+'',
                             date: 'Posted on '+response.data.date_created+'',
                             profile_img: '<img src="/img/profile/thumb/'+response.data.profile_img+'" width="100">',
                             review: `${response.data.review}`,
-                            is_User_cont: '<input onclick="reviews.removeReviewReply(\''+response.data.review_replies_id+'\')" ' +
+                            is_User_cont: '<input onclick="reviews.confirmRemoveReviewReply(\''+response.data
+                                            .review_replies_id+'\')" ' +
                                             'type="button"value="Remove Reply">',
                         });
-                        this.comments_obj[index].main_comment_cont.review_comment = false;
-                        this.comments_obj[index].main_comment_cont.showSuccessMsg=true;
-                        this.comments_obj[index].main_comment_cont.showError = false;
+                        reviews.comments_obj[index].main_comment_cont.review_comment = false;
+                        reviews.comments_obj[index].main_comment_cont.showSuccessMsg=true;
+                        reviews.comments_obj[index].main_comment_cont.showError = false;
                     }
 
                 },function(err){
@@ -196,36 +288,35 @@
                         { headers: {
                                 'Content-Type': 'application/json',
                             }
-                        }).then(response => {
+                        }).then(function(response) {
 
-                    this.isActive = '';
+                    reviews.isActive = '';
 
                     if (response.data.error) {
-                        this.showSuccessMsg=false;
-                        this.formSuccess='';
-                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
-                        response.data.error[0] ? this.formError += '<li style="text-align: left !important;">'+response.data.error[0].msg+'</li>':'';
-                        response.data.error[1] ? this.formError += '<li style="text-align: left !important;">'+response.data.error[1].msg+'</li>':'';
-                        response.data.error[2] ? this.formError += '<li style="text-align: left !important;' +
+                        reviews.showSuccessMsg=false;
+                        reviews.formSuccess='';
+                        reviews.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        response.data.error[0] ? reviews.formError += '<li style="text-align: left !important;">'+response.data.error[0].msg+'</li>':'';
+                        response.data.error[1] ? reviews.formError += '<li style="text-align: left !important;">'+response.data.error[1].msg+'</li>':'';
+                        response.data.error[2] ? reviews.formError += '<li style="text-align: left !important;' +
                                 '">'+response.data.error[2].msg+'</li>':'';
-                        response.data.error[3] ? this.formError += '<li style="text-align: left !important;' +
+                        response.data.error[3] ? reviews.formError += '<li style="text-align: left !important;' +
                                 '">'+response.data.error[3].msg+'</li>':'';
 
-
-                        this.formError += '</ul></div>';
-                        this.showError = true;
+                        reviews.formError += '</ul></div>';
+                        reviews.showError = true;
 
                     }else{
 
                         $('[name=rate_input]').val('');
-                        this.total_reviews = parseInt(this.total_reviews) + 1;
-                        this.comment='';
-                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your ' +
+                        reviews.total_reviews = parseInt(this.total_reviews) + 1;
+                        reviews.comment='';
+                        reviews.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your ' +
                                 'review has been sent successfully and will be reviewed by our team shortly.</div>';
-                        this.showSuccessMsg=true;
-                        this.showError = false;
+                        reviews.showSuccessMsg=true;
+                        reviews.showError = false;
 
-                        this.comments_obj.unshift({
+                        reviews.comments_obj.unshift({
                             main_comment_cont:{
                                 name: ''+response.data.reviewer_name+'',
                                 review_id: ''+response.data.review_id+'',
@@ -240,7 +331,7 @@
                                 date: 'Posted on '+response.data.date_created+'',
                                 ratings: ''+response.data.rating_stars+'<span class="small">('+response.data.ratings+')</span>',
                                 review: `${response.data.review}`,
-                                is_User_cont: '<input onclick="reviews.removeReview(\''+response.data.review_id+'\')" type="button"value="Remove review">',
+                                is_User_cont: '<input onclick="reviews.confirmRemoveReview(\''+response.data.review_id+'\')" type="button"value="Remove review">',
                             },
                             comment_replays_obj:[]
                         });

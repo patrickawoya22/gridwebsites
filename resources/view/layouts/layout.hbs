@@ -4,6 +4,14 @@
         <meta charset="utf-8">
         <meta name="_globalsign-domain-verification" content="ZTZsGoD8llasO8v1oLnWgoKiJOG1lzdTwLcRU-65-t" />
 
+        {{#if ogUrl}}
+        <meta property="og:url"           content="{{ogUrl}}" />
+        <meta property="og:type"          content="{{ogType}}" />
+        <meta property="og:title"         content="{{ogTitle}}" />
+        <meta property="og:description"   content="{{ogDescription}}" />
+        <meta property="og:image"         content="{{ogImage}}" />
+        {{/if}}
+
         <title>{{#if showTitle}}{{title}} - {{/if}}Grid Websites</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +20,8 @@
         <link href="//use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css">
         <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css">
         <link href="/css/select2.min.css" media="screen" rel="stylesheet" type="text/css">
+        <link href="/css/pnotify/PNotifyBrightTheme.css" media="screen" rel="stylesheet" type="text/css">
+        <link href="/css/auto-complete-styles.css" media="screen" rel="stylesheet" type="text/css">
         <link href="/css/app.css" media="screen" rel="stylesheet" type="text/css">
         {{{exportStyles}}}
         <link href="/img/logo/icon.png" rel="shortcut icon" type="img/logo/icon.png">
@@ -155,8 +165,9 @@
                         <li class="search-bar-wrapper hide-for-small-only">
                             <form method="get" action="{{searchAction}}" id="search">
                                 <input type="search" name="q" autocomplete="off" value="{{req.query.q}}"
-                                       placeholder="Search" /><span class="text-center align-center-middle" onclick="$
-                                       ('#search').submit()">
+                                       id="autocomplete"
+                                       placeholder="Search" /><span class="text-center align-center-middle"
+                                                                    onclick="$('#search').submit()">
                                     <!-- <img src="/img/icon/search-icon.svg"  width="20" alt="search-icon"> -->
                                     <i class="fas fa-search"></i>
                                     <input type="submit" value="submit" class="hidden">
@@ -193,9 +204,9 @@
                             <ul class="left__nav align-center-middle">
                                 {{#if req.session.isLoggedin}}
 
-                                    <li>Hello, {{req.session.body.first_name}}</li>
-                                    <li><a href="/profile">My Account</a></li>
-                                    <li><a href="/logout" >Sign Out</a></li>
+                                    <li class="hide-for-small-only">Hello, <a href="/profile">{{req.session.body.first_name}}</a></li>
+                                    <li class="hide-for-medium-down"><a href="/profile">My Account</a></li>
+                                    <li class="hide-for-medium-down"><a href="/logout" >Sign Out</a></li>
 
                                     <li class="small-auto hide-for-medium-down"></li>
 
@@ -237,7 +248,9 @@
 
 
 
-                                <li class="show-for-small-only" data-toggle="offCanvas"><img src="/img/icon/menu-bars.svg" width="22"
+                                <li class="hide-for-large" data-toggle="offCanvas"><img
+                                        src="/img/icon/menu-bars.svg"
+                                                                                    width="22"
                                             alt="menu bar icon"></li>
                             </ul>
                         </li>
@@ -256,63 +269,34 @@
 
 
         <ul class="vertical menu accordion-menu" data-accordion-menu>
-                    <li><a href="/" title="home"><i class="fas fa-home"></i> Home</a></li>
+
+{{#if req.session.isLoggedin}}
+    <li><a href="/profile">Hello, <span class="text-primary">{{req.session.body.first_name}}</span></a></li>
+
+{{/if}}
+
+
+            <li><a href="/" title="home"><i class="fas fa-home"></i> Home</a></li>
                     <li>
                         <a href="/theme" title=""><i class="fas fa-laptop-code"></i> Templates</a>
                         <ul class="menu vertical nested">
-                            <li><a href="/themes/foundation" title="Foundation 6 Grid XY">Foundation 6 Grid XY</a></li>
-                            <li><a href="/themes/bootstrap" title="Bootstrap 4">Bootstrap 4</a></li>
-                            <!-- <li><a href="#">Shopify</a></li>
-                            <li><a href="#">Magento</a></li> -->
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/members" title="Members - Developers"><i class="fas fa-award"></i> Members</a>
-                        <ul class="menu vertical nested">
-                            <li>
-                                <a href="/members/php" title="PHP">PHP</a>
-                                <ul class="menu vertical nested">
-                                    <li><a href="/members/php/zend-framework" title="Zend Framework 3">Zend Framework 3</a></li>
-                                    <li ><a href="/members/php/laravel" title="Laravel 5.6*">Laravel 5.6*</a></li>
-                                    <li><a href="/members/php/symfony" title="Symfony 4*">Symfony 4*</a></li>
-                                    <li><a href="/members/php/wordpress" title="WordPress">WordPress</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <!-- <a href="#">Java</a> -->
-                                <ul class="menu vertical nested">
-                                    <li><a href="#" title="Java 10">Java 10</a></li>
-                                    <li><a href="#" title="Java 9">Java 9</a></li>
-                                    <li><a href="#" title="Java 8">Java 8</a></li>
-                                    <li><a href="#" title="Spring Framework">Spring Framework</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/members/javascript" title="javascript">JavaScript</a></li>
-                            <li><a href="/members/css" title="css">CSS</a></li>
+                            <li><a href="/search?q=foundation 6" title="Foundation 6">Foundation 6</a></li>
+                            <li><a href="/search?q=bootstrap 4" title="Bootstrap 4">Bootstrap 4</a></li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="/creatives" title="Creatives"><i class="fab fa-creative-commons-remix"></i> Creative</a>
-                        <ul class="menu vertical nested">
-                            <li><a href="/creatives/birth-day-cards" title="Birth Day Cards">Birth Day Cards</a></li>
-                            <li><a href="/creatives/business-cards" title="Business Cards">Business Cards</a></li>
-                            <li><a href="/creatives/sports" title="Sports">Sports</a></li>
-                            <li><a href="/creatives/photos" title="Photos">Photos</a></li>
-                        </ul>
-                    </li>
                     <li><a href="#"><i class="fab fa-buysellads"></i> API Intergration</a></li>
-                    <li><a href="/about-us" title="About Us"><i class="fab fa-docker"></i> About Us</a></li>
-                    <li><a href="/blogs" title="Blog"><i class="fab fa-blogger-b"></i> Blog</a></li>
-                    <li><a href="/chat-room" title="Chat Room"><i class="fab fa-blogger-b"></i> Chat Room</a></li>
+                    <li><a href="/about-us" title="About Us"><i class="fab fa-adn"></i> About Us</a></li>
+
                     <li><a href="/contact-us" title="Contact Us"><i class="fas fa-phone"></i> Contact Us</a></li>
-                    <li data-open="join_reveal"><a href="#" title="Join"><i class="fas fa-link"></i> Join</a></li>
-                    <li data-open="login_reveal"><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-
+                {{#if req.session.isLoggedin}}
+                    <li data-open="login_reveal"data-toggle="offCanvas"><a href="/logout" title="Logout"><i
+                            class="fas fa-sign-in-alt logout-icon"></i> Logout</a></li>
+                {{else}}
+                    <li data-open="join_reveal" data-toggle="offCanvas"><a href="#" title="Join"><i class="fas fa-link"></i> Join</a></li>
+                    <li data-open="login_reveal"data-toggle="offCanvas"><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                {{/if}}
                 </ul>
-
-
-
 
 
             </div>
@@ -321,19 +305,31 @@
                     <img data-toggle="offCanvas" src="/img/icon/cancel.svg" width="20" alt="cancel icon">
                 </div>
 
-                <div class="text-center">
-                    <span class="r__menu_cont align-center-middle"><img src="/img/icon/user.svg"
-                                            alt="user
+                {{#if req.session.isLoggedin}}
+                    <div class="text-center">
+                        <a href="/profile">
+                        <span class="r__menu_cont align-center-middle"><img src="/img/icon/user.svg"
+                                                                            alt="user
                     avatar main picture" width="20"></span>
-                </div><!-- ./Profile pic -->
+                        </a>
+                    </div><!-- ./Profile pic -->
+                {{else}}
+                    <div class="text-center">
+                        <a data-open="login_reveal"data-toggle="offCanvas">
+                        <span class="r__menu_cont align-center-middle"><img src="/img/icon/user.svg"
+                                                                            alt="user
+                    avatar main picture" width="20"></span>
+                        </a>
+                    </div><!-- ./Profile pic -->
+                {{/if}}
 
-                <div class="text-center">
-                    <span class="r__menu_cont align-center-middle"><img src="/img/icon/login-button.svg" alt="login picture" width="20"></span>
-                </div>
+                <!--<div class="text-center">-->
+                    <!--<span class="r__menu_cont align-center-middle"><img src="/img/icon/login-button.svg" alt="login picture" width="20"></span>-->
+                <!--</div>-->
 
-                <div class="text-center">
-                    <span class="r__menu_cont align-center-middle"><img src="/img/icon/link-symbol.svg" alt="Join" width="20"></span>
-                </div>
+                <!--<div class="text-center">-->
+                    <!--<span class="r__menu_cont align-center-middle"><img src="/img/icon/link-symbol.svg" alt="Join" width="20"></span>-->
+                <!--</div>-->
 
             </div>
         </div>
@@ -632,6 +628,7 @@
 
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="/js/promise-6.1.0.js"></script>
         <script type="text/javascript" src="/js/foundation.min.js"></script>
         <script type="text/javascript" src="/js/foundation.unit/vendor.js"></script>
         <script type="text/javascript" src="/js/foundation.unit/foundation.core.js"></script>
@@ -657,14 +654,51 @@
         <script type="text/javascript" src="/js/foundation.unit/foundation.sticky.js"></script>
         <script type="text/javascript" src="/js/jquery.cookiebar.js"></script>
         <script type="text/javascript" src="/js/select2.min.js"></script>
+
+        <script type="text/javascript" src="/js/pnotify/PNotify.js"></script>
+        <script src="/js/pnotify/PNotifyButtons.js"></script>
+        <script src="/js/pnotify/PNotifyAnimate.js"></script>
+        <script src="/js/pnotify/PNotifyCallbacks.js"></script>
+        <script src="/js/pnotify/PNotifyNonBlock.js"></script>
+        <script src="/js/pnotify/PNotifyMobile.js"></script>
+        <script src="/js/pnotify/PNotifyHistory.js"></script>
+        <script src="/js/pnotify/PNotifyDesktop.js"></script>
+        <script src="/js/pnotify/PNotifyConfirm.js"></script>
+        <script src="/js/pnotify/PNotifyStyleMaterial.js"></script>
+        <script src="/js/pnotify/PNotifyReference.js"></script>
+    
         <script type="text/javascript" src="/js/app.js"></script>
     <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
     <script src="//unpkg.com/axios/dist/axios.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     {{{exportScripts}}}
+
     <script type="text/javascript" src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- <script type="text/javascript" src="js/jquery.autocomplete.js"></script> -->
-        <!-- <script type="text/javascript" src="js/autocomplete-demo.js"></script> -->
+
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/core.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/widget.js"></script>-->
+
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/focusable.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/data.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/disable-selection.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/focusable.js"></script>-->
+
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/form.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/ie.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/keycode.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/jquery-1-7.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/safe-active-element.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/safe-blur.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/scroll-parent.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/tabbable.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/unique-id.js"></script>-->
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/version.js"></script>-->
+
+    <!--<script type="text/javascript" src="/js/jquery-ui/ui/widgets/dialog.js"></script>-->
+
+    <script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="/js/autocomplete-custom.js"></script>
+
 
     <script>
         var headerCont = new Vue({
@@ -676,6 +710,9 @@
             },methods: {
 
             }
+        });
+        $(document).ready(function() {
+            {{{inlineScripts}}}
         });
     </script>
 

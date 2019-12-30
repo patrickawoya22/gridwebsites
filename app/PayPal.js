@@ -15,7 +15,7 @@ module.exports.addPayPalCheckoutInformation = async (req, paymentObj) => {
     };
 
     return await req.client.index({
-        index: 'paypal_checkout',
+        index: req.env.GW_PAYPAL_CHECKOUT,
         type: '_doc',
         body: data
     });
@@ -24,7 +24,7 @@ module.exports.addPayPalCheckoutInformation = async (req, paymentObj) => {
 module.exports.getPayPalCheckoutInformationById = async (req, id) => {
 
     return await req.client.search({
-        index: 'paypal_checkout',
+        index: req.env.GW_PAYPAL_CHECKOUT,
         q: `_id:"${id}"`
     });
 };
@@ -51,7 +51,7 @@ module.exports.updatePayPalCheckoutInformation = async (req, _id, paymentObj) =>
     };
 
     return await req.client.update({
-        index: 'paypal_checkout',
+        index: req.env.GW_PAYPAL_CHECKOUT,
         type: '_doc',
         id: _id,
         body: {
@@ -70,7 +70,7 @@ module.exports.updatePayPalCheckoutStatusAndOrderId = async (req, _id, payment_s
     };
 
     return await req.client.update({
-        index: 'paypal_checkout',
+        index: req.env.GW_PAYPAL_CHECKOUT,
         type: '_doc',
         id: _id,
         body: {

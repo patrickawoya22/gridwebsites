@@ -2,7 +2,7 @@ const users = require('./Users');
 
 module.exports.addReviewReply = async (req) => {
     return await req.client.index({
-        index: 'review_replies',
+        index: req.env.GW_REVIEW_REPLIES,
         type: '_doc',
         body: {
             product_id:req.product_obj.hits.hits[0]._id,
@@ -22,7 +22,7 @@ module.exports.addReviewReply = async (req) => {
 module.exports.getAllReviewRepliesEx2 = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'review_replies',
+            index: req.env.GW_REVIEW_REPLIES,
             type: '_doc',
             body:{
                 query:{
@@ -69,7 +69,7 @@ module.exports.getAllReviewRepliesEx2 = (req) => {
 
 module.exports.deleteReview = async (req) => {
     return await req.client.delete({
-        index: 'review_replies',
+        index: req.env.GW_REVIEW_REPLIES,
         type: '_doc',
         id: req.body.review_reply_id
     });
@@ -78,7 +78,7 @@ module.exports.deleteReview = async (req) => {
 module.exports.getReviewReplyById = (req) => {
     return new Promise((resolve, reject)=>{
         req.client.search({
-            index: 'review_replies',
+            index: req.env.GW_REVIEW_REPLIES,
             q: `_id: "${req.body.review_reply_id}"`
         }).then((res)=>{
 
@@ -95,7 +95,7 @@ module.exports.getReviewReplyById = (req) => {
 module.exports.getAllReviewReplies = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'review_replies',
+            index: req.env.GW_REVIEW_REPLIES,
             type: '_doc',
             body:{
                 query:{

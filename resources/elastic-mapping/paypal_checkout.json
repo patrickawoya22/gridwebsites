@@ -1,9 +1,9 @@
 #https://www.youtube.com/watch?v=p_cviIn1f_k
 
-GET /paypal_checkout/_search?q=*
+GET /gw_paypal_checkout/_search?q=*
 
-GET /paypal_checkout
-GET /paypal_checkout/_mapping
+GET /gw_paypal_checkout
+GET /gw_paypal_checkout/_mapping
 
 
 PUT _settings
@@ -16,7 +16,7 @@ PUT _settings
 }
 
 
-PUT /paypal_checkout
+PUT /gw_paypal_checkout
 {
     "settings": {
         "max_result_window": 1999999999,

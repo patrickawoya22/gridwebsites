@@ -1,14 +1,14 @@
 #https://www.youtube.com/watch?v=p_cviIn1f_k
 
-GET /products/_search?q=*
+GET /gw_templates/_search?q=*
 
-GET /products
-GET /products/_mapping
-
-
+GET /gw_templates
+GET /gw_templates/_mapping
 
 
-PUT /products
+
+
+PUT /gw_templates
 {
     "settings": {
         "max_result_window": 1999999999,

@@ -9,7 +9,7 @@ const product = require(`./Products`);
 module.exports.addNewProduct = async (req) =>{
 
     return await req.client.index({
-        index: 'products',
+        index: req.env.GW_PRODUCTS,
         type: '_doc',
         body: {
             name:req.body.name,
@@ -92,7 +92,7 @@ const updateActualProductOrderCounts = async (req, cartProductObj) => {
         };
 
         return await req.client.update({
-            index: 'products',
+            index: req.env.GW_PRODUCTS,
             type: '_doc',
             id: product_id,
             body: {
@@ -178,7 +178,7 @@ module.exports.getMyProductByID = (req) => {
             resolve([])
         } else {
             req.client.search({
-                index: 'products',
+                index: req.env.GW_PRODUCTS,
                 q: `_id: "${req.params.id}"`
             }).then((res)=>{
 
@@ -223,10 +223,61 @@ const getProductImages = (req) => {
     })
 };
 
+module.exports.getAutoCompleteProducts = (req) => {
+
+    let productJson = [];
+
+    return new Promise((resolve,reject)=>{
+        req.client.search({
+            index: req.env.GW_PRODUCTS,
+            type: '_doc',
+            body:{
+                query:{
+                    bool:{
+                        must:{
+                            multi_match: {
+                                query: req.query.q,
+                                type: 'cross_fields',
+                                analyzer: 'standard',
+                                operator: 'and',
+                                fields: ['main_category', 'name^10'],
+                            },
+                        },
+                    }
+                }
+            }
+        }).then((body)=>{
+
+            if (body.hits.total > 0) {
+                body.hits.hits.forEach((item) => {
+
+                    productJson.push({
+                        value: `${item._source.name} - ${item._source.main_category}`,
+                        data: item._id,
+                        name: item._source.name,
+                    });
+
+                });
+
+            } else {
+                productJson.push({
+                    value: 'No matching results',
+                    data: 'No matching results'
+                });
+            }
+
+            resolve(productJson);
+
+        }, (error)=>{
+            console.trace(error.message)
+        }).catch(err => console.error(err))
+    })
+};
+
 module.exports.updateProductDetails = async (req) => {
 
     return await req.client.update({
-        index: 'products',
+        index: req.env.GW_PRODUCTS,
         type: '_doc',
         id: req.body.ref,
         body: {
@@ -259,7 +310,7 @@ module.exports.getProductsBySupplier = (req) => {
 
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'products',
+            index: req.env.GW_PRODUCTS,
             type: '_doc',
             body:{
                 from: req.from,
@@ -322,7 +373,7 @@ module.exports.searchUserProductsById = (req) => {
             resolve([])
         } else {
             req.client.search({
-                index: 'products',
+                index: req.env.GW_PRODUCTS,
                 q: `_id: "${req.body.ref}"`
             }).then((res)=>{
 
@@ -342,11 +393,25 @@ module.exports.deleteProductImage = async (req) => {
         id: req.body.image_id,
     });
 };
+module.exports.getProductImageById = (req) => {
 
+    return new Promise((resolve, reject)=>{
+        req.client.search({
+            index: 'product_images',
+            q: `_id: "${req.body.image_id}"`
+        }).then((res)=>{
+
+            resolve(res);
+
+        },(error)=>{
+            console.trace(error.message)
+        }).catch(err => reject(err))
+    });
+};
 module.exports.getProducts = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'products',
+            index: req.env.GW_PRODUCTS,
             type: '_doc',
             body:{
                 from: req.from,
@@ -484,7 +549,7 @@ module.exports.searchProducts = (req) => {
             type: 'cross_fields',
             analyzer: 'standard',
             operator: 'and',
-            fields: ['category^5', 'description', 'main_category_no_analyzer^4', 'name^10', 'keyword^6'],
+            fields: ['main_category^5', 'description', 'main_category_no_analyzer^4', 'name^10', 'keyword^6'],
         },
     });
 
@@ -521,7 +586,7 @@ module.exports.searchProducts = (req) => {
 
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'products',
+            index: req.env.GW_PRODUCTS,
             type: '_doc',
             body:{
                 from: req.from,

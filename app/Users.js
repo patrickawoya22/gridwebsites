@@ -1,7 +1,7 @@
 
 module.exports.addNewUser = async (req) => {
     return await req.client.index({
-        index: 'users',
+        index: req.env.GW_USERS,
         type: '_doc',
         body: {
             first_name: req.body.first_name,
@@ -65,10 +65,10 @@ module.exports.addNewUser = async (req) => {
             google_plus:'',
         }
     })
-}
+};
 module.exports.addActivationCode = async (req) => {
     return await req.client.update({
-        index: 'users',
+        index: req.env.GW_USERS,
         type: '_doc',
         id: req.activation_code,
         body: {
@@ -77,10 +77,10 @@ module.exports.addActivationCode = async (req) => {
             }
         }
     })
-}
+};
 module.exports.updateAccountPassword = async (req) => {
     return await req.client.update({
-        index: 'users',
+        index: req.env.GW_USERS,
         type: '_doc',
         id: req.session.body.id,
         body: {
@@ -89,10 +89,10 @@ module.exports.updateAccountPassword = async (req) => {
             }
         }
     })
-}
+};
 module.exports.activateUser = async (req) =>{
     return await req.client.update({
-        index: 'users',
+        index: req.env.GW_USERS,
         type: '_doc',
         id: req.query.code,
         body: {
@@ -101,7 +101,7 @@ module.exports.activateUser = async (req) =>{
             }
         }
     })
-}
+};
 module.exports.updateAccountNotificationsDetails = async (req) => {
 
     req.session.body.email = req.body.email;
@@ -110,7 +110,7 @@ module.exports.updateAccountNotificationsDetails = async (req) => {
     req.session.body.textme = req.body.textme;
 
     return await req.client.update({
-        index: 'users',
+        index: req.env.GW_USERS,
         type: '_doc',
         id: req.session.body.id,
         body: {
@@ -124,7 +124,7 @@ module.exports.updateAccountNotificationsDetails = async (req) => {
             }
         }
     })
-}
+};
 
 module.exports.updateAccountDetails = async (req) => {
 
@@ -141,7 +141,7 @@ module.exports.updateAccountDetails = async (req) => {
     req.session.body.b_county = req.body.county;
 
     return await req.client.update({
-        index: 'users',
+        index: req.env.GW_USERS,
         type: '_doc',
         id: req.session.body.id,
         body: {
@@ -163,11 +163,11 @@ module.exports.updateAccountDetails = async (req) => {
             }
         }
     })
-}
+};
 module.exports.getUserByIdEx = (req) => {
     return new Promise((resolve, reject)=>{
         req.client.search({
-            index: 'users',
+            index: req.env.GW_USERS,
             q: `_id: "${req.body.id}"`
         }).then((res)=>{
 
@@ -177,11 +177,11 @@ module.exports.getUserByIdEx = (req) => {
             console.trace(error.message)
         }).catch(err => console.error(err))
     })
-}
+};
 module.exports.getUserById = (req) => {
     return new Promise((resolve, reject)=>{
         req.client.search({
-            index: 'users',
+            index: req.env.GW_USERS,
             q: `_id: "${req.session.body.id}"`
         }).then((res)=>{
 
@@ -191,11 +191,11 @@ module.exports.getUserById = (req) => {
             console.trace(error.message)
         }).catch(err => console.error(err))
     })
-}
+};
 module.exports.getUserByIdEx2 = (req) => {
     return new Promise((resolve, reject)=>{
         req.client.search({
-            index: 'users',
+            index: req.env.GW_USERS,
             q: `_id: "${req.body.id}"`
         }).then((res)=>{
 
@@ -205,11 +205,11 @@ module.exports.getUserByIdEx2 = (req) => {
             console.trace(error.message)
         }).catch(err => console.error(err))
     })
-}
+};
 module.exports.getUserByEmail = (req) =>{
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'users',
+            index: req.env.GW_USERS,
             type: '_doc',
             body:{
                 from: 0,
@@ -228,4 +228,4 @@ module.exports.getUserByEmail = (req) =>{
             console.trace(error.message)
         }).catch(err => console.error(err))
     })
-}
+};

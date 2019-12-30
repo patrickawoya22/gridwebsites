@@ -82,6 +82,116 @@
             }
         });
     });
+    var appEditProfileFile = new Vue({
+        el: '#edit-template-file',
+        data: {
+            isFileActive: '',
+            formFileError:'',
+            showFileError:false,
+            showFileSuccessMsg:false,
+            ref:'{{products_obj.hits.hits.0._id}}',
+            formFileSuccess: '',
+            fileCounter: {{file_obj.hits.total}},
+            fileCounterMsg:
+        {{#if file_obj.hits.total}}
+        '{{file_obj.hits.total}} File(s) Found',
+        {{else}}
+            'No Image(s) Found',
+        {{/if}}
+            template_files: [{{#each file_obj.hits.hits}}{name:'{{_source.name}}',
+                file_id:'{{_id}}',date_created:'{{_source.date_created}}' },
+            {{/each}}],
+        },methods: {
+            confirmDeleteTemplateFile: function(file_id){
+
+                $( "#template-file-dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                    buttons: {
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        },
+                        "Confirm": function () {
+
+                            appEditProfileFile.deleteTemplateFile(file_id).then(function () {
+
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+
+                            $(this).dialog("close");
+
+                        }
+                    }
+                });
+
+            },
+            deleteTemplateFile: function(file_id){
+
+
+                this.isFileActive = 'active-btn';
+                this.formFileError = '';
+
+                return new Promise(function (resolve, reject) {
+
+                    axios.post('{{req.customBaseURI}}delete-template-file',
+                            {
+                                file_id: file_id,
+                                ref:appEditProfileFile.ref,
+                            },
+                            { headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            }).then(response => {
+
+                        appEditProfileFile.isActive = '';
+
+                        if (response.data.error) {
+                            appEditProfileFile.showFileSuccessMsg=false;
+                            appEditProfileFile.formFileSuccess='';
+                            appEditProfileFile.formFileError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                            response.data.error[0] ? appEditProfileFile.formFileError += '<li>'+response.data.error[0].msg+'</li>':'';
+                            response.data.error[1] ? appEditProfileFile.formFileError += '<li>'+response.data.error[1].msg+'</li>':'';
+                            response.data.error[2] ? appEditProfileFile.formFileError += '<li>'+response.data.error[2].msg+'</li>':'';
+                            response.data.error[3] ? appEditProfileFile.formFileError += '<li>'+response.data.error[3].msg+'</li>':'';
+                            response.data.error[4] ? appEditProfileFile.formFileError += '<li>'+response.data.error[4].msg+'</li>':'';
+                            appEditProfileFile.formFileError += '</ul></div>';
+                            appEditProfileFile.showFileError = true;
+
+                        }else{
+                            appEditProfileFile.removeFile(file_id);
+                            appEditProfileFile.formFIleSuccess='<div class="callout success" style="border-radius: .3rem;">You have ' +
+                                    'account' +
+                                    ' successfully remove file.</div>';
+                            appEditProfileFile.showFileSuccessMsg=true;
+                            appEditProfileFile.showFileError = false;
+                            appEditProfileFile.fileCounter = appEditProfileFile.fileCounter - 1;
+                            appEditProfileFile.fileCounterMsg = appEditProfileFile.fileCounter+' File(s) Found';
+                        }
+                        resolve([]);
+                    },function(err){
+                        appEditProfileFile.lAction = '';
+                        console.log(err);
+                        alert(err);
+                        reject([]);
+                    });
+
+                });
+
+
+            },removeFile: function (file_id) {
+                var tmpArr = [];
+                this.template_files.forEach(function (item) {
+                    if (item.file_id!==file_id) {
+                        tmpArr.push(item);
+                    }
+                });
+                this.template_files = tmpArr;
+            }
+        },
+    });
     var appEditProfileImage = new Vue({
         el: '#edit-template-image',
         data: {
@@ -92,7 +202,7 @@
             formSuccess:'',
             showFormAction: '',
             showImages:'',
-            imageCounter: {{products_obj.hits.hits.0._source.image_obj.hits.total}},
+            imageCounter: {{#if products_obj.hits.hits.0._source.image_obj.hits.total}}{{products_obj.hits.hits.0._source.image_obj.hits.total}}{{else}}0{{/if}},
             imageCounterMsg:
               {{#if products_obj.hits.hits.0._source.image_obj.hits.total}}
                 '{{products_obj.hits.hits.0._source.image_obj.hits.total}} Image(s) Found',
@@ -119,81 +229,109 @@
                                 'Content-Type': 'application/json',
                             }
                         }).then(response => {
-                    this.isActive = '';
+                    appEditProfileImage.isActive = '';
                     if (response.data.error) {
-                        this.showSuccessMsg=false;
-                        this.formSuccess='';
-                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                        appEditProfileImage.showSuccessMsg=false;
+                        appEditProfileImage.formSuccess='';
+                        appEditProfileImage.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
                         response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
                         response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
                         response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
                         response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
                         response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
-                        this.formError += '</ul></div>';
-                        this.showError = true;
+                        appEditProfileImage.formError += '</ul></div>';
+                        appEditProfileImage.showError = true;
 
                     }else{
-                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account details are update ' +
+                        appEditProfileImage.formSuccess='<div class="callout success" style="border-radius: .3rem;">Your account details are update ' +
                                 'successfully.</div>';
-                        this.showSuccessMsg=true;
-                        this.showError = false;
-                        this.imageCounter = this.imageCounter +1;
-                        this.imageCounterMsg = this.imageCounter+' Image(s) Found';
-                        this.template_images.push({name:response.data.new_image.toString(),
-                            image_id:response.data._id.toString(),
-                            img_url:'/img/project/img-origin/'+response.data.new_image.toString()});
+                        appEditProfileImage.showSuccessMsg=true;
+                        appEditProfileImage.showError = false;
+                        appEditProfileImage.imageCounter = this.imageCounter +1;
+                        appEditProfileImage.imageCounterMsg = this.imageCounter+' Image(s) Found';
                     }
                 },function(err){
-                    this.lAction = '';
+                    appEditProfileImage.lAction = '';
                     console.log(err);
                     alert(err);
                 });
+            },
+            confirmDeleteTemplateImg: function(image_id){
+
+                $( "#template-image-dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                    buttons: {
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        },
+                        "Confirm": function () {
+
+                            appEditProfileImage.deleteTemplateImg(image_id).then(function () {
+
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+
+                            $(this).dialog("close");
+
+                        }
+                    }
+                });
+
             },
             deleteTemplateImg: function(image_id){
 
                 this.isActive = 'active-btn';
                 this.formError = '';
 
-                axios.post('{{req.customBaseURI}}delete-template-image',
-                        {
-                            image_id: image_id,
-                            ref:this.ref,
-                        },
-                        { headers: {
-                                'Content-Type': 'application/json',
-                            }
-                        }).then(response => {
+                return new Promise(function (resolve, reject) {
 
-                    this.isActive = '';
+                    axios.post('{{req.customBaseURI}}delete-template-image',
+                            {
+                                image_id: image_id,
+                                ref:appEditProfileImage.ref,
+                            },
+                            { headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            }).then(response => {
 
-                    if (response.data.error) {
-                        this.showSuccessMsg=false;
-                        this.formSuccess='';
-                        this.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
-                        response.data.error[0] ? this.formError += '<li>'+response.data.error[0].msg+'</li>':'';
-                        response.data.error[1] ? this.formError += '<li>'+response.data.error[1].msg+'</li>':'';
-                        response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
-                        response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
-                        response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
-                        this.formError += '</ul></div>';
-                        this.showError = true;
+                        appEditProfileImage.isActive = '';
 
-                    }else{
-                        this.removeImage(image_id);
-                        this.formSuccess='<div class="callout success" style="border-radius: .3rem;">You have account' +
-                                ' successfully remove image.</div>';
-                        this.showSuccessMsg=true;
-                        this.showError = false;
-                        this.imageCounter = this.imageCounter - 1;
-                        this.imageCounterMsg = this.imageCounter+' Image(s) Found';
-                        this.template_images.push({name:response.data.new_image.toString(),
-                            image_id:response.data._id.toString(),
-                            img_url:'/img/project/img-origin/'+response.data.new_image.toString()});
-                    }
-                },function(err){
-                    this.lAction = '';
-                    console.log(err);
-                    alert(err);
+                        if (response.data.error) {
+                            appEditProfileImage.showSuccessMsg=false;
+                            appEditProfileImage.formSuccess='';
+                            appEditProfileImage.formError = '<div class="callout warning" style="border-radius: .3rem;"><ul>'
+                            response.data.error[0] ? appEditProfileImage.formError += '<li>'+response.data.error[0].msg+'</li>':'';
+                            response.data.error[1] ? appEditProfileImage.formError += '<li>'+response.data.error[1].msg+'</li>':'';
+                            response.data.error[2] ? appEditProfileImage.formError += '<li>'+response.data.error[2].msg+'</li>':'';
+                            response.data.error[3] ? appEditProfileImage.formError += '<li>'+response.data.error[3].msg+'</li>':'';
+                            response.data.error[4] ? appEditProfileImage.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                            appEditProfileImage.formError += '</ul></div>';
+                            appEditProfileImage.showError = true;
+
+                        }else{
+                            appEditProfileImage.removeImage(image_id);
+                            appEditProfileImage.formSuccess='<div class="callout success" style="border-radius: .3rem;">You have ' +
+                                    ' successfully remove image.</div>';
+                            appEditProfileImage.showSuccessMsg=true;
+                            appEditProfileImage.showError = false;
+                            appEditProfileImage.imageCounter = appEditProfileImage.imageCounter - 1;
+                            appEditProfileImage.imageCounterMsg = appEditProfileImage.imageCounter+' Image(s) Found';
+                        }
+
+                        resolve([]);
+
+                    },function(err){
+                        appEditProfileImage.lAction = '';
+                        console.log(err);
+                        alert(err);
+                        reject([]);
+                    });
+
                 });
 
 
@@ -250,6 +388,8 @@
             editTemplate: function (e) {
                 this.isActive = 'active-btn';
                 this.formError = '';
+                console.log('this aads');
+
                 axios.post('{{req.customBaseURI}}save-template',
                         {
                             name:this.name,
@@ -285,6 +425,17 @@
                         response.data.error[2] ? this.formError += '<li>'+response.data.error[2].msg+'</li>':'';
                         response.data.error[3] ? this.formError += '<li>'+response.data.error[3].msg+'</li>':'';
                         response.data.error[4] ? this.formError += '<li>'+response.data.error[4].msg+'</li>':'';
+                        response.data.error[5] ? this.formError += '<li>'+response.data.error[5].msg+'</li>':'';
+                        response.data.error[6] ? this.formError += '<li>'+response.data.error[6].msg+'</li>':'';
+                        response.data.error[7] ? this.formError += '<li>'+response.data.error[7].msg+'</li>':'';
+                        response.data.error[8] ? this.formError += '<li>'+response.data.error[8].msg+'</li>':'';
+                        response.data.error[9] ? this.formError += '<li>'+response.data.error[9].msg+'</li>':'';
+                        response.data.error[10] ? this.formError += '<li>'+response.data.error[10].msg+'</li>':'';
+                        response.data.error[11] ? this.formError += '<li>'+response.data.error[11].msg+'</li>':'';
+                        response.data.error[12] ? this.formError += '<li>'+response.data.error[12].msg+'</li>':'';
+                        response.data.error[13] ? this.formError += '<li>'+response.data.error[13].msg+'</li>':'';
+                        response.data.error[14] ? this.formError += '<li>'+response.data.error[14].msg+'</li>':'';
+                        response.data.error[15] ? this.formError += '<li>'+response.data.error[15].msg+'</li>':'';
                         this.formError += '</ul></div>';
                         this.showError = true;
 
@@ -371,7 +522,7 @@
         		var imageData = $('.image-editor').cropit('export');
         		window.open(imageData);
            });*/
-        $('form').submit(function() {
+        $('form#cropit-form').submit(function() {
             // Move cropped image data to hidden input
             var imageData = $('.image-editor').cropit('export');
             $('.hidden-image-data').val(imageData);
@@ -401,7 +552,7 @@
 
         $('#save-template-form').validate({
             rules: {
-                template_name: {
+                name: {
                     required: true,
                 },language: {
                     required: true,
@@ -413,7 +564,11 @@
                     required: true,
                 },hosting_price: {
                     required: true,
+                },type: {
+                    required: true,
                 },extra: {
+                    required: true,
+                },version: {
                     required: true,
                 },category: {
                     required: true,
@@ -426,16 +581,20 @@
                 }
             },
             messages: {
-                template_name: {
-                    required: 'Please template name',
+                name: {
+                    required: 'Please enter template name',
                 },language: {
                     required: 'Please select your default language',
                 },price: {
                     required: 'Please enter template price',
+                },version: {
+                    required: 'Please select version',
                 },discount_price: {
                     required: 'Please enter template discount price',
                 },built_price: {
                     required: 'Please enter template built price',
+                },type: {
+                    required: 'Please select type',
                 },hosting_price: {
                     required: 'Please enter template hosting price',
                 },extra: {
