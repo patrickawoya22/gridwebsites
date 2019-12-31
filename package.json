@@ -1,13 +1,14 @@
 {
   "name": "grid-websites",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Node.js on Docker",
+  "author": "Patrick KAKANDE <patrickawoya22@hotmail.co.uk>",
+  "private": true,
+  "main": "routes/web.js",
   "scripts": {
-    "prod": "node routes/web.js",
+    "start": "node routes/web.js",
     "dev": "nodemon routes/web.js"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "archiver": "^3.1.1",
