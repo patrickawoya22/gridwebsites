@@ -74,6 +74,13 @@ let client = new elasticsearch.Client({
     ]
 });
 
+console.log(
+    {
+        host: process.env.ELASTIC_HOST,
+        port: process.env.ELASTIC_PORT,
+    }, 'Elastic connection details'
+);
+
 client.ping({
     requestTimeout: 3000
 }, function (error) {
