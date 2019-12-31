@@ -75,7 +75,7 @@ let client = new elasticsearch.Client({
 });
 
 client.ping({
-    requestTimeout: 1000
+    requestTimeout: 3000
 }, function (error) {
     if (error) {
         console.trace(`elasticsearch cluster is down`);
