@@ -1,6 +1,6 @@
 const cart = require('./Cart');
 const products = require(`./Products`);
-const utility = require(`./utility`);
+const utility = require(`./Utility`);
 
 module.exports.getDateAsNumber = () => {
     let d = new Date();
