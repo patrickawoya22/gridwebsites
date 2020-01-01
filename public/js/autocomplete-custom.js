@@ -18,7 +18,6 @@ $('#autocomplete').devbridgeAutocomplete({
         // $('#selction-ajax').html('You selected: ' + suggestion.value + ', ' + suggestion.data);
     },
     onHint: function (hint) {
-        console.log(hint);
         $('#autocomplete-ajax-x').val(hint);
     },
     onInvalidateSelection: function() {

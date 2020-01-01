@@ -2,12 +2,12 @@
     var appJoin = new Vue({
         el: '#join_reveal',
         data: {
-            rTitle: 'Mr',
-            rFirstName:'Patrick',
-            rLastName: 'Kakande',
-            rUsername:'patrick22',
-            rEmail:'patrickawoya22@hotmail.co.uk',
-            rPassword: 'password',
+            rTitle: '',
+            rFirstName:'',
+            rLastName: '',
+            rUsername:'',
+            rEmail:'',
+            rPassword: '',
             rAction:'',
             rFormError:'',
             formSuccess:'',
@@ -25,7 +25,7 @@
             join: function (e) {
                 this.rAction = 'active-btn';
                 this.rFormError = '';
-                axios.post('http://localhost:3000/join',
+                axios.post('/join',
                         {
                             title:this.rTitle,
                             first_name: this.rFirstName,
@@ -70,8 +70,8 @@
     var appLogin = new Vue({
         el: '#login_reveal',
         data: {
-            lEmail: 'patrickawoya22@hotmail.co.uk',
-            lPassword: 'password',
+            lEmail: '',
+            lPassword: '',
             lAction:'',
             destinationUrl:'',
             lEmailError:'',
@@ -84,7 +84,7 @@
             },
             login: function (e) {
                 this.lAction = 'active-btn';
-                axios.post('http://localhost:3000/login',
+                axios.post('/login',
                         {
                             password:this.lPassword,
                             email: this.lEmail,
