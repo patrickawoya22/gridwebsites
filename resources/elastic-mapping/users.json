@@ -1,6 +1,9 @@
 #https://www.youtube.com/watch?v=p_cviIn1f_k
 
 
+curl -XGET 0.0.0.0:9200/gw_users/_search?q=*
+curl -XDELETE 0.0.0.0:9200/gw_users/_doc/4toXY28BmdEK51NCOL_z
+
 PUT /gw_users
 {
     "settings": {

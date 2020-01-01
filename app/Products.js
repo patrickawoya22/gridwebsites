@@ -108,7 +108,7 @@ const updateActualProductOrderCounts = async (req, cartProductObj) => {
 module.exports.addNewProductImageToDB = async (req) => {
 
     return await req.client.index({
-        index: 'product_images',
+        index: req.env.GW_PRODUCT_IMAGES,
         type: '_doc',
         body: {
             name:`${req.name}.png`,
@@ -147,7 +147,7 @@ module.exports.addNewProductImageToFile = (req) => {
 module.exports.getUserTemplateImagesByTemplateId = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'product_images',
+            index: req.env.GW_PRODUCT_IMAGES,
             type: '_doc',
             body:{
                 sort: [{ 'sort': { 'order': 'ASC' } }],
@@ -201,7 +201,7 @@ module.exports.getMyProductByID = (req) => {
 const getProductImages = (req) => {
     return new Promise((resolve,reject)=>{
         req.client.search({
-            index: 'product_images',
+            index: req.env.GW_PRODUCT_IMAGES,
             type: '_doc',
             body:{
                 sort: [{ 'sort': { 'order': 'ASC' } }],
@@ -388,7 +388,7 @@ module.exports.searchUserProductsById = (req) => {
 
 module.exports.deleteProductImage = async (req) => {
     return await req.client.delete({
-        index: 'product_images',
+        index: req.env.GW_PRODUCT_IMAGES,
         type: '_doc',
         id: req.body.image_id,
     });
@@ -397,7 +397,7 @@ module.exports.getProductImageById = (req) => {
 
     return new Promise((resolve, reject)=>{
         req.client.search({
-            index: 'product_images',
+            index: req.env.GW_PRODUCT_IMAGES,
             q: `_id: "${req.body.image_id}"`
         }).then((res)=>{
 
