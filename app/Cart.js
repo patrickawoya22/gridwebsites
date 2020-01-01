@@ -335,6 +335,8 @@ module.exports.getCartItemsByCookieIdEx = (req,res) => {
                 req.cookies.cookieName = '';
             }
 
+            console.log(req.env);
+
             req.client.search({
                 index: req.env.GW_CART,
                 type: '_doc',
