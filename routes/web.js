@@ -197,6 +197,7 @@ const userController = require(modulePath+'/app/Http/Controllers/userController'
 app.get('/',(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.indexAction);
@@ -205,6 +206,7 @@ app.get('/',(req, res, next)=>{
 app.get('/product-json',(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.productJsonAction);
@@ -235,6 +237,7 @@ app.post(`/save-review`,(req, res, next)=>{
     req.client = client;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
     req.dateS = moment(date).format('DD MMMM YYYY');
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveReviewAction);
@@ -244,6 +247,7 @@ app.post(`/save-review-reply`,(req, res, next)=>{
     req.client = client;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
     req.dateS = moment(date).format('DD MMMM YYYY');
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveReviewReplyAction);
@@ -251,6 +255,7 @@ app.post(`/save-review-reply`,(req, res, next)=>{
 app.post(`/remove-review`,(req, res, next)=>{
     res.modulePath = modulePath;
     req.client = client;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.removeReviewAction);
@@ -258,6 +263,7 @@ app.post(`/remove-review`,(req, res, next)=>{
 app.post(`/remove-review-reply`,(req, res, next)=>{
     res.modulePath = modulePath;
     req.client = client;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.removeReviewReplyAction);
@@ -266,6 +272,7 @@ app.post(`/remove-review-reply`,(req, res, next)=>{
 //Setting Contact seller router
 app.post(`/remove-review`,(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.removeReviewAction);
@@ -279,6 +286,7 @@ app.use(paginate.middleware(12, 2));
 //Setting blog router
 app.get('/blogs',(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.blogsAction);
@@ -286,6 +294,7 @@ app.get('/blogs',(req, res, next)=>{
 //Setting search router
 app.get('/search',(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.searchAction);
@@ -308,12 +317,14 @@ app.get('/search',(req, res, next)=>{
 app.get('/members',(req, res, next)=>{
     res.modulePath = modulePath;
     req.env = process.env;
+    req.customBaseURI = customBaseURI;
     next();
 }, userController.membersAction);
 
 //Setting members router
 app.get('/members/:id',(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.membersAction);
@@ -322,6 +333,7 @@ app.get('/members/:id',(req, res, next)=>{
 app.get('/members/:id/:id2',(req, res, next)=>{
     res.modulePath = modulePath;
     req.env = process.env;
+    req.customBaseURI = customBaseURI;
     next();
 }, userController.membersAction);
 
@@ -329,12 +341,14 @@ app.get('/members/:id/:id2',(req, res, next)=>{
 app.get('/creatives',(req, res, next)=>{
     res.modulePath = modulePath;
     req.env = process.env;
+    req.customBaseURI = customBaseURI;
     next();
 }, userController.creativesAction);
 
 //Setting creatives router
 app.get('/creatives/:id',(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.creativesAction);
@@ -344,6 +358,7 @@ app.get('/cart',(req, res, next)=>{
     res.modulePath = modulePath;
     req.customBaseURI = customBaseURI;
     req.DEFAULT_USER_ID = process.env.DEFAULT_USER_ID;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.cartAction);
@@ -351,6 +366,7 @@ app.get('/cart',(req, res, next)=>{
 
 app.get('/purchases',(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.purchasesAction);
@@ -365,6 +381,7 @@ app.post(`/join`,(req, res, next)=>{
     req.env = process.env;
     req.client = client;
     req.ip = ip.address();
+    req.customBaseURI = customBaseURI;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
     res.modulePath = modulePath;
     next();
@@ -375,6 +392,7 @@ app.post(`/join`,(req, res, next)=>{
 app.post(`/login`,(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.loginAction);
@@ -383,6 +401,7 @@ app.post(`/login`,(req, res, next)=>{
 app.get(`/activation`,(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.activationAction);
@@ -390,6 +409,7 @@ app.get(`/activation`,(req, res, next)=>{
 //Setting activation router
 app.get(`/logout`,(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.logoutAction);
@@ -436,6 +456,7 @@ app.get(`/edit-profile`,(req, res, next)=>{
 app.post(`/save-account-details`,(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveAccountDetailsAction);
@@ -448,6 +469,7 @@ app.post(`/upload-template-file`,(req, res, next)=>{
 
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveTemplateFileAction);
@@ -455,6 +477,7 @@ app.post(`/upload-template-file`,(req, res, next)=>{
 
 app.post(`/save-description`,(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveDescriptionAction);
@@ -462,6 +485,7 @@ app.post(`/save-description`,(req, res, next)=>{
 app.post(`/save-notifications`,(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveNotificationsAction);
@@ -469,17 +493,21 @@ app.post(`/save-notifications`,(req, res, next)=>{
 app.post(`/save-password`,(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
+    req.env = process.env;
     next();
 }, authController.savePasswordAction);
 
 app.get(`/edit-profile-image`,(req, res, next)=>{
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.editProfileImageAction);
 
 app.get(`/edit-language-pack`,(req, res, next)=>{
     req.client = client;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, userController.editLanguagePackAction);
@@ -541,6 +569,7 @@ app.get(`/contact-us`,(req, res, next)=>{
 
 app.post(`/save-template`,(req, res, next)=>{
     req.client = client;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveTemplateAction);
@@ -554,6 +583,7 @@ app.post(`/send-contact-us-message`,(req, res, next)=>{
     req.ip = ip.address();
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
     res.modulePath = modulePath;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.sendContactUsMessage);
@@ -562,6 +592,7 @@ app.post(`/save-template-image`,(req, res, next)=>{
     req.client = client;
     req.modulePath = modulePath;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveTemplateImageAction);
@@ -570,6 +601,7 @@ app.post(`/delete-template-image`,(req, res, next)=>{
     req.client = client;
     req.modulePath = modulePath;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.deleteTemplateImageAction);
@@ -578,6 +610,7 @@ app.post(`/delete-template-file`,(req, res, next)=>{
     req.client = client;
     req.modulePath = modulePath;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.deleteTemplateFileAction);
@@ -587,6 +620,7 @@ app.post(`/save-cart`,(req, res, next)=>{
     req.modulePath = modulePath;
     req.DEFAULT_USER_ID = process.env.DEFAULT_USER_ID;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveCartAction);
@@ -597,6 +631,7 @@ app.post(`/change-order-status`,(req, res, next)=>{
         req.modulePath = modulePath;
         req.DEFAULT_USER_ID = process.env.DEFAULT_USER_ID;
         req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
+        req.customBaseURI = customBaseURI;
         req.env = process.env;
         next();
     } else {
@@ -613,11 +648,13 @@ app.post(`/modify-cart`,(req, res, next)=>{
     req.DEFAULT_USER_ID = process.env.DEFAULT_USER_ID;
     req.env = process.env;
     req.date = moment(date).format('YYYY-MM-DD HH:mm:ss');
+    req.customBaseURI = customBaseURI;
     next();
 }, authController.modifyCartAction);
 
 app.post(`/save-language-pack`,(req, res, next)=>{
     req.client = client;
+    req.customBaseURI = customBaseURI;
     req.env = process.env;
     next();
 }, authController.saveLanguagePackAction);

@@ -22,7 +22,7 @@ module.exports.getMessage = (req) => {
                                         <table cellpadding="30">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left"><a href="#"><img src="https://encraze.com/img/logo/encraze.png" alt="Encraze Logo" width="130" ></a></td>
+                                                    <td align="left"><a href="${req.customBaseURI}">Grid websites</td>
                                                     <td align="right">
                                                     </td>
                                                 </tr>
@@ -89,7 +89,7 @@ module.exports.getMessage = (req) => {
                                                 </tr>-->
                                                 <tr>
                                                     <td style="padding-top:0">
-                                                        <a href="http://localhost:3000/activation?code=${req.activation_code}" 
+                                                        <a href="${req.customBaseURI}activation?code=${req.activation_code}" 
                                                         style="color:#428BCA;font-size:1.5rem;text-decoration: none;">Click here to activate your account</a>
                                                     </td>
                                                 </tr>

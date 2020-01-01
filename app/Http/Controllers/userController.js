@@ -765,7 +765,7 @@ exports.editProfileImageAction = function(req, res) {
         	imageBackground: true,
         	imageBackgroundBorderWidth: 20,
             imageState: {
-			  src:'http://localhost:3000/img/profile/main/profile.jpg',
+			  src:'${req.customBaseURI}img/profile/main/profile.jpg',
 			},
         });
             $('form').submit(function() {

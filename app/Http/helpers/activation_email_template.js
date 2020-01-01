@@ -89,7 +89,7 @@ module.exports.getMessage = (req) => {
                                                 </tr>-->
                                                 <tr>
                                                     <td style="padding-top:0">
-                                                        <a href="http://localhost:3000/activation?code=${req.activation_code}" 
+                                                        <a href="${req.customBaseURI}activation?code=${req.activation_code}" 
                                                         style="color:#428BCA;font-size:1.5rem;text-decoration: none;">Click here to activate your account</a>
                                                     </td>
                                                 </tr>
@@ -134,7 +134,7 @@ module.exports.getMessage = (req) => {
 
         // plaintext body
         text: `Dear ${_.startCase(req.body.first_name)}, Thank you for creating your account with us Grid websites. Please visit the follow link to 
-activate your account <a href="http://localhost:3000/activation?code=${req.activation_code}">http://localhost:3000/activation?code=${req.activation_code}</a>.`,
+activate your account <a href="${req.customBaseURI}activation?code=${req.activation_code}">http://localhost:3000/activation?code=${req.activation_code}</a>.`,
         // HTML body
         html: body,
     }
