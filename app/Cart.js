@@ -335,8 +335,6 @@ module.exports.getCartItemsByCookieIdEx = (req,res) => {
                 req.cookies.cookieName = '';
             }
 
-            console.log(req.env);
-
             req.client.search({
                 index: req.env.GW_CART,
                 type: '_doc',
@@ -344,7 +342,7 @@ module.exports.getCartItemsByCookieIdEx = (req,res) => {
                     query:{
                         bool:{
                             filter: {
-                                term: {cart_cookie:req.cookies.cookieName,}
+                                term: {cart_cookie:req.cookies.cookieName ? req.cookies.cookieName : '' ,}
                             }
                         }
                     }
