@@ -18,7 +18,7 @@
 # - you should use the 'node' official image, with the alpine 6.x branch
 FROM node:11
 # - this app listens on port 3000, but the container should launch on port 80
-EXPOSE 3000
+EXPOSE 3001
 #  so it will respond to http://localhost:80 on your computer
 # - then it should use alpine package manager to install tini: 'apk add --update tini'
 #RUN apk add --update tini

@@ -31,7 +31,7 @@ let Handlebars = exphbs.handlebars;
 let customBaseURI = `http://localhost:3000/`;
 
 let app = express();
-let port  = 3000; // port variable
+let port  = 3001; // port variable
 
 const modulePath = path.join(__dirname, '..'); //setting path to module
 
@@ -197,7 +197,6 @@ app.get('/',(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
     req.env = process.env;
-    console.log(req.client.transport._config, `ElasticSearch configuration`);
     next();
 }, userController.indexAction);
 
