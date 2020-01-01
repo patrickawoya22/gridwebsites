@@ -28,8 +28,6 @@ if (dotenv.error) {
 
 let Handlebars = exphbs.handlebars;
 
-let customBaseURI = `http://localhost:3000/`;
-
 let app = express();
 let port  = 3001; // port variable
 
@@ -90,6 +88,9 @@ client.ping({
         console.trace(`elasticsearch cluster is up`);
     }
 });
+
+
+const customBaseURI = process.env.BASE_URL;
 
 // client.search({
 //     body:{
