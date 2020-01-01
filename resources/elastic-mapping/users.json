@@ -135,3 +135,138 @@ PUT /gw_users
   }
 }
 
+
+
+curl -XPUT "0.0.0.0:9200/gw_users" -H 'Content-Type: application/json' -d'{
+    "settings": {
+        "max_result_window": 1999999999,
+        "index" : {
+                "number_of_shards" : 3
+            },
+    "analysis": {
+      "filter": {
+        "autocomplete_filter":{
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 100
+        }
+      }
+      , "analyzer": {
+        "autocomplete":{
+          "type":"custom",
+          "tokenizer" : "standard",
+          "filter":[
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "first_name":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "first_name_no_analyzer":{"type":"text"},
+
+        "last_name":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "username":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "last_name_no_analyzer":{"type":"text"},
+
+        "email":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "email_no_analyzer":{"type":"keyword"},
+
+        "country_code":{"type":"keyword"},
+        "currency":{"type":"keyword"},
+        "location": {"type": "geo_point"},
+
+        "session_id":{"type":"keyword"},
+
+        "passwd":{"type":"text"},
+
+        "b_postcode":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "b_postcode_no_analyzer":{"type":"keyword"},
+
+        "b_address1":{"type":"text"},
+        "b_country":{"type":"text"},
+        "b_street":{"type":"text"},
+        "b_city":{"type":"text"},
+        "b_county":{"type":"text"},
+
+        "s_postcode":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "s_postcode_no_analyzer":{"type":"keyword"},
+
+        "s_address1":{"type":"text"},
+        "s_country":{"type":"text"},
+        "s_street":{"type":"text"},
+        "s_city":{"type":"text"},
+        "s_county":{"type":"text"},
+
+        "use_same_address":{"type":"integer"},
+
+        "mobile":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "mobile_no_analyzer":{"type":"keyword"},
+
+        "terms_agreement":{"type":"integer"},
+        "signup_ip":{"type":"text"},
+
+        "date_joined":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "date_last_login":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "date_last_logout":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "activated_date":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+
+        "pwd_reset_token_creation_date":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "pwd_reset_token":{"type":"keyword"},
+
+        "sessid":{"type":"keyword"},
+
+        "title":{"type":"keyword"},
+        "profile_img":{"type":"text"},
+
+        "access_level":{"type":"integer"},
+        "account_status":{"type":"integer"},
+        "root":{"type":"keyword"},
+
+        "referenceId":{"type":"keyword"},
+        "checkoutId":{"type":"keyword"},
+
+        "activation_code":{"type":"keyword"},
+        "user_guide":{"type":"integer"},
+        "emailme":{"type":"integer"},
+
+        "twitter":{"type":"text"},
+        "linkedin":{"type":"text"},
+        "pinterest":{"type":"text"},
+        "facebook":{"type":"text"},
+        "google_plus":{"type":"text"}
+      }
+    }
+  }
+}'
+

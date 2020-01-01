@@ -121,6 +121,120 @@ PUT /gw_products
   }
 }
 
+
+
+curl -XPUT "0.0.0.0:9200/gw_products" -H 'Content-Type: application/json' -d'{
+    "settings": {
+        "max_result_window": 1999999999,
+        "index" : {
+                "number_of_shards" : 3
+            },
+    "analysis": {
+      "filter": {
+        "autocomplete_filter":{
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 100
+        }
+      }
+      , "analyzer": {
+        "autocomplete":{
+          "type":"custom",
+          "tokenizer" : "standard",
+          "filter":[
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "name":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "brand":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+        "name_no_analyzer":{"type":"keyword"},
+
+        "keyword":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "categories":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "type":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "sub_categories":{
+          "type":"text",
+          "analyzer":"autocomplete"
+        },
+
+        "language_id":{"type":"text"},
+
+        "location": {"type": "geo_point"},
+
+        "publish":{"type":"keyword"},
+        "main_category":{
+        "type":"text",
+        "analyzer":"autocomplete"
+        },
+
+        "main_category_no_analyzer":{"type":"keyword"},
+        "description":{"type":"text"},
+        "code_quality":{"type":"text"},
+        "vat":{"type":"integer"},
+
+        "isoCode":{"type":"keyword"},
+        "supplier_product_id":{"type":"keyword"},
+        "video":{"type":"text"},
+
+        "price":{"type":"double"},
+
+        "offer_price":{"type":"double"},
+
+        "built_price":{"type":"double"},
+        "hosting_price":{"type":"double"},
+
+        "quantity":{"type":"integer"},
+        "stock_status":{"type":"keyword"},
+        "offer":{"type":"keyword"},
+
+        "file_path":{"type":"text"},
+
+        "date_created":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "offer_start_date":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "offer_end_date":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+
+        "date_last_updated":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+
+        "order_counts":{"type":"integer"},
+        "user_reviews":{"type":"integer"},
+        "rating_average":{"type":"double"},
+        "overviews":{"type":"double"},
+        "supplier":{"type":"keyword"},
+        "finder":{"type":"keyword"}
+      }
+    }
+  }
+}'
+
 POST products/_doc/ss4PzmcBhDtb1M7n3599/_update
 {
   "doc":{

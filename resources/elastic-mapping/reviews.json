@@ -53,3 +53,51 @@ PUT /gw_reviews
     }
   }
 }
+
+
+curl -XPUT "0.0.0.0:9200/gw_reviews" -H 'Content-Type: application/json' -d'{
+    "settings": {
+        "max_result_window": 1999999999,
+        "index" : {
+                "number_of_shards" : 3
+            },
+    "analysis": {
+      "filter": {
+        "autocomplete_filter":{
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 100
+        }
+      }
+      , "analyzer": {
+        "autocomplete":{
+          "type":"custom",
+          "tokenizer" : "standard",
+          "filter":[
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "product_id":{"type":"keyword"},
+        "tmp_product_reviews_id":{"type":"keyword"},
+        "order_id":{"type":"keyword"},
+        "user_id":{"type":"keyword"},
+        "rating":{"type":"integer"},
+        "review":{"type":"text"},
+        "reviewer_name":{"type":"text"},
+        "review_status":{"type":"integer"},
+        "date_created_no_analyzer":{"type":"text"},
+        "date_created":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"},
+        "date_last_updated":{"type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss|| yyyy-MM-dd HH:mm +SSSS||yyyy-MM-dd||epoch_millis"}
+      }
+    }
+  }
+}'

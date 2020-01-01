@@ -197,6 +197,7 @@ app.get('/',(req, res, next)=>{
     req.client = client;
     res.modulePath = modulePath;
     req.env = process.env;
+    console.log(req.client.transport._config, `ElasticSearch configuration`);
     next();
 }, userController.indexAction);
 
