@@ -33,7 +33,7 @@
     "express-validator": "^5.3.0",
     "express-zip": "^2.0.1",
     "fs": "0.0.1-security",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.7.7",
     "hbs": "^4.0.1",
     "helper-date": "^1.0.1",
     "ip": "^1.1.5",
